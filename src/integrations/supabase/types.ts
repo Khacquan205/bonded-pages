@@ -14,7 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      guestbook_messages: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          name: string
+          side: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          name: string
+          side?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          name?: string
+          side?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
