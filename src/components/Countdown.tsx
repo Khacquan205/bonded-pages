@@ -11,12 +11,16 @@ function diff(target: number) {
   };
 }
 
+const ZERO = { d: 0, h: 0, m: 0, s: 0 };
+
 export function Countdown({ target }: { target: string }) {
   const { lang } = useLanguage();
   const t = new Date(target).getTime();
-  const [v, setV] = useState(() => diff(t));
+  // Start from zeros so SSR and the first client render match, then tick.
+  const [v, setV] = useState(ZERO);
 
   useEffect(() => {
+    setV(diff(t));
     const id = window.setInterval(() => setV(diff(t)), 1000);
     return () => window.clearInterval(id);
   }, [t]);
