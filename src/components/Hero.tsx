@@ -24,21 +24,23 @@ export function Hero() {
         decoding="async"
         className="absolute inset-0 size-full object-cover"
       />
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/45" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35" />
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-3xl flex-col items-center justify-center px-6 py-28 text-center">
-        <motion.p {...fade(0.05)} className="text-[0.6875rem] uppercase tracking-[0.4em] text-white/80">
+        <motion.p {...fade(0.05)} className="text-[0.6875rem] uppercase tracking-[0.4em] text-white/85">
           {wedding.hero.label[lang]}
         </motion.p>
 
         <motion.h1
           {...fade(0.15)}
-          className="mt-6 font-display text-[3.25rem] font-light leading-[1.05] tracking-[0.02em] text-white sm:text-7xl"
+          className="mt-6 flex flex-col items-center font-display text-[3rem] font-light leading-[1.08] tracking-[0.02em] text-white sm:text-7xl"
         >
-          {wedding.couple.bride.shortName}
-          <span className="mx-3 text-eucalyptus">&</span>
-          {wedding.couple.groom.shortName}
+          <span>{wedding.couple.bride.shortName}</span>
+          <span className="my-1 text-2xl text-eucalyptus sm:my-2 sm:text-4xl">&</span>
+          <span>{wedding.couple.groom.shortName}</span>
         </motion.h1>
+
 
         <motion.div {...fade(0.25)} className="mt-6 flex items-center gap-4">
           <span className="h-px w-10 bg-white/40" />
