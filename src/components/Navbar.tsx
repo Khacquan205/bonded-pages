@@ -120,7 +120,6 @@ export function Navbar() {
               scrolled || open ? "text-olive-deep" : "text-white",
             )}
           >
-            {open ? <Menu className="hidden" /> : null}
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
