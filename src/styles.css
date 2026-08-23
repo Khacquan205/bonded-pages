@@ -19,6 +19,17 @@
  */
 
 @theme inline {
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-olive: var(--olive);
+  --color-olive-deep: var(--olive-deep);
+  --color-eucalyptus: var(--eucalyptus);
+  --color-sage-mist: var(--sage-mist);
+  --color-ink: var(--text-strong);
+  --color-ink-muted: var(--text-muted-c);
+  --color-zalo: #0068ff;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -61,20 +72,6 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-
-@theme inline {
-  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
-  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
-  --color-cream: var(--cream);
-  --color-cream-deep: var(--cream-deep);
-  --color-olive: var(--olive);
-  --color-olive-deep: var(--olive-deep);
-  --color-eucalyptus: var(--eucalyptus);
-  --color-sage-mist: var(--sage-mist);
-  --color-ink: var(--text-strong);
-  --color-ink-muted: var(--text-muted-c);
-  --color-zalo: #0068ff;
-}
 
 :root {
   --cream: #faf7f0;
