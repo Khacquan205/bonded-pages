@@ -169,7 +169,5 @@ export const wedding = {
 } as const;
 
 export type Wedding = typeof wedding;
-export const monogram =
-  wedding.couple.bride.shortName.trim().slice(-1).toUpperCase() +
-  " & " +
-  wedding.couple.groom.shortName.trim().slice(-1).toUpperCase();
+const initial = (n: string) => (n.trim().split(/\s+/).pop() ?? n).charAt(0).toUpperCase();
+export const monogram = `${initial(wedding.couple.bride.shortName)} & ${initial(wedding.couple.groom.shortName)}`;
