@@ -7,7 +7,6 @@ import { Timeline } from "@/components/Timeline";
 import { Gallery } from "@/components/Gallery";
 import { Guestbook } from "@/components/Guestbook";
 import { ClosingCta } from "@/components/ClosingCta";
-import { MusicPlayer } from "@/components/MusicPlayer";
 import { Toaster } from "@/components/ui/sonner";
 import { wedding, monogram } from "@/config/wedding";
 import { LanguageProvider, useFormatDate, useLanguage } from "@/context/LanguageContext";
@@ -67,7 +66,6 @@ function Invitation() {
           {lang === "vi" ? "Made with ♥" : "Made with ♥"}
         </p>
       </footer>
-      <MusicPlayer />
     </div>
   );
 }

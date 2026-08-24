@@ -154,7 +154,6 @@ export const wedding = {
       en: "Your presence is our greatest happiness",
     },
   },
-  music: { src: "/audio/bg.mp3", title: "Cùng anh — Ngọt" },
   theme: {
     cream: "#FAF7F0",
     creamDeep: "#F1EBE0",
