@@ -1,0 +1,18 @@
+{
+  "name": "zalo-notify-bot",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Small always-on service: logs into a spare Zalo account and forwards RSVP notifications from the wedding site to the couple's real Zalo account.",
+  "scripts": {
+    "login": "node src/login.js",
+    "migrate-session": "node src/migrate-session-to-supabase.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.112.3",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "zca-js": "^2.1.2"
+  }
+}

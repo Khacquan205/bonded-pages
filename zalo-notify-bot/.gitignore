@@ -1,0 +1,4 @@
+node_modules/
+credentials.json
+qr.png
+.env
