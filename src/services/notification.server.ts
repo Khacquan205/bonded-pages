@@ -43,6 +43,12 @@ export async function sendZaloRsvpNotification(data: RsvpNotificationPayload): P
   const webhookUrl = process.env["ZALO_BOT_WEBHOOK_URL"];
   const webhookSecret = process.env["ZALO_BOT_WEBHOOK_SECRET"];
 
+  console.log(
+    "🔍 [Zalo debug] webhookUrl present:", !!webhookUrl,
+    "| webhookSecret present:", !!webhookSecret,
+    "| all env keys:", Object.keys(process.env).join(", "),
+  );
+
   if (!webhookUrl) {
     console.log("ℹ️ [Zalo Bot Notification Preview]:\n" + buildMessageText(data));
     return false;
