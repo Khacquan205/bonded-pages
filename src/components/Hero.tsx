@@ -58,7 +58,7 @@ export function Hero() {
               type="button"
               className="w-full rounded-full bg-olive px-8 py-3.5 text-sm tracking-[0.1em] text-cream transition-colors hover:bg-olive-deep sm:w-auto"
             >
-              {lang === "vi" ? "Nhắn tin xác nhận" : "Message us"}
+              {lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance"}
             </button>
           </ContactPicker>
 

@@ -7,10 +7,6 @@ import { SectionHeading } from "./SectionHeading";
 export function Story() {
   const t = useT();
   const { lang } = useLanguage();
-  const people = [
-    { key: "bride", data: wedding.story.bride },
-    { key: "groom", data: wedding.story.groom },
-  ] as const;
 
   return (
     <section id="story" className="bg-cream px-6 py-20 sm:py-28">
@@ -21,26 +17,70 @@ export function Story() {
           desc={t(wedding.story.intro)}
         />
 
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 sm:gap-8">
-          {people.map((p, i) => (
-            <Reveal key={p.key} delay={i * 0.12} className="text-center">
-              <div className="mx-auto w-full max-w-xs overflow-hidden rounded-t-[10rem] border border-eucalyptus/60">
+        {/* Vertical story blocks: Bride first, then Groom */}
+        <div className="mt-16 sm:mt-24 space-y-16 sm:space-y-24">
+          {/* Block 1: Về Cô dâu (Bride) - Ảnh trái / Text phải */}
+          <Reveal className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+            <div className="flex justify-center md:justify-end">
+              <div className="relative w-full max-w-sm overflow-hidden rounded-t-[12rem] rounded-b-2xl border border-eucalyptus/60 shadow-xs">
                 <img
-                  src={p.data.image}
-                  alt={t(p.data.title)}
+                  src={wedding.story.bride.image}
+                  alt={t(wedding.story.bride.title)}
                   loading="lazy"
                   decoding="async"
-                  className="h-80 w-full object-cover"
+                  className="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>
-              <h3 className="mt-6 font-display text-2xl text-olive-deep">{t(p.data.title)}</h3>
-              <p className="mx-auto mt-3 max-w-sm text-[0.9375rem] leading-relaxed text-ink-muted">
-                {t(p.data.text)}
+            </div>
+            <div className="text-center md:text-left">
+              <span className="label-caps text-olive">
+                {lang === "vi" ? "Cô dâu" : "The Bride"}
+              </span>
+              <h3 className="mt-2 font-display text-3xl sm:text-4xl text-olive-deep font-light">
+                {t(wedding.story.bride.title)}
+              </h3>
+              <div className="mt-4 flex items-center justify-center md:justify-start gap-2">
+                <span className="h-px w-8 bg-eucalyptus" />
+                <span className="size-1 rotate-45 bg-olive" />
+              </div>
+              <p className="mt-5 text-base sm:text-lg leading-relaxed text-ink-muted">
+                {t(wedding.story.bride.text)}
               </p>
-            </Reveal>
-          ))}
+            </div>
+          </Reveal>
+
+          {/* Block 2: Về Chú rể (Groom) - Text trái / Ảnh phải (đảo chiều) */}
+          <Reveal className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+            <div className="order-2 md:order-1 text-center md:text-right">
+              <span className="label-caps text-olive">
+                {lang === "vi" ? "Chú rể" : "The Groom"}
+              </span>
+              <h3 className="mt-2 font-display text-3xl sm:text-4xl text-olive-deep font-light">
+                {t(wedding.story.groom.title)}
+              </h3>
+              <div className="mt-4 flex items-center justify-center md:justify-end gap-2">
+                <span className="size-1 rotate-45 bg-olive" />
+                <span className="h-px w-8 bg-eucalyptus" />
+              </div>
+              <p className="mt-5 text-base sm:text-lg leading-relaxed text-ink-muted">
+                {t(wedding.story.groom.text)}
+              </p>
+            </div>
+            <div className="order-1 md:order-2 flex justify-center md:justify-start">
+              <div className="relative w-full max-w-sm overflow-hidden rounded-t-[12rem] rounded-b-2xl border border-eucalyptus/60 shadow-xs">
+                <img
+                  src={wedding.story.groom.image}
+                  alt={t(wedding.story.groom.title)}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
   );
 }
+

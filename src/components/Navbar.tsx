@@ -32,7 +32,7 @@ export function Navbar() {
     };
   }, [open]);
 
-  const cta = lang === "vi" ? "Nhắn tin xác nhận" : "Message us";
+  const cta = lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance";
 
   return (
     <header

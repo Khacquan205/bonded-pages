@@ -1,7 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { Reveal } from "@/components/Reveal";
+import { Story } from "@/components/Story";
+import { Info } from "@/components/Info";
+import { Timeline } from "@/components/Timeline";
+import { Gallery } from "@/components/Gallery";
+import { Guestbook } from "@/components/Guestbook";
+import { ClosingCta } from "@/components/ClosingCta";
+import { MusicPlayer } from "@/components/MusicPlayer";
+import { Toaster } from "@/components/ui/sonner";
 import { wedding, monogram } from "@/config/wedding";
 import { LanguageProvider, useFormatDate, useLanguage } from "@/context/LanguageContext";
 
@@ -36,32 +43,22 @@ export const Route = createFileRoute("/")({
   ),
 });
 
-function Placeholder({ id, vi, en }: { id: string; vi: string; en: string }) {
-  const { lang } = useLanguage();
-  return (
-    <section id={id} className="border-t border-eucalyptus/40 px-6 py-20 odd:bg-cream even:bg-cream-deep">
-      <Reveal className="mx-auto max-w-3xl text-center">
-        <p className="label-caps">{lang === "vi" ? "Sắp có" : "Coming soon"}</p>
-        <h2 className="mt-3 font-display text-3xl">{lang === "vi" ? vi : en}</h2>
-      </Reveal>
-    </section>
-  );
-}
-
 function Invitation() {
   const { lang } = useLanguage();
   const fmt = useFormatDate();
 
   return (
     <div className="min-h-screen bg-cream text-ink">
+      <Toaster position="top-center" richColors />
       <Navbar />
       <main>
         <Hero />
-        <Placeholder id="story" vi="Chuyện chúng mình" en="Our story" />
-        <Placeholder id="info" vi="Thông tin sự kiện" en="Event details" />
-        <Placeholder id="timeline" vi="Chương trình" en="Schedule" />
-        <Placeholder id="gallery" vi="Album" en="Gallery" />
-        <Placeholder id="guestbook" vi="Sổ lưu bút" en="Guestbook" />
+        <Story />
+        <Info />
+        <Timeline />
+        <Gallery />
+        <Guestbook />
+        <ClosingCta />
       </main>
       <footer className="border-t border-eucalyptus/50 bg-cream px-6 py-12 text-center">
         <p className="font-display text-xl tracking-[0.3em] text-olive-deep">{monogram}</p>
@@ -70,6 +67,8 @@ function Invitation() {
           {lang === "vi" ? "Made with ♥" : "Made with ♥"}
         </p>
       </footer>
+      <MusicPlayer />
     </div>
   );
 }
+

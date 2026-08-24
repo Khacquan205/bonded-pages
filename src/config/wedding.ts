@@ -5,14 +5,14 @@ export const wedding = {
     bride: {
       name: "Nguyễn Ngọc Anh",
       shortName: "Ngọc Anh",
-      zalo: "https://zalo.me/0901234567",
+      zalo: "https://zalo.me/0985868349",
       avatar:
         "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80",
     },
     groom: {
       name: "Trần Minh Quân",
       shortName: "Minh Quân",
-      zalo: "https://zalo.me/0907654321",
+      zalo: "https://zalo.me/0366200504",
       avatar:
         "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400&q=80",
     },

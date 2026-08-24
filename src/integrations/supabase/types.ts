@@ -38,6 +38,39 @@ export type Database = {
         }
         Relationships: []
       }
+      rsvps: {
+        Row: {
+          attendance: string
+          created_at: string
+          guest_count: number
+          id: string
+          name: string
+          note: string | null
+          phone: string | null
+          side: string
+        }
+        Insert: {
+          attendance?: string
+          created_at?: string
+          guest_count?: number
+          id?: string
+          name: string
+          note?: string | null
+          phone?: string | null
+          side?: string
+        }
+        Update: {
+          attendance?: string
+          created_at?: string
+          guest_count?: number
+          id?: string
+          name?: string
+          note?: string | null
+          phone?: string | null
+          side?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -122,7 +122,7 @@ export function Info() {
                   type="button"
                   className="mt-5 inline-flex items-center justify-center rounded-full bg-olive px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-olive-deep"
                 >
-                  {lang === "vi" ? "Nhắn tin xác nhận" : "Confirm attendance"}
+                  {lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance"}
                 </button>
               </ContactPicker>
             </div>
