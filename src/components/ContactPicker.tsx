@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import { CheckCircle2, Heart, Users, User, Send, MessageCircle } from "lucide-react";
+import { CheckCircle2, Heart, Users, User, Send, MessageCircle, Minus, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerDescription, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
@@ -18,6 +18,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
   const [name, setName] = useState("");
   const [attendance, setAttendance] = useState<AttendanceType>("yes");
   const [guestCount, setGuestCount] = useState<number>(1);
+  const [isCustomCount, setIsCustomCount] = useState<boolean>(false);
   const [side, setSide] = useState<SideType>("both");
   const [note, setNote] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -32,11 +33,13 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
 
     setSubmitting(true);
 
+    const finalGuestCount = attendance === "yes" ? Math.max(1, Math.min(20, guestCount || 1)) : 0;
+
     const newRsvpRecord = {
       id: "rsvp_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6),
       name: trimmedName,
       attendance,
-      guest_count: attendance === "yes" ? guestCount : 0,
+      guest_count: finalGuestCount,
       side,
       note: note.trim() || null,
       phone: null,
@@ -58,7 +61,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
         data: {
           name: trimmedName,
           attendance,
-          guestCount: attendance === "yes" ? guestCount : 0,
+          guestCount: finalGuestCount,
           side,
           note: note.trim() || null,
         },
@@ -72,8 +75,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
       const attendanceText =
         attendance === "yes"
           ? lang === "vi"
-            ? `xác nhận sẽ đến tham dự (${guestCount} người)`
-            : `confirm attendance (${guestCount} person(s))`
+            ? `xác nhận sẽ đến tham dự (${finalGuestCount} người)`
+            : `confirm attendance (${finalGuestCount} person(s))`
           : lang === "vi"
             ? "rất tiếc không thể đến tham dự nhưng xin gửi lời chúc trăm năm hạnh phúc"
             : "regretfully cannot attend but wish you lifetime happiness";
@@ -97,7 +100,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           : "Your attendance confirmation has been recorded!",
       );
 
-      onSuccess(trimmedName, attendance, guestCount, side);
+      onSuccess(trimmedName, attendance, finalGuestCount, side);
     } catch (err) {
       console.error("RSVP submit error:", err);
       toast.success(
@@ -105,7 +108,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           ? "Đã ghi nhận thông tin tham dự của bạn!"
           : "Recorded your attendance!",
       );
-      onSuccess(trimmedName, attendance, guestCount, side);
+      onSuccess(trimmedName, attendance, finalGuestCount, side);
     } finally {
       setSubmitting(false);
     }
@@ -169,23 +172,96 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           <label className="block text-xs uppercase tracking-[0.14em] text-ink-muted">
             {lang === "vi" ? "Số lượng người tham dự" : "Number of guests"}
           </label>
-          <div className="mt-1.5 flex gap-2">
+          <div className="mt-1.5 flex gap-1.5 sm:gap-2">
             {[1, 2, 3, 4].map((num) => (
               <button
                 key={num}
                 type="button"
-                onClick={() => setGuestCount(num)}
+                onClick={() => {
+                  setIsCustomCount(false);
+                  setGuestCount(num);
+                }}
                 className={cn(
-                  "flex-1 rounded-md border py-1.5 text-xs font-medium transition-all duration-200",
-                  guestCount === num
-                    ? "border-olive bg-olive text-cream"
+                  "flex-1 rounded-md border py-1.5 text-center text-xs font-medium transition-all duration-200",
+                  !isCustomCount && guestCount === num
+                    ? "border-olive bg-olive text-cream shadow-2xs"
                     : "border-eucalyptus/70 bg-cream text-ink-muted hover:border-olive/60",
                 )}
               >
-                {num} {lang === "vi" ? (num === 1 ? "người" : "người") : (num === 1 ? "guest" : "guests")}
+                {num} {lang === "vi" ? "người" : num === 1 ? "guest" : "guests"}
               </button>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                setIsCustomCount(true);
+                if (guestCount <= 4) {
+                  setGuestCount(5);
+                }
+              }}
+              className={cn(
+                "flex-1 rounded-md border py-1.5 text-center text-xs font-medium transition-all duration-200",
+                isCustomCount
+                  ? "border-olive bg-olive text-cream shadow-2xs"
+                  : "border-eucalyptus/70 bg-cream text-ink-muted hover:border-olive/60",
+              )}
+            >
+              {lang === "vi" ? "Khác..." : "Other..."}
+            </button>
           </div>
+
+          {/* Ô nhập số lượng khi chọn Khác */}
+          {isCustomCount && (
+            <div className="mt-2.5 rounded-lg border border-eucalyptus/70 bg-cream-deep/70 px-3.5 py-2.5">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs text-ink-muted">
+                  {lang === "vi" ? "Số lượng người tham dự:" : "Number of attendees:"}
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setGuestCount((prev) => Math.max(1, prev - 1))}
+                    className="flex size-7 items-center justify-center rounded-md border border-eucalyptus/70 bg-cream text-ink-muted transition hover:border-olive/70 hover:bg-cream-deep hover:text-ink active:scale-95"
+                    aria-label="Decrease guest count"
+                  >
+                    <Minus className="size-3.5" />
+                  </button>
+                  <input
+                    type="number"
+                    min={1}
+                    max={20}
+                    value={guestCount || ""}
+                    onChange={(e) => {
+                      const raw = e.target.value;
+                      if (raw === "") {
+                        setGuestCount(0);
+                        return;
+                      }
+                      const val = parseInt(raw, 10);
+                      if (!isNaN(val)) {
+                        setGuestCount(Math.min(20, Math.max(0, val)));
+                      }
+                    }}
+                    onBlur={() => {
+                      if (guestCount < 1) setGuestCount(1);
+                    }}
+                    className="w-12 rounded-md border border-eucalyptus/70 bg-cream py-1 text-center text-xs font-semibold text-ink focus:border-olive focus:outline-none focus:ring-1 focus:ring-olive"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setGuestCount((prev) => Math.min(20, (prev || 0) + 1))}
+                    className="flex size-7 items-center justify-center rounded-md border border-eucalyptus/70 bg-cream text-ink-muted transition hover:border-olive/70 hover:bg-cream-deep hover:text-ink active:scale-95"
+                    aria-label="Increase guest count"
+                  >
+                    <Plus className="size-3.5" />
+                  </button>
+                </div>
+              </div>
+              <p className="mt-1 text-right text-[11px] text-ink-muted/70">
+                {lang === "vi" ? "(Tối đa 20 người)" : "(Max 20 guests)"}
+              </p>
+            </div>
+          )}
         </div>
       )}
 
