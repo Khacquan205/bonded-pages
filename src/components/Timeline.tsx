@@ -15,7 +15,7 @@ export function Timeline() {
   const currentSchedule = wedding.timeline[activeTab] ?? wedding.timeline[0];
 
   return (
-    <section id="timeline" className="bg-cream px-6 py-20 sm:py-28">
+    <section id="timeline" className="bg-cream px-6 py-20 sm:py-28 scroll-mt-16">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
           label={lang === "vi" ? "Chương trình" : "Schedule"}
@@ -29,17 +29,17 @@ export function Timeline() {
 
         {/* Tab Switcher */}
         <div className="mt-12 flex justify-center">
-          <div className="inline-flex rounded-full border border-eucalyptus/60 bg-cream-deep p-1.5 shadow-xs">
+          <div className="inline-flex rounded-full border border-maroon/20 bg-cream-deep/70 p-1.5 shadow-2xs backdrop-blur-xs">
             {wedding.timeline.map((day, idx) => (
               <button
                 key={day.key}
                 type="button"
                 onClick={() => setActiveTab(idx)}
                 className={cn(
-                  "rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.14em] transition-all duration-300 sm:px-8 sm:text-sm",
+                  "rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.14em] transition-all duration-300 sm:px-8 sm:text-sm font-display",
                   activeTab === idx
-                    ? "bg-olive text-cream shadow-xs"
-                    : "text-ink-muted hover:text-olive-deep",
+                    ? "bg-[#610401] text-[#faf6f0] shadow-md"
+                    : "text-[#3d271d]/70 hover:text-[#610401]",
                 )}
               >
                 {t(day.tab)}
@@ -49,14 +49,14 @@ export function Timeline() {
         </div>
 
         {/* Date subtitle */}
-        <p className="mt-4 text-center text-xs tracking-[0.16em] text-ink-muted">
+        <p className="mt-4 text-center font-display text-sm tracking-[0.16em] text-[#3d271d]/75">
           {fmt(currentSchedule.date)}
         </p>
 
         {/* Vertical Timeline */}
         <div className="relative mt-12 pl-6 sm:pl-0">
           {/* Vertical line for mobile (left) / desktop (center) */}
-          <div className="absolute left-[35px] top-4 bottom-4 w-px bg-eucalyptus/50 sm:left-1/2 sm:-translate-x-1/2" />
+          <div className="absolute left-[35px] top-4 bottom-4 w-px bg-[#610401]/20 sm:left-1/2 sm:-translate-x-1/2" />
 
           <div className="space-y-10 sm:space-y-12">
             {currentSchedule.items.map((item, idx) => {
@@ -72,44 +72,44 @@ export function Timeline() {
                     {/* Time & Content Box */}
                     <div
                       className={cn(
-                        "ml-8 w-auto rounded-lg border border-eucalyptus/60 bg-cream-deep p-5 shadow-2xs sm:ml-0 sm:w-[calc(50%-2.5rem)]",
+                        "ml-8 w-auto rounded-lg border border-[#2d081d]/15 bg-white/80 p-5 shadow-xs backdrop-blur-xs transition-colors hover:border-[#610401]/40 sm:ml-0 sm:w-[calc(50%-2.5rem)] sm:p-6",
                         isEven ? "sm:text-right" : "sm:text-left",
                       )}
                     >
                       <div
                         className={cn(
-                          "inline-flex items-center gap-1.5 rounded-full bg-olive/10 px-3 py-1 font-display text-sm font-normal text-olive-deep",
+                          "inline-flex items-center gap-1.5 rounded-full bg-[#610401]/10 px-3 py-1 font-display text-xs sm:text-sm font-medium text-[#610401]",
                           isEven ? "sm:flex-row-reverse" : "",
                         )}
                       >
-                        <Clock className="size-3.5 text-olive" />
+                        <Clock className="size-3.5 text-[#610401]" />
                         <span>{item.time}</span>
                       </div>
 
-                      <h4 className="mt-3 font-display text-xl font-normal text-olive-deep sm:text-2xl">
+                      <h4 className="mt-3 font-display text-xl font-medium text-[#2d081d] sm:text-2xl">
                         {t(item.title)}
                       </h4>
 
-                      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                      <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-[#3d271d]/85">
                         {t(item.desc)}
                       </p>
 
                       {item.location ? (
                         <div
                           className={cn(
-                            "mt-3 flex items-center gap-1.5 text-xs text-olive",
+                            "mt-3 flex items-center gap-1.5 text-xs font-display text-[#610401]/90",
                             isEven ? "sm:justify-end" : "sm:justify-start",
                           )}
                         >
-                          <MapPin className="size-3.5 shrink-0" />
+                          <MapPin className="size-3.5 shrink-0 text-[#610401]" />
                           <span>{t(item.location)}</span>
                         </div>
                       ) : null}
                     </div>
 
                     {/* Timeline center bullet */}
-                    <div className="absolute left-[11px] top-6 flex size-6 -translate-x-1/2 items-center justify-center rounded-full border-2 border-olive bg-cream shadow-xs sm:left-1/2 sm:top-1/2 sm:-translate-y-1/2">
-                      <span className="size-2 rounded-full bg-olive" />
+                    <div className="absolute left-[11px] top-6 flex size-6 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[#610401] bg-[#faf7f2] shadow-xs sm:left-1/2 sm:top-1/2 sm:-translate-y-1/2">
+                      <span className="size-2 rounded-full bg-[#610401]" />
                     </div>
 
                     {/* Empty placeholder for symmetry on desktop */}

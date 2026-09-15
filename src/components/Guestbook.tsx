@@ -159,7 +159,7 @@ export function Guestbook() {
   };
 
   return (
-    <section id="guestbook" className="bg-cream px-6 py-20 sm:py-28">
+    <section id="guestbook" className="bg-cream px-6 py-20 sm:py-28 scroll-mt-16">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
           label={lang === "vi" ? "Lưu bút" : "Guestbook"}
@@ -172,7 +172,7 @@ export function Guestbook() {
         />
 
         {/* Guestbook Form */}
-        <Reveal className="mt-12 rounded-xl border border-eucalyptus/70 bg-cream-deep p-6 sm:p-8 shadow-xs">
+        <Reveal className="mt-12 rounded-xl border border-maroon/20 bg-cream-deep/70 p-6 sm:p-8 shadow-2xs backdrop-blur-xs">
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Honeypot field for bot protection */}
             <input
@@ -187,7 +187,7 @@ export function Guestbook() {
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label className="block text-xs uppercase tracking-[0.14em] text-ink-muted">
+                <label className="block text-xs uppercase tracking-[0.14em] text-walnut/70 font-medium">
                   {lang === "vi" ? "Tên của bạn *" : "Your Name *"}
                 </label>
                 <input
@@ -197,12 +197,12 @@ export function Guestbook() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder={lang === "vi" ? "Nhập tên hoặc biệt danh..." : "Your name..."}
-                  className="mt-2 w-full rounded-md border border-eucalyptus/60 bg-cream px-4 py-2.5 text-sm text-ink placeholder:text-ink-muted/50 focus:border-olive focus:outline-none focus:ring-1 focus:ring-olive"
+                  className="mt-2 w-full rounded-md border border-[#2d081d]/20 bg-white/90 px-4 py-2.5 text-sm text-[#3d271d] placeholder:text-[#3d271d]/40 focus:border-[#610401] focus:outline-none focus:ring-1 focus:ring-[#610401]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-[0.14em] text-ink-muted">
+                <label className="block text-xs uppercase tracking-[0.14em] text-[#3d271d]/75 font-display font-medium">
                   {lang === "vi" ? "Bạn là khách của *" : "You are a guest of *"}
                 </label>
                 <div className="mt-2 flex gap-2">
@@ -212,10 +212,10 @@ export function Guestbook() {
                       type="button"
                       onClick={() => setSide(val)}
                       className={cn(
-                        "flex-1 rounded-md border py-2 text-xs font-medium transition-all duration-200",
+                        "flex-1 rounded-md border py-2 text-xs font-medium transition-all duration-200 font-display",
                         side === val
-                          ? "border-olive bg-olive text-cream"
-                          : "border-eucalyptus/60 bg-cream text-ink-muted hover:border-olive/60 hover:text-olive-deep",
+                          ? "border-[#610401] bg-[#610401] text-[#faf6f0] shadow-xs"
+                          : "border-[#2d081d]/20 bg-white/80 text-[#3d271d]/80 hover:border-[#610401]/50 hover:text-[#610401]",
                       )}
                     >
                       {val === "both"
@@ -233,10 +233,10 @@ export function Guestbook() {
 
             <div>
               <div className="flex items-center justify-between">
-                <label className="block text-xs uppercase tracking-[0.14em] text-ink-muted">
+                <label className="block text-xs uppercase tracking-[0.14em] text-[#3d271d]/75 font-display font-medium">
                   {lang === "vi" ? "Lời chúc *" : "Your Message *"}
                 </label>
-                <span className="text-[0.6875rem] text-ink-muted">
+                <span className="text-[0.6875rem] text-[#3d271d]/60">
                   {message.length}/500
                 </span>
               </div>
@@ -251,7 +251,7 @@ export function Guestbook() {
                     ? "Gửi lời chúc trăm năm hạnh phúc đến cặp đôi..."
                     : "Write your heartfelt wishes for the couple..."
                 }
-                className="mt-2 w-full resize-none rounded-md border border-eucalyptus/60 bg-cream px-4 py-2.5 text-sm text-ink placeholder:text-ink-muted/50 focus:border-olive focus:outline-none focus:ring-1 focus:ring-olive"
+                className="mt-2 w-full resize-none rounded-md border border-[#2d081d]/20 bg-white/90 px-4 py-2.5 text-sm text-[#3d271d] placeholder:text-[#3d271d]/40 focus:border-[#610401] focus:outline-none focus:ring-1 focus:ring-[#610401]"
               />
             </div>
 
@@ -259,7 +259,7 @@ export function Guestbook() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-olive px-7 py-3 text-sm font-medium text-cream shadow-xs transition-all hover:bg-olive-deep disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#610401] px-7 py-3 text-xs sm:text-sm font-medium uppercase tracking-[0.14em] text-[#faf6f0] shadow-md transition-all hover:bg-[#780602] hover:shadow-lg disabled:opacity-60 hover:scale-[1.01] font-display"
               >
                 <Send className="size-4" />
                 <span>
@@ -279,13 +279,13 @@ export function Guestbook() {
         {/* Message List */}
         <div className="mt-14 space-y-4">
           {loading ? (
-            <div className="py-12 text-center text-sm text-ink-muted">
+            <div className="py-12 text-center text-sm text-walnut/60">
               {lang === "vi" ? "Đang tải lời chúc..." : "Loading wishes..."}
             </div>
           ) : messages.length === 0 ? (
-            <div className="rounded-lg border border-dashed border-eucalyptus/60 bg-cream-deep/40 py-12 text-center">
-              <MessageSquareHeart className="mx-auto size-8 text-olive/60" />
-              <p className="mt-3 text-sm text-ink-muted">
+            <div className="rounded-lg border border-dashed border-maroon/25 bg-cream-deep/50 py-12 text-center">
+              <MessageSquareHeart className="mx-auto size-8 text-maroon/50" />
+              <p className="mt-3 text-sm text-walnut/70">
                 {lang === "vi"
                   ? "Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc nhé!"
                   : "No wishes yet. Be the first one to leave a blessing!"}
@@ -296,22 +296,22 @@ export function Guestbook() {
               {messages.slice(0, visibleCount).map((item) => (
                 <Reveal
                   key={item.id}
-                  className="flex flex-col justify-between rounded-lg border border-eucalyptus/60 bg-cream-deep p-5 shadow-2xs"
+                  className="flex flex-col justify-between rounded-lg border border-[#2d081d]/15 bg-white/85 p-5 shadow-xs backdrop-blur-xs transition-colors hover:border-[#610401]/35"
                 >
                   <div>
                     <div className="flex items-start justify-between gap-2">
-                      <h4 className="font-display text-lg font-medium text-olive-deep">
+                      <h4 className="font-display text-lg font-medium text-[#2d081d]">
                         {item.name}
                       </h4>
-                      <span className="shrink-0 rounded-full bg-sage-mist px-2.5 py-0.5 text-[0.6875rem] font-medium text-olive-deep">
+                      <span className="shrink-0 rounded-full bg-[#610401]/10 px-2.5 py-0.5 text-[0.6875rem] font-medium font-display text-[#610401]">
                         {sideLabel(item.side)}
                       </span>
                     </div>
-                    <p className="mt-2.5 text-sm leading-relaxed text-ink/90 whitespace-pre-line">
+                    <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-[#3d271d]/85 whitespace-pre-line">
                       "{item.message}"
                     </p>
                   </div>
-                  <div className="mt-4 flex items-center justify-between border-t border-eucalyptus/30 pt-3 text-[0.6875rem] text-ink-muted">
+                  <div className="mt-4 flex items-center justify-between border-t border-[#2d081d]/12 pt-3 text-[0.6875rem] text-[#3d271d]/60 font-display">
                     <span>
                       {new Date(item.created_at).toLocaleDateString(
                         lang === "vi" ? "vi-VN" : "en-US",
@@ -322,7 +322,7 @@ export function Guestbook() {
                         },
                       )}
                     </span>
-                    <Heart className="size-3.5 text-olive/50 fill-olive/20" />
+                    <Heart className="size-3.5 text-[#610401]/70 fill-[#610401]/25" />
                   </div>
                 </Reveal>
               ))}
@@ -335,7 +335,7 @@ export function Guestbook() {
               <button
                 type="button"
                 onClick={() => setVisibleCount((prev) => prev + 6)}
-                className="inline-flex rounded-full border border-olive px-6 py-2.5 text-xs uppercase tracking-[0.14em] font-medium text-olive transition-colors hover:bg-olive hover:text-cream"
+                className="inline-flex rounded-full border border-[#2d081d]/30 px-6 py-2.5 text-xs uppercase tracking-[0.14em] font-medium text-[#2d081d] transition-colors hover:bg-[#610401] hover:text-[#faf6f0] hover:border-[#610401] font-display"
               >
                 {lang === "vi" ? "Xem thêm lời chúc" : "Load more wishes"}
               </button>

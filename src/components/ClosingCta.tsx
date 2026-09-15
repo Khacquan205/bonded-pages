@@ -9,7 +9,7 @@ export function ClosingCta() {
   const fmt = useFormatDate();
 
   return (
-    <section className="relative overflow-hidden py-28 sm:py-36 text-center text-white">
+    <section className="relative overflow-hidden pt-20 pb-0 sm:pt-28 sm:pb-0 text-center text-white">
       {/* Background Image & Overlay */}
       <img
         src={wedding.closing.image}
@@ -23,15 +23,15 @@ export function ClosingCta() {
 
       <div className="relative mx-auto max-w-3xl px-6">
         <Reveal>
-          <p className="label-caps text-eucalyptus">
-            {lang === "vi" ? "Lời ngỏ" : "Warm Invitation"}
+          <p className="font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#faf6f0]/90">
+            {lang === "vi" ? "Lời Ngỏ" : "Warm Invitation"}
           </p>
           <h2 className="mt-4 font-display text-3xl font-light leading-tight sm:text-5xl text-cream">
             {t(wedding.closing.title)}
           </h2>
           <div className="mx-auto mt-6 flex items-center justify-center gap-3">
             <span className="h-px w-12 bg-white/40" />
-            <span className="size-1.5 rotate-45 bg-eucalyptus" />
+            <span className="size-2 rotate-45 bg-[#610401] border border-white/40" />
             <span className="h-px w-12 bg-white/40" />
           </div>
           <p className="mt-6 text-sm sm:text-base leading-relaxed text-white/90">
@@ -66,6 +66,26 @@ export function ClosingCta() {
           </p>
         </Reveal>
       </div>
+
+      {/* Bespoke Stationery Footer */}
+      <footer className="relative z-10 mt-16 sm:mt-20 border-t border-white/15 bg-black/60 py-8 sm:py-10 text-center backdrop-blur-sm">
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-2.5 px-6">
+          <div className="flex size-10 items-center justify-center rounded-full border border-white/40">
+            <span className="font-display text-[0.6875rem] tracking-[0.2em] text-white/90 pl-0.5">
+              N&thinsp;&amp;&thinsp;L
+            </span>
+          </div>
+          <p className="font-display text-xs uppercase tracking-[0.25em] text-white/85">
+            {wedding.couple.bride.name} &amp; {wedding.couple.groom.name}
+          </p>
+          <p className="font-display text-[0.6875rem] tracking-[0.16em] text-white/60 uppercase">
+            11.12.2026 · {wedding.venue.name}
+          </p>
+          <p className="mt-1 font-serif text-[0.6875rem] italic text-white/40">
+            Forever &amp; Always
+          </p>
+        </div>
+      </footer>
     </section>
   );
 }

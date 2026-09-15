@@ -38,13 +38,13 @@ export function Countdown({ target }: { target: string }) {
   ] as const;
 
   return (
-    <div className="flex items-start justify-center gap-5 sm:gap-9">
+    <div className="flex items-start justify-center gap-4 sm:gap-8">
       {cells.map((c) => (
-        <div key={c.k} className="min-w-[3.25rem] text-center">
-          <div className="font-display text-4xl font-light tabular-nums text-white sm:text-5xl">
+        <div key={c.k} className="min-w-[3.25rem] text-center sm:min-w-[4.5rem]">
+          <div className="font-display text-4xl font-light tabular-nums text-white sm:text-5xl md:text-6xl drop-shadow-sm leading-none">
             {String(c.n).padStart(2, "0")}
           </div>
-          <div className="mt-1 text-[0.625rem] font-medium uppercase tracking-[0.22em] text-white/75">
+          <div className="mt-1 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-white/85 sm:text-xs">
             {labels[c.k]}
           </div>
         </div>

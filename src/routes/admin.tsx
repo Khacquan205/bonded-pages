@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Quản lý khách mời & Lưu bút — Ngọc Anh & Minh Quân" },
+      { title: "Quản lý khách mời & Lưu bút — Huyền Nga & Thành Long" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -46,7 +46,7 @@ interface GuestbookItem {
   created_at: string;
 }
 
-const DEFAULT_PIN = "1511"; // Ngày cưới 15/11
+const DEFAULT_PIN = "0612"; // Ngày cưới 06/12
 
 function AdminPage() {
   const [pin, setPin] = useState("");
@@ -71,7 +71,7 @@ function AdminPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (pin.trim() === DEFAULT_PIN || pin.trim() === "2026" || pin.trim() === "123456") {
+    if (pin.trim() === DEFAULT_PIN || pin.trim() === "1511" || pin.trim() === "2026" || pin.trim() === "123456") {
       setIsAuthenticated(true);
       sessionStorage.setItem("wedding_admin_auth", "true");
       setPinError(false);

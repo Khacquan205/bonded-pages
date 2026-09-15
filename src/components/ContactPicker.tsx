@@ -83,8 +83,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
 
       const messageContent =
         lang === "vi"
-          ? `Chào hai bạn, mình là ${trimmedName}, mình ${attendanceText} vào ngày 15.11 nhé! ${note ? `Lời nhắn: "${note.trim()}"` : ""}`
-          : `Hello, I am ${trimmedName}, I ${attendanceText} on Nov 15th! ${note ? `Note: "${note.trim()}"` : ""}`;
+          ? `Chào hai bạn, mình là ${trimmedName}, mình ${attendanceText} vào ngày 11.12 nhé! ${note ? `Lời nhắn: "${note.trim()}"` : ""}`
+          : `Hello, I am ${trimmedName}, I ${attendanceText} on Dec 11th! ${note ? `Note: "${note.trim()}"` : ""}`;
 
       try {
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -128,7 +128,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder={lang === "vi" ? "Ví dụ: Nguyễn Văn A..." : "E.g. John Doe..."}
-          className="mt-1.5 w-full rounded-md border border-eucalyptus/70 bg-cream px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/50 focus:border-olive focus:outline-none focus:ring-1 focus:ring-olive"
+          className="mt-1.5 w-full rounded-md border border-[#2d081d]/25 bg-white px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/50 focus:border-[#610401] focus:outline-none focus:ring-1 focus:ring-[#610401]"
         />
       </div>
 
@@ -144,8 +144,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
             className={cn(
               "flex items-center justify-center gap-1.5 rounded-md border py-2 text-xs font-medium transition-all duration-200",
               attendance === "yes"
-                ? "border-olive bg-olive text-cream shadow-2xs"
-                : "border-eucalyptus/70 bg-cream text-ink-muted hover:border-olive/60",
+                ? "border-[#610401] bg-[#610401] text-[#faf6f0] shadow-xs"
+                : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#610401]/60",
             )}
           >
             <CheckCircle2 className="size-3.5" />
@@ -157,8 +157,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
             className={cn(
               "flex items-center justify-center gap-1.5 rounded-md border py-2 text-xs font-medium transition-all duration-200",
               attendance === "no"
-                ? "border-olive-deep bg-cream-deep text-olive-deep font-semibold shadow-2xs ring-1 ring-olive/40"
-                : "border-eucalyptus/70 bg-cream text-ink-muted hover:border-olive/60",
+                ? "border-[#2d081d] bg-[#2d081d]/10 text-[#2d081d] font-semibold shadow-xs"
+                : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#610401]/60",
             )}
           >
             <span>{lang === "vi" ? "Rất tiếc, tôi bận" : "Cannot attend"}</span>
@@ -184,8 +184,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
                 className={cn(
                   "flex-1 rounded-md border py-1.5 text-center text-xs font-medium transition-all duration-200",
                   !isCustomCount && guestCount === num
-                    ? "border-olive bg-olive text-cream shadow-2xs"
-                    : "border-eucalyptus/70 bg-cream text-ink-muted hover:border-olive/60",
+                    ? "border-[#610401] bg-[#610401] text-[#faf6f0] shadow-xs"
+                    : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#610401]/60",
                 )}
               >
                 {num} {lang === "vi" ? "người" : num === 1 ? "guest" : "guests"}
@@ -202,8 +202,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
               className={cn(
                 "flex-1 rounded-md border py-1.5 text-center text-xs font-medium transition-all duration-200",
                 isCustomCount
-                  ? "border-olive bg-olive text-cream shadow-2xs"
-                  : "border-eucalyptus/70 bg-cream text-ink-muted hover:border-olive/60",
+                  ? "border-[#610401] bg-[#610401] text-[#faf6f0] shadow-xs"
+                  : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#610401]/60",
               )}
             >
               {lang === "vi" ? "Khác..." : "Other..."}
@@ -212,7 +212,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
 
           {/* Ô nhập số lượng khi chọn Khác */}
           {isCustomCount && (
-            <div className="mt-2.5 rounded-lg border border-eucalyptus/70 bg-cream-deep/70 px-3.5 py-2.5">
+            <div className="mt-2.5 rounded-lg border border-[#2d081d]/20 bg-white/70 px-3.5 py-2.5">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-xs text-ink-muted">
                   {lang === "vi" ? "Số lượng người tham dự:" : "Number of attendees:"}
@@ -221,7 +221,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
                   <button
                     type="button"
                     onClick={() => setGuestCount((prev) => Math.max(1, prev - 1))}
-                    className="flex size-7 items-center justify-center rounded-md border border-eucalyptus/70 bg-cream text-ink-muted transition hover:border-olive/70 hover:bg-cream-deep hover:text-ink active:scale-95"
+                    className="flex size-7 items-center justify-center rounded-md border border-[#2d081d]/20 bg-white text-ink-muted transition hover:border-[#610401]/70 hover:bg-[#faf7f2] hover:text-ink active:scale-95"
                     aria-label="Decrease guest count"
                   >
                     <Minus className="size-3.5" />
@@ -245,12 +245,12 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
                     onBlur={() => {
                       if (guestCount < 1) setGuestCount(1);
                     }}
-                    className="w-12 rounded-md border border-eucalyptus/70 bg-cream py-1 text-center text-xs font-semibold text-ink focus:border-olive focus:outline-none focus:ring-1 focus:ring-olive"
+                    className="w-12 rounded-md border border-[#2d081d]/25 bg-white py-1 text-center text-xs font-semibold text-ink focus:border-[#610401] focus:outline-none focus:ring-1 focus:ring-[#610401]"
                   />
                   <button
                     type="button"
                     onClick={() => setGuestCount((prev) => Math.min(20, (prev || 0) + 1))}
-                    className="flex size-7 items-center justify-center rounded-md border border-eucalyptus/70 bg-cream text-ink-muted transition hover:border-olive/70 hover:bg-cream-deep hover:text-ink active:scale-95"
+                    className="flex size-7 items-center justify-center rounded-md border border-[#2d081d]/20 bg-white text-ink-muted transition hover:border-[#610401]/70 hover:bg-[#faf7f2] hover:text-ink active:scale-95"
                     aria-label="Increase guest count"
                   >
                     <Plus className="size-3.5" />
@@ -279,8 +279,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
               className={cn(
                 "flex-1 rounded-md border py-1.5 text-xs font-medium transition-all duration-200",
                 side === val
-                  ? "border-olive bg-olive text-cream"
-                  : "border-eucalyptus/70 bg-cream text-ink-muted hover:border-olive/60",
+                  ? "border-[#610401] bg-[#610401] text-[#faf6f0] shadow-xs"
+                  : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#610401]/60",
               )}
             >
               {val === "both"
@@ -306,7 +306,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           value={note}
           onChange={(e) => setNote(e.target.value)}
           placeholder={lang === "vi" ? "Nhập lời chúc hoặc lưu ý..." : "Any wishes or note..."}
-          className="mt-1.5 w-full rounded-md border border-eucalyptus/70 bg-cream px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/50 focus:border-olive focus:outline-none focus:ring-1 focus:ring-olive"
+          className="mt-1.5 w-full rounded-md border border-[#2d081d]/25 bg-white px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/50 focus:border-[#610401] focus:outline-none focus:ring-1 focus:ring-[#610401]"
         />
       </div>
 
@@ -315,7 +315,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
         <button
           type="submit"
           disabled={submitting}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-olive py-3 text-sm font-medium text-cream shadow-xs transition-all hover:bg-olive-deep disabled:opacity-60"
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-[#610401] py-3 text-sm font-medium uppercase tracking-[0.14em] text-[#faf6f0] shadow-md transition-all hover:bg-[#780602] hover:shadow-lg disabled:opacity-60"
         >
           <Send className="size-4" />
           <span>
@@ -346,12 +346,12 @@ function SuccessView({
 
   return (
     <div className="space-y-5 px-6 pb-8 pt-4 text-center">
-      <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-sage-mist/80 text-olive">
-        <Heart className="size-7 fill-olive text-olive" />
+      <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[#610401]/10 text-[#610401]">
+        <Heart className="size-7 fill-[#610401] text-[#610401]" />
       </div>
 
       <div>
-        <p className="font-display text-2xl text-olive-deep font-light">
+        <p className="font-serif text-2xl text-[#2d081d] font-light">
           {lang === "vi" ? `Cảm ơn bạn ${guestName}!` : `Thank you ${guestName}!`}
         </p>
         <p className="mt-2 text-sm text-ink-muted leading-relaxed">
@@ -366,8 +366,8 @@ function SuccessView({
       </div>
 
       {/* Zalo Direct Buttons */}
-      <div className="rounded-lg border border-eucalyptus/60 bg-cream-deep p-4 space-y-3">
-        <p className="text-xs uppercase tracking-[0.14em] text-olive font-medium">
+      <div className="rounded-lg border border-[#2d081d]/15 bg-[#faf7f2] p-4 space-y-3">
+        <p className="text-xs uppercase tracking-[0.14em] text-[#610401] font-medium">
           {lang === "vi" ? "Nhắn tin trực tiếp qua Zalo" : "Message on Zalo"}
         </p>
         <div className="flex flex-col gap-2.5 sm:flex-row">
@@ -379,7 +379,7 @@ function SuccessView({
       <button
         type="button"
         onClick={onReset}
-        className="text-xs text-ink-muted underline underline-offset-4 hover:text-olive"
+        className="text-xs text-ink-muted underline underline-offset-4 hover:text-[#610401] transition-colors"
       >
         {lang === "vi" ? "Chỉnh sửa lại thông tin" : "Edit my response"}
       </button>
@@ -412,7 +412,7 @@ export function ContactPicker({ children }: { children: ReactNode }) {
 
   const header = (
     <div className="px-6 pb-1 pt-6 text-center">
-      <p className="font-display text-2xl text-olive-deep font-light">{title}</p>
+      <p className="font-serif text-2xl sm:text-3xl text-[#2d081d] font-light">{title}</p>
       <p className="mt-1 text-xs text-ink-muted">{desc}</p>
     </div>
   );
@@ -438,7 +438,7 @@ export function ContactPicker({ children }: { children: ReactNode }) {
     return (
       <Drawer open={open} onOpenChange={(v) => { setOpen(v); if (!v) setSubmittedData(null); }}>
         <DrawerTrigger asChild>{children}</DrawerTrigger>
-        <DrawerContent className="border-eucalyptus bg-cream max-h-[90svh] overflow-y-auto">
+        <DrawerContent className="border-[#2d081d]/20 bg-[#faf7f2] max-h-[90svh] overflow-y-auto">
           <DrawerTitle className="sr-only">{title}</DrawerTitle>
           <DrawerDescription className="sr-only">{desc}</DrawerDescription>
           {content}
@@ -450,7 +450,7 @@ export function ContactPicker({ children }: { children: ReactNode }) {
   return (
     <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) setSubmittedData(null); }}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-w-md gap-0 rounded-xl border-eucalyptus bg-cream p-0 shadow-lg">
+      <DialogContent className="max-w-md gap-0 rounded-xl border-[#2d081d]/20 bg-[#faf7f2] p-0 shadow-xl">
         <DialogTitle className="sr-only">{title}</DialogTitle>
         <DialogDescription className="sr-only">{desc}</DialogDescription>
         {content}

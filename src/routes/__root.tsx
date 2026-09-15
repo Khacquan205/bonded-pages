@@ -77,8 +77,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "author", content: `${"Ngọc Anh"} & ${"Minh Quân"}` },
-      { name: "theme-color", content: "#FAF7F0" },
+      { name: "author", content: "Huyền Nga & Thành Long" },
+      { name: "theme-color", content: "#FAF6F0" },
     ],
     links: [
       {
@@ -89,7 +89,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap&subset=vietnamese,latin",
+        href: "https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap&subset=vietnamese,latin",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],

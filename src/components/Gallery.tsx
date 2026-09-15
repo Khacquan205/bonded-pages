@@ -1,13 +1,72 @@
 import { useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Maximize2 } from "lucide-react";
 import { wedding } from "@/config/wedding";
-import { useLanguage } from "@/context/LanguageContext";
+import { useLanguage, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
+interface ArtworkItem {
+  title: { vi: string; en: string };
+  subtitle: { vi: string; en: string };
+  aspect: string;
+  span: string;
+}
+
+const ARTWORKS: ArtworkItem[] = [
+  {
+    title: { vi: "Hạnh phúc ngập tràn", en: "Under the Petals" },
+    subtitle: { vi: "Nụ hôn trong sự chúc phúc của gia đình", en: "A tender kiss sealed with love" },
+    aspect: "aspect-[16/11]",
+    span: "col-span-12 md:col-span-7",
+  },
+  {
+    title: { vi: "Kỷ vật trăm năm", en: "The Eternal Rings" },
+    subtitle: { vi: "Trọn đời gắn kết, son sắt yêu thương", en: "Two rings, one everlasting promise" },
+    aspect: "aspect-[4/3]",
+    span: "col-span-12 md:col-span-5",
+  },
+  {
+    title: { vi: "Tà voan hẹn ước", en: "The Cathedral Veil" },
+    subtitle: { vi: "Nụ cười rạng ngời bên bờ sóng", en: "Pure romance by the ocean breeze" },
+    aspect: "aspect-[3/4]",
+    span: "col-span-12 sm:col-span-6 md:col-span-4",
+  },
+  {
+    title: { vi: "Hương hoa ngày vui", en: "Floral Romance" },
+    subtitle: { vi: "Mẫu đơn e ấp và sắc hoa ngọt ngào", en: "Soft pastel blooms of devotion" },
+    aspect: "aspect-[4/3]",
+    span: "col-span-12 sm:col-span-6 md:col-span-4",
+  },
+  {
+    title: { vi: "Ánh nhìn trao nhau", en: "Tender Glance" },
+    subtitle: { vi: "Ánh hoàng hôn dịu dàng ấm áp", en: "Bathed in warm golden hour light" },
+    aspect: "aspect-[3/4]",
+    span: "col-span-12 sm:col-span-6 md:col-span-4",
+  },
+  {
+    title: { vi: "Dạ tiệc lung linh", en: "JW Marriott Ballroom" },
+    subtitle: { vi: "Ánh nến ấm áp và ly pha lê trang trọng", en: "An evening of timeless celebration" },
+    aspect: "aspect-[16/10]",
+    span: "col-span-12 md:col-span-7",
+  },
+  {
+    title: { vi: "Bình yên bên anh", en: "By the Lake" },
+    subtitle: { vi: "Cùng nhìn về tương lai êm đềm", en: "Finding peace in your gentle embrace" },
+    aspect: "aspect-[4/3]",
+    span: "col-span-12 md:col-span-5",
+  },
+  {
+    title: { vi: "Chung lối tương lai", en: "Walking into Tomorrow" },
+    subtitle: { vi: "Tay nắm chặt tay qua muôn dặm đường dài", en: "Hand in hand towards the golden horizon" },
+    aspect: "aspect-[16/9] sm:aspect-[21/9]",
+    span: "col-span-12",
+  },
+];
+
 export function Gallery() {
   const { lang } = useLanguage();
+  const t = useT();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const images = wedding.gallery;
@@ -48,62 +107,72 @@ export function Gallery() {
   }, [selectedIndex, handlePrev, handleNext]);
 
   return (
-    <section id="gallery" className="bg-cream-deep px-6 py-20 sm:py-28">
+    <section id="gallery" className="bg-cream-deep/70 px-6 py-20 sm:py-28 scroll-mt-16">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           label={lang === "vi" ? "Khoảnh khắc" : "Gallery"}
-          title={lang === "vi" ? "Album ảnh cưới" : "Our Moments"}
+          title={lang === "vi" ? "Phòng trưng bày kỷ niệm" : "Fine Art Gallery"}
           desc={
             lang === "vi"
-              ? "Tình yêu được đong đếm bằng những nụ cười, ánh mắt và những chuyến đi cùng nhau."
+              ? "Từng khoảnh khắc đong đầy yêu thương được nâng niu trong từng khung hình nghệ thuật."
               : "Love measured in shared laughter, gentle glances, and quiet moments together."
           }
         />
 
-        {/* Dynamic Bento Gallery Grid */}
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:auto-rows-[220px]">
+        {/* Fine Art Exhibition Grid */}
+        <div className="mt-14 grid grid-cols-12 gap-6 sm:gap-8">
           {images.map((src, idx) => {
-            // Define varied dimensions and spans for each photo
-            const bentoStyles = [
-              "col-span-2 row-span-2", // 0: Big featured moment
-              "col-span-1 row-span-1", // 1: Detail shot (square)
-              "col-span-1 row-span-2", // 2: Tall portrait
-              "col-span-1 row-span-1", // 3: Ring / Hands
-              "col-span-1 row-span-2", // 4: Tall bride portrait
-              "col-span-2 row-span-1", // 5: Wide confetti celebration
-              "col-span-1 row-span-1", // 6: Groom portrait
-              "col-span-2 row-span-1", // 7: Wide landscape panorama
-            ];
-
-            const spanClass = bentoStyles[idx % bentoStyles.length];
+            const art = ARTWORKS[idx % ARTWORKS.length];
 
             return (
               <Reveal
                 key={idx}
-                delay={(idx % 4) * 0.07}
-                className={cn(
-                  "group relative cursor-pointer overflow-hidden rounded-xl border border-eucalyptus/60 bg-cream shadow-2xs transition-all duration-300 hover:shadow-md hover:border-olive/60",
-                  spanClass,
-                )}
+                delay={(idx % 3) * 0.08}
+                className={cn("col-span-12", art.span)}
               >
-                <button
-                  type="button"
+                <div
                   onClick={() => handleOpen(idx)}
-                  aria-label={`${lang === "vi" ? "Xem ảnh" : "View photo"} ${idx + 1}`}
-                  className="relative block size-full min-h-[160px] focus:outline-none focus:ring-2 focus:ring-olive"
+                  className="group relative cursor-pointer transition-all duration-500"
                 >
-                  <img
-                    src={src}
-                    alt={`${lang === "vi" ? "Ảnh cưới" : "Wedding photo"} ${idx + 1}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <div className="absolute bottom-3 right-3 rounded-full bg-cream/90 px-2.5 py-1 text-[0.625rem] font-medium uppercase tracking-[0.14em] text-olive-deep opacity-0 backdrop-blur-xs transition-opacity duration-300 group-hover:opacity-100">
-                    {lang === "vi" ? "Phóng to" : "Enlarge"}
+                  {/* Fine Art Museum Mat Board */}
+                  <div className="relative rounded-xs border border-maroon/20 bg-[#fffefc] p-3 shadow-[0_8px_24px_-8px_rgba(74,21,33,0.1)] transition-all duration-500 group-hover:-translate-y-1.5 group-hover:border-maroon/40 group-hover:shadow-[0_18px_36px_-10px_rgba(74,21,33,0.18)] sm:p-4">
+                    {/* Inner hairline border around the photo */}
+                    <div className="relative overflow-hidden rounded-xs border border-maroon/15 bg-cream/40">
+                      <div className={cn("relative w-full overflow-hidden", art.aspect)}>
+                        <img
+                          src={src}
+                          alt={t(art.title)}
+                          loading="lazy"
+                          decoding="async"
+                          className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                      </div>
+                    </div>
+
+                    {/* Exhibition Placard / Mat Label */}
+                    <div className="mt-3.5 flex items-center justify-between border-t border-maroon/10 pt-3 sm:mt-4 sm:pt-3.5">
+                      <div className="flex flex-col">
+                        <span className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.28em] text-maroon/75">
+                          NO. {String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <h4 className="mt-0.5 font-display text-base font-normal text-maroon sm:text-lg">
+                          {t(art.title)}
+                        </h4>
+                        <p className="font-serif text-xs italic text-walnut/70">
+                          {t(art.subtitle)}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center gap-1.5 rounded-full border border-maroon/20 bg-cream px-3 py-1 font-display text-[0.625rem] font-medium uppercase tracking-[0.14em] text-maroon transition-all group-hover:bg-maroon group-hover:text-cream shadow-2xs">
+                        <Maximize2 className="size-3" />
+                        <span className="hidden sm:inline">
+                          {lang === "vi" ? "Chiêm ngưỡng" : "View"}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                </button>
+                </div>
               </Reveal>
             );
           })}
@@ -115,7 +184,7 @@ export function Gallery() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/92 p-4 backdrop-blur-md"
           onClick={handleClose}
         >
           {/* Close button */}
@@ -146,16 +215,31 @@ export function Gallery() {
             <ChevronLeft className="size-6 sm:size-7" />
           </button>
 
-          {/* Main Image */}
+          {/* Main Image & Caption */}
           <div
-            className="relative max-h-[85vh] max-w-[90vw] overflow-hidden rounded-md shadow-2xl"
+            className="relative flex flex-col items-center max-h-[90vh] max-w-[92vw]"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={images[selectedIndex]}
-              alt={`${lang === "vi" ? "Ảnh cưới" : "Wedding photo"} ${selectedIndex + 1}`}
-              className="max-h-[85vh] max-w-full object-contain"
-            />
+            <div className="overflow-hidden rounded-xs border border-white/20 bg-black/40 shadow-2xl">
+              <img
+                src={images[selectedIndex]}
+                alt={t(ARTWORKS[selectedIndex % ARTWORKS.length].title)}
+                className="max-h-[72vh] max-w-full object-contain"
+              />
+            </div>
+
+            {/* Caption in lightbox */}
+            <div className="mt-3.5 text-center">
+              <p className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.26em] text-cream/75">
+                NO. {String(selectedIndex + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-0.5 font-display text-base text-cream sm:text-xl">
+                {t(ARTWORKS[selectedIndex % ARTWORKS.length].title)}
+              </h3>
+              <p className="mt-0.5 font-serif text-xs italic text-cream/70 sm:text-sm">
+                {t(ARTWORKS[selectedIndex % ARTWORKS.length].subtitle)}
+              </p>
+            </div>
           </div>
 
           {/* Next button */}
