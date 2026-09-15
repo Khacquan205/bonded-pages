@@ -29,9 +29,19 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
   };
 }
 
+function getServerEnv(key: string): string | undefined {
+  const g = globalThis as Record<string, unknown>;
+  const cfEnv = g.__env__ as Record<string, unknown> | undefined;
+  return (
+    (typeof cfEnv?.[key] === "string" ? (cfEnv[key] as string) : undefined) ??
+    (typeof process !== "undefined" && typeof process.env?.[key] === "string" ? process.env[key] : undefined) ??
+    (typeof g[key] === "string" ? (g[key] as string) : undefined)
+  );
+}
+
 function createSupabaseAdminClient() {
-  const SUPABASE_URL = process.env['SUPABASE_URL'];
-  const SUPABASE_SERVICE_ROLE_KEY = process.env['SUPABASE_SERVICE_ROLE_KEY'];
+  const SUPABASE_URL = getServerEnv('SUPABASE_URL');
+  const SUPABASE_SERVICE_ROLE_KEY = getServerEnv('SUPABASE_SERVICE_ROLE_KEY');
 
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
     const missing = [

@@ -36,17 +36,30 @@ function buildMessageText(data: RsvpNotificationPayload): string {
   ].join("\n");
 }
 
+function getServerEnv(key: string): string | undefined {
+  const g = globalThis as Record<string, unknown>;
+  const cfEnv = g.__env__ as Record<string, unknown> | undefined;
+  return (
+    (typeof cfEnv?.[key] === "string" ? (cfEnv[key] as string) : undefined) ??
+    (typeof process !== "undefined" && typeof process.env?.[key] === "string" ? process.env[key] : undefined) ??
+    (typeof g[key] === "string" ? (g[key] as string) : undefined)
+  );
+}
+
 // SECURITY: reads server-only env vars (no VITE_ prefix) so the webhook URL
 // and shared secret never ship to the client bundle. Call only from server
 // functions / server routes.
 export async function sendZaloRsvpNotification(data: RsvpNotificationPayload): Promise<boolean> {
-  const webhookUrl = process.env["ZALO_BOT_WEBHOOK_URL"];
-  const webhookSecret = process.env["ZALO_BOT_WEBHOOK_SECRET"];
+  const webhookUrl = getServerEnv("ZALO_BOT_WEBHOOK_URL");
+  const webhookSecret = getServerEnv("ZALO_BOT_WEBHOOK_SECRET");
 
+  const g = globalThis as Record<string, unknown>;
+  const cfEnv = g.__env__ as Record<string, unknown> | undefined;
   console.log(
-    "🔍 [Zalo debug] webhookUrl present:", !!webhookUrl,
-    "| webhookSecret present:", !!webhookSecret,
-    "| all env keys:", Object.keys(process.env).join(", "),
+    "🔍 [Zalo debug] webhookUrl:", webhookUrl ? "FOUND" : "MISSING",
+    "| webhookSecret:", webhookSecret ? "FOUND" : "MISSING",
+    "| cfEnv keys:", cfEnv ? Object.keys(cfEnv).join(", ") : "none",
+    "| process.env keys:", typeof process !== "undefined" && process.env ? Object.keys(process.env).join(", ") : "none",
   );
 
   if (!webhookUrl) {
@@ -66,8 +79,9 @@ export async function sendZaloRsvpNotification(data: RsvpNotificationPayload): P
         "Content-Type": "application/json",
         ...(webhookSecret ? { "x-webhook-secret": webhookSecret } : {}),
       },
+      signal: AbortSignal.timeout(15000),
       body: JSON.stringify({
-        recipient_phone: process.env["ZALO_NOTIFY_RECIPIENT_PHONE"],
+        recipient_phone: getServerEnv("ZALO_NOTIFY_RECIPIENT_PHONE"),
         groom_name: wedding.couple.groom.name,
         message: messageText,
         data: {
@@ -81,6 +95,11 @@ export async function sendZaloRsvpNotification(data: RsvpNotificationPayload): P
       }),
     });
 
+    console.log("📡 [Zalo Bot response status]:", response.status, response.statusText);
+    if (!response.ok) {
+      const errText = await response.text().catch(() => "");
+      console.error("❌ [Zalo Bot error body]:", errText);
+    }
     return response.ok;
   } catch (error) {
     console.error("Lỗi khi gửi webhook Zalo bot:", error);
