@@ -75,9 +75,11 @@ export function ClosingCta() {
               N&thinsp;&amp;&thinsp;L
             </span>
           </div>
-          <p className="font-display text-xs uppercase tracking-[0.25em] text-white/85">
-            {wedding.couple.bride.name} &amp; {wedding.couple.groom.name}
-          </p>
+          <div className="flex flex-col items-center gap-0.5 font-display text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-white/85">
+            <span className="whitespace-nowrap">{wedding.couple.bride.name}</span>
+            <span className="text-[0.625rem] text-white/60">&amp;</span>
+            <span className="whitespace-nowrap">{wedding.couple.groom.name}</span>
+          </div>
           <p className="font-display text-[0.6875rem] tracking-[0.16em] text-white/60 uppercase">
             11.12.2026 · {wedding.venue.name}
           </p>

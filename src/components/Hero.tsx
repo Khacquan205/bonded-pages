@@ -43,9 +43,20 @@ export function Hero() {
               N&thinsp;&amp;&thinsp;L
             </span>
           </div>
-          <p className="font-display text-[0.6875rem] font-medium uppercase tracking-[0.32em] text-white/90 sm:text-xs">
-            {wedding.couple.bride.name} &amp; {wedding.couple.groom.name}
-          </p>
+          <div
+            className="flex flex-col items-center gap-0.5 text-center"
+            aria-label={`${wedding.couple.bride.name} & ${wedding.couple.groom.name}`}
+          >
+            <span className="font-display text-[0.75rem] sm:text-xs md:text-sm font-medium uppercase tracking-[0.22em] sm:tracking-[0.28em] text-white/95 whitespace-nowrap">
+              {wedding.couple.bride.name}
+            </span>
+            <span className="font-display text-[0.625rem] sm:text-[0.6875rem] font-light text-white/65">
+              &amp;
+            </span>
+            <span className="font-display text-[0.75rem] sm:text-xs md:text-sm font-medium uppercase tracking-[0.22em] sm:tracking-[0.28em] text-white/95 whitespace-nowrap">
+              {wedding.couple.groom.name}
+            </span>
+          </div>
         </motion.div>
 
         {/* Official Save The Date Typography Artwork */}
