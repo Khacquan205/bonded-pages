@@ -145,9 +145,9 @@ export const wedding = {
   ],
   gallery: [
     "https://images.unsplash.com/photo-1620315472787-52921e5f88a0?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80",
+    "/images/gallery-rings.jpg",
     "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=80",
+    "/images/gallery-bouquet.jpg",
     "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
     "https://images.unsplash.com/photo-1603298576121-586c2d880e59?auto=format&fit=crop&w=1200&q=80",
     "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1200&q=80",

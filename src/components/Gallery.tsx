@@ -25,7 +25,7 @@ const ARTWORKS: ArtworkItem[] = [
   {
     title: { vi: "Kỷ vật trăm năm", en: "The Eternal Rings" },
     subtitle: { vi: "Trọn đời gắn kết, son sắt yêu thương", en: "Two rings, one everlasting promise" },
-    aspect: "aspect-[4/3] sm:aspect-square",
+    aspect: "aspect-[3/4]",
     spanMobile: "col-span-6",
     spanDesktop: "md:col-span-5 lg:col-span-4",
   },
@@ -39,8 +39,8 @@ const ARTWORKS: ArtworkItem[] = [
   {
     title: { vi: "Hương hoa ngày vui", en: "Floral Romance" },
     subtitle: { vi: "Mẫu đơn e ấp và sắc hoa ngọt ngào", en: "Soft pastel blooms of devotion" },
-    aspect: "aspect-[16/11] sm:aspect-[4/3]",
-    spanMobile: "col-span-12",
+    aspect: "aspect-[3/4]",
+    spanMobile: "col-span-6",
     spanDesktop: "md:col-span-4 lg:col-span-4",
   },
   {
@@ -53,8 +53,8 @@ const ARTWORKS: ArtworkItem[] = [
   {
     title: { vi: "Dạ tiệc lung linh", en: "JW Marriott Ballroom" },
     subtitle: { vi: "Ánh nến ấm áp và ly pha lê trang trọng", en: "An evening of timeless celebration" },
-    aspect: "aspect-[4/3] sm:aspect-[16/11]",
-    spanMobile: "col-span-6",
+    aspect: "aspect-[16/11]",
+    spanMobile: "col-span-12",
     spanDesktop: "md:col-span-6 lg:col-span-6",
   },
   {
@@ -172,11 +172,11 @@ export function Gallery() {
                 >
                   {/* Fine Art Museum Mat Board Container */}
                   <div className={cn(
-                    "flex h-full flex-col justify-between rounded-xs border border-[#2d081d]/15 bg-[#fffdfa] shadow-[0_8px_24px_-8px_rgba(45,8,29,0.12)] transition-all duration-500 group-hover:-translate-y-1 group-hover:border-[#610401]/35 group-hover:shadow-[0_18px_36px_-10px_rgba(45,8,29,0.22)]",
+                    "flex h-full flex-col rounded-xs border border-[#2d081d]/15 bg-[#fffdfa] shadow-[0_8px_24px_-8px_rgba(45,8,29,0.12)] transition-all duration-500 group-hover:-translate-y-1 group-hover:border-[#610401]/35 group-hover:shadow-[0_18px_36px_-10px_rgba(45,8,29,0.22)]",
                     isDualCard ? "p-2 sm:p-3" : "p-2.5 sm:p-4"
                   )}>
                     {/* Inner hairline border around the photo */}
-                    <div className="relative overflow-hidden rounded-2xs border border-[#2d081d]/12 bg-[#faf7f2]">
+                    <div className="relative mb-2 sm:mb-3 overflow-hidden rounded-2xs border border-[#2d081d]/12 bg-[#faf7f2]">
                       <div className={cn("relative w-full overflow-hidden", art.aspect)}>
                         <img
                           src={src}
@@ -191,8 +191,8 @@ export function Gallery() {
 
                     {/* Exhibition Placard / Mat Label */}
                     <div className={cn(
-                      "flex items-center justify-between border-t border-[#2d081d]/10",
-                      isDualCard ? "mt-2 pt-2 sm:mt-3 sm:pt-2.5" : "mt-3 pt-2.5 sm:mt-3.5 sm:pt-3"
+                      "mt-auto flex items-center justify-between border-t border-[#2d081d]/10",
+                      isDualCard ? "pt-2 sm:pt-2.5" : "pt-2.5 sm:pt-3"
                     )}>
                       <div className="min-w-0 flex-1 pr-2">
                         <span className={cn(
