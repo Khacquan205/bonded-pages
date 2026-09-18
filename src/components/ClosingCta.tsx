@@ -70,10 +70,12 @@ export function ClosingCta() {
       {/* Bespoke Stationery Footer */}
       <footer className="relative z-10 mt-16 sm:mt-20 border-t border-white/15 bg-black/60 py-8 sm:py-10 text-center backdrop-blur-sm">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-2.5 px-6">
-          <div className="flex size-10 items-center justify-center rounded-full border border-white/40">
-            <span className="font-display text-[0.6875rem] tracking-[0.2em] text-white/90 pl-0.5">
-              N&thinsp;&amp;&thinsp;L
-            </span>
+          <div className="relative mb-1 flex items-center justify-center">
+            <img
+              src="/images/logo-cat-mouse-white.png"
+              alt="Logo Lan & Nam"
+              className="h-14 sm:h-16 w-auto object-contain opacity-90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)]"
+            />
           </div>
           <div className="flex flex-col items-center gap-0.5 font-display text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-white/85">
             <span className="whitespace-nowrap">{wedding.couple.bride.name}</span>

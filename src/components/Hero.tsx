@@ -38,10 +38,12 @@ export function Hero() {
       <div className="relative z-20 mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-center px-6 pt-24 pb-16 text-center sm:pt-28 sm:pb-20">
         {/* Monogram Crest & Couple Names */}
         <motion.div {...fade(0.05)} className="flex flex-col items-center gap-1.5 sm:gap-2">
-          <div className="flex size-11 sm:size-13 items-center justify-center rounded-full border border-white/70 bg-white/5 backdrop-blur-xs shadow-xs">
-            <span className="font-display text-xs sm:text-sm font-light tracking-[0.22em] text-white pl-0.5">
-              N&thinsp;&amp;&thinsp;L
-            </span>
+          <div className="relative mb-1 flex items-center justify-center">
+            <img
+              src="/images/logo-cat-mouse-white.png"
+              alt="Logo Lan & Nam"
+              className="h-20 sm:h-24 md:h-28 w-auto object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] transition-transform duration-500 hover:scale-105"
+            />
           </div>
           <div
             className="flex flex-col items-center gap-0.5 text-center"
