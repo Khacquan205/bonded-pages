@@ -26,9 +26,9 @@ export function Hero() {
         className="absolute inset-0 size-full object-cover object-[center_35%]"
       />
 
-      {/* Deep bordeaux tint and cinematic vignette */}
-      <div className="absolute inset-0 bg-[#2d081d]/35 mix-blend-multiply" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/75" />
+      {/* Deep bordeaux tint and cinematic vignette tuned for the new couple photo */}
+      <div className="absolute inset-0 bg-[#2d081d]/25 mix-blend-multiply" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/70" />
 
       {/* Fine-art stationery double hairline frame */}
       <div className="pointer-events-none absolute inset-3 sm:inset-5 md:inset-7 z-10 border border-white/25" />
