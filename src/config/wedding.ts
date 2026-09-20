@@ -144,18 +144,17 @@ export const wedding = {
     },
   ],
   gallery: [
-    "https://images.unsplash.com/photo-1620315472787-52921e5f88a0?auto=format&fit=crop&w=1200&q=80",
-    "/images/gallery-rings.jpg",
-    "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1200&q=80",
-    "/images/gallery-bouquet.jpg",
-    "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1603298576121-586c2d880e59?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=1200&q=80",
+    "/images/gallery/gallery-01.jpg",
+    "/images/gallery/gallery-02.jpg",
+    "/images/gallery/gallery-03.jpg",
+    "/images/gallery/gallery-04.jpg",
+    "/images/gallery/gallery-05.jpg",
+    "/images/gallery/gallery-06.jpg",
+    "/images/gallery/gallery-07.jpg",
+    "/images/gallery/gallery-08.jpg",
   ],
   closing: {
-    image:
-      "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1920&q=80",
+    image: "/images/gallery/closing-bg.jpg",
     title: {
       vi: "Sự hiện diện của bạn là niềm hạnh phúc của chúng mình",
       en: "Your presence is our greatest happiness",
