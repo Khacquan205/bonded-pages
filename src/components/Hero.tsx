@@ -35,55 +35,36 @@ export function Hero() {
 
       {/* Content Container */}
       <div className="relative z-20 mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-center px-6 pt-14 pb-16 text-center sm:pt-16 sm:pb-20 -translate-y-2 sm:-translate-y-4">
-        {/* Monogram Crest & Couple Names */}
-        <motion.div {...fade(0.05)} className="flex flex-col items-center gap-1 sm:gap-1.5">
-          <div className="relative mb-0.5 flex items-center justify-center">
+        {/* Monogram Crest */}
+        <motion.div {...fade(0.05)} className="flex flex-col items-center">
+          <div className="relative mb-1 flex items-center justify-center">
             <img
               src="/images/logo-cat-mouse-white.png"
               alt="Logo Lan & Nam"
-              className="h-16 sm:h-20 md:h-24 w-auto object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] transition-transform duration-500 hover:scale-105"
+              className="h-18 sm:h-22 md:h-26 w-auto object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] transition-transform duration-500 hover:scale-105"
             />
-          </div>
-          <div
-            className="flex flex-col items-center gap-0.5 text-center"
-            aria-label={`${wedding.couple.bride.name} & ${wedding.couple.groom.name}`}
-          >
-            <span className="font-display text-[0.7rem] sm:text-xs md:text-sm font-medium uppercase tracking-[0.22em] sm:tracking-[0.28em] text-white/95 whitespace-nowrap">
-              {wedding.couple.bride.name}
-            </span>
-            <span className="font-display text-[0.5625rem] sm:text-[0.625rem] font-light text-white/65">
-              &amp;
-            </span>
-            <span className="font-display text-[0.7rem] sm:text-xs md:text-sm font-medium uppercase tracking-[0.22em] sm:tracking-[0.28em] text-white/95 whitespace-nowrap">
-              {wedding.couple.groom.name}
-            </span>
           </div>
         </motion.div>
 
         {/* Official Save The Date Typography Artwork */}
-        <motion.div {...fade(0.18)} className="mt-1 sm:mt-1.5 mb-0 flex flex-col items-center">
+        <motion.div {...fade(0.18)} className="my-2 sm:my-3 flex flex-col items-center">
           <h1 className="sr-only">
             Save The Date · 11.12.2026 · {wedding.couple.bride.name} &amp; {wedding.couple.groom.name}
           </h1>
           <img
             src="/images/save-the-date-white.png"
             alt="Save the date 11.12.26"
-            className="h-auto w-28 sm:w-34 md:w-40 max-h-[16vh] object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.65)]"
+            className="h-auto w-32 sm:w-38 md:w-44 max-h-[18vh] object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.65)]"
           />
         </motion.div>
 
-        {/* Venue & Ceremony Date Banner with generous top spacing */}
-        <motion.div {...fade(0.28)} className="mt-6 sm:mt-8 md:mt-9 flex flex-col items-center gap-1 sm:gap-1.5">
-          <div className="flex items-center gap-3 sm:gap-5">
-            <span className="h-px w-6 bg-white/40 sm:w-12" />
-            <p className="font-display text-xs uppercase tracking-[0.24em] text-white sm:text-sm md:text-base drop-shadow-xs">
-              {wedding.venue.name} · TP. Hồ Chí Minh
-            </p>
-            <span className="h-px w-6 bg-white/40 sm:w-12" />
-          </div>
-          <p className="font-sans text-[0.6875rem] tracking-[0.16em] text-white/85 sm:text-xs uppercase">
-            {lang === "vi" ? "18:00 · Thứ Sáu, 11 Tháng 12, 2026" : "6:00 PM · Friday, December 11, 2026"}
+        {/* Venue Banner */}
+        <motion.div {...fade(0.28)} className="mt-4 sm:mt-6 flex items-center gap-3 sm:gap-5">
+          <span className="h-px w-6 bg-white/40 sm:w-12" />
+          <p className="font-display text-xs uppercase tracking-[0.24em] text-white sm:text-sm md:text-base drop-shadow-xs">
+            {wedding.venue.name} · TP. Hồ Chí Minh
           </p>
+          <span className="h-px w-6 bg-white/40 sm:w-12" />
         </motion.div>
 
         {/* CTA Buttons */}
