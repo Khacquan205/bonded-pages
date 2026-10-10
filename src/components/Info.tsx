@@ -65,15 +65,12 @@ export function Info() {
 
             {/* Semantic screen-reader content for SEO and Accessibility */}
             <div className="sr-only">
-              <h2>TRÂN TRỌNG BÁO TIN TIỆC CƯỚI</h2>
-              <p>Cô dâu: Nguyễn Huyền Nga (Ái nữ)</p>
-              <p>Chú rể: Trần Thành Long (Trưởng nam)</p>
-              <p>Đại diện Nhà Trai: Bà Trần Thị Tuyết Mai</p>
-              <p>Đại diện Nhà Gái: Bà Nguyễn Thị Thuỷ</p>
-              <p>Trân trọng kính mời đến dự buổi tiệc thân mật cùng gia đình chúng tôi tại JW Marriott Hotel</p>
+              <h2>TRÂN TRỌNG KÍNH MỜI ĐẾN DỰ BUỔI TIỆC THÂN MẬT CÙNG GIA ĐÌNH CHÚNG TÔI</h2>
+              <p>Huyền Nga &amp; Thành Long</p>
+              <p>Địa điểm: JW Marriott Hotel</p>
               <p>Địa chỉ: Đường Hai Bà Trưng, Quận 1, TP. Hồ Chí Minh</p>
-              <p>Thời gian: Vào lúc 18 giờ 00 · Thứ Sáu, ngày 11 tháng 12 năm 2026 (Tức ngày 03 tháng 11 năm Bính Ngọ)</p>
-              <p>Sự hiện diện của quý khách là niềm vinh hạnh của gia đình chúng tôi</p>
+              <p>Thời gian: Vào lúc 18 giờ 00 · Thứ Sáu, ngày 11 tháng 12 năm 2026 (11.12.2026)</p>
+              <p>Rất hân hạnh được đón tiếp</p>
             </div>
           </div>
         </Reveal>
