@@ -206,17 +206,8 @@ export function Navbar() {
       </header>
 
       {open ? (
-        <div className="fixed inset-0 top-16 z-40 flex flex-col overflow-y-auto bg-cream px-8 pb-12 pt-8 lg:hidden animate-in fade-in duration-200">
-          <div className="mb-6 flex items-baseline justify-between border-b border-[#2d081d]/15 pb-4">
-            <span className="font-script text-3xl sm:text-4xl text-[#2d081d] leading-none">
-              Nga &amp; Long
-            </span>
-            <span className="font-display text-sm font-semibold tracking-[0.16em] text-[#2d081d]/80">
-              11.12.2026
-            </span>
-          </div>
-
-          <ul className="flex flex-col gap-6">
+        <div className="fixed inset-0 top-16 z-40 flex flex-col overflow-y-auto bg-cream px-8 pb-12 pt-6 lg:hidden animate-in fade-in duration-200">
+          <ul className="flex flex-col gap-6 pt-2">
             {links.map((l, index) => (
               <li key={l.id} className="flex items-baseline gap-3">
                 <span className="font-display text-sm tracking-wider text-walnut-muted/60">
