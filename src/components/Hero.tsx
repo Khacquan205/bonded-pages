@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { ChevronDown, CalendarPlus } from "lucide-react";
 import { wedding } from "@/config/wedding";
 import { useFormatDate, useLanguage } from "@/context/LanguageContext";
-import { Countdown } from "./Countdown";
 import { ContactPicker } from "./ContactPicker";
 import { downloadIcs, googleCalendarUrl } from "@/lib/calendar";
 
@@ -78,7 +77,7 @@ export function Hero() {
           <div className="flex items-center gap-3 sm:gap-5">
             <span className="h-px w-6 bg-white/40 sm:w-12" />
             <p className="font-display text-xs uppercase tracking-[0.24em] text-white sm:text-sm md:text-base drop-shadow-xs">
-              {wedding.venue.name} · {wedding.venue.city}
+              {wedding.venue.name} · TP. Hồ Chí Minh
             </p>
             <span className="h-px w-6 bg-white/40 sm:w-12" />
           </div>
@@ -87,13 +86,8 @@ export function Hero() {
           </p>
         </motion.div>
 
-        {/* Countdown to Reception */}
-        <motion.div {...fade(0.38)} className="mt-4 sm:mt-5">
-          <Countdown target={wedding.date.reception} />
-        </motion.div>
-
         {/* CTA Buttons */}
-        <motion.div {...fade(0.48)} className="mt-6 flex w-full flex-col items-center gap-3 sm:mt-7 sm:w-auto sm:flex-row sm:gap-4">
+        <motion.div {...fade(0.38)} className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:gap-4">
           <ContactPicker>
             <button
               type="button"

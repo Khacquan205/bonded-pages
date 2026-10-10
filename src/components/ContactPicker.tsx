@@ -370,9 +370,11 @@ function SuccessView({
         <p className="text-xs uppercase tracking-[0.14em] text-[#610401] font-medium">
           {lang === "vi" ? "Nhắn tin trực tiếp qua Zalo" : "Message on Zalo"}
         </p>
-        <div className="flex flex-col gap-2.5 sm:flex-row">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <ZaloButton person="bride" className="w-full text-xs py-2.5" />
           <ZaloButton person="groom" className="w-full text-xs py-2.5" />
+          <ZaloButton person="groomMother" className="w-full text-xs py-2.5" />
+          <ZaloButton person="brideMother" className="w-full text-xs py-2.5" />
         </div>
       </div>
 

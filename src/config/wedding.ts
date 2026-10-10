@@ -6,7 +6,7 @@ export const wedding = {
       name: "Nguyễn Huyền Nga",
       shortName: "Huyền Nga",
       role: { vi: "Ái nữ", en: "Daughter" },
-      mother: { vi: "Bà Trần Thị Tuyết Mai", en: "Mrs. Tran Thi Tuyet Mai" },
+      mother: { vi: "Bà Nguyễn Thị Thuỷ", en: "Mrs. Nguyen Thi Thuy" },
       zalo: "https://zalo.me/0985868349",
       avatar:
         "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80",
@@ -15,14 +15,28 @@ export const wedding = {
       name: "Trần Thành Long",
       shortName: "Thành Long",
       role: { vi: "Trưởng nam", en: "Eldest son" },
-      mother: { vi: "Bà Nguyễn Thị Thuỷ", en: "Mrs. Nguyen Thi Thuy" },
+      mother: { vi: "Bà Trần Thị Tuyết Mai", en: "Mrs. Tran Thi Tuyet Mai" },
       zalo: "https://zalo.me/0366200504",
       avatar:
         "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400&q=80",
     },
+    mothers: {
+      groomMother: {
+        name: { vi: "Bà Trần Thị Tuyết Mai", en: "Mrs. Tran Thi Tuyet Mai" },
+        shortName: "Mẹ Mai",
+        side: { vi: "Nhà trai", en: "Groom's family" },
+        zalo: "https://zalo.me/0366200504",
+      },
+      brideMother: {
+        name: { vi: "Bà Nguyễn Thị Thuỷ", en: "Mrs. Nguyen Thi Thuy" },
+        shortName: "Mẹ Thuỷ",
+        side: { vi: "Nhà gái", en: "Bride's family" },
+        zalo: "https://zalo.me/0985868349",
+      },
+    },
   },
   date: {
-    ceremony: "2026-12-11T09:00:00+07:00",
+    ceremony: "2026-12-11T18:00:00+07:00",
     reception: "2026-12-11T18:00:00+07:00",
     lunar: {
       vi: "Tức ngày 03 tháng 11 năm Bính Ngọ",
@@ -73,7 +87,7 @@ export const wedding = {
     dresscode: {
       title: { vi: "Dress code", en: "Dress code" },
       text: {
-        vi: "Để buổi tiệc thêm phần trọn vẹn, quý khách vui lòng mặc theo dress code (màu sắc yêu cầu) nhé!",
+        vi: "Để buổi tiệc thêm phần trọn vẹn và trang nhã, quý khách vui lòng chọn trang phục theo bảng màu dress code gợi ý bên dưới.",
         en: "To make our celebration even more memorable, guests are kindly requested to dress in the requested colors.",
       },
       swatches: [
@@ -84,39 +98,14 @@ export const wedding = {
       ],
     },
     notes: {
-      title: { vi: "Lưu ý", en: "Good to know" },
+      title: { vi: "Lưu ý & Đậu xe", en: "Arrival & Parking" },
       text: {
-        vi: "Bãi giữ xe tại tầng hầm khách sạn. Vui lòng đến trước giờ khai tiệc 30 phút để chúng mình kịp chào đón bạn.",
+        vi: "Bãi giữ xe rộng rãi tại tầng hầm khách sạn JW Marriott. Vui lòng đến trước giờ khai tiệc 30 phút để chúng mình kịp chào đón bạn.",
         en: "Hotel basement parking available. Please arrive 30 minutes before reception so we have time to greet you.",
       },
     },
   },
   timeline: [
-    {
-      key: "ceremony",
-      tab: { vi: "Lễ Vu Quy", en: "Ceremony" },
-      date: "2026-12-11T09:00:00+07:00",
-      items: [
-        {
-          time: "08:00",
-          title: { vi: "Đón khách", en: "Guest welcome" },
-          desc: { vi: "Trà bánh tại sân vườn nhà gái.", en: "Tea and pastries in the garden." },
-          location: { vi: "Tư gia nhà gái", en: "Bride's family home" },
-        },
-        {
-          time: "09:00",
-          title: { vi: "Lễ gia tiên", en: "Ancestral rites" },
-          desc: { vi: "Nghi thức truyền thống trước bàn thờ gia tiên.", en: "Traditional rites before the family altar." },
-          location: { vi: "Tư gia nhà gái", en: "Bride's family home" },
-        },
-        {
-          time: "11:00",
-          title: { vi: "Tiệc thân mật", en: "Family lunch" },
-          desc: { vi: "Bữa cơm ấm cúng cùng hai bên gia đình.", en: "A warm meal with both families." },
-          location: { vi: "Tư gia nhà gái", en: "Bride's family home" },
-        },
-      ],
-    },
     {
       key: "reception",
       tab: { vi: "Tiệc Cưới", en: "Reception" },
@@ -125,19 +114,19 @@ export const wedding = {
         {
           time: "18:00",
           title: { vi: "Đón khách", en: "Guest welcome" },
-          desc: { vi: "Chụp ảnh lưu niệm tại photo booth.", en: "Photos at the photo booth." },
+          desc: { vi: "Chụp ảnh lưu niệm tại photo booth cùng cô dâu & chú rể.", en: "Photos at the photo booth with the couple." },
           location: { vi: "JW Marriott Hotel", en: "JW Marriott Hotel" },
         },
         {
           time: "18:30",
           title: { vi: "Nghi thức cưới & Khai tiệc", en: "Ceremony & Dinner" },
-          desc: { vi: "Cô dâu chú rể tiến vào lễ đường và khai tiệc tối.", en: "The couple walks down the aisle and dinner begins." },
+          desc: { vi: "Cô dâu chú rể tiến vào lễ đường và khai tiệc tối ấm cúng.", en: "The couple walks down the aisle and dinner begins." },
           location: { vi: "JW Marriott Hotel", en: "JW Marriott Hotel" },
         },
         {
           time: "21:00",
           title: { vi: "Tiễn khách", en: "Farewell" },
-          desc: { vi: "Cảm ơn bạn đã ở đây cùng chúng mình.", en: "Thank you for being here with us." },
+          desc: { vi: "Cảm ơn bạn đã ở đây chung vui cùng gia đình chúng mình.", en: "Thank you for being here with us." },
           location: { vi: "JW Marriott Hotel", en: "JW Marriott Hotel" },
         },
       ],
@@ -145,13 +134,8 @@ export const wedding = {
   ],
   gallery: [
     "/images/gallery/gallery-01.jpg",
-    "/images/gallery/gallery-02.jpg",
     "/images/gallery/gallery-03.jpg",
-    "/images/gallery/gallery-04.jpg",
-    "/images/gallery/gallery-05.jpg",
-    "/images/gallery/gallery-06.jpg",
     "/images/gallery/gallery-07.jpg",
-    "/images/gallery/gallery-08.jpg",
   ],
   closing: {
     image: "/images/gallery/closing-bg.jpg",

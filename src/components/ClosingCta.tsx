@@ -41,20 +41,34 @@ export function ClosingCta() {
           </p>
         </Reveal>
 
-        {/* 2 Separate Zalo Buttons for Bride and Groom */}
-        <Reveal delay={0.15} className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-          <ZaloButton
-            person="bride"
-            variant="solid"
-            withAvatar={true}
-            className="w-full sm:w-auto shadow-lg hover:scale-[1.02]"
-          />
-          <ZaloButton
-            person="groom"
-            variant="solid"
-            withAvatar={true}
-            className="w-full sm:w-auto shadow-lg hover:scale-[1.02]"
-          />
+        {/* Zalo Buttons for Couple and Mothers */}
+        <Reveal delay={0.15} className="mt-10 flex flex-col items-center justify-center gap-3 max-w-xl mx-auto">
+          <div className="flex flex-col sm:flex-row w-full gap-3 justify-center">
+            <ZaloButton
+              person="bride"
+              variant="solid"
+              withAvatar={true}
+              className="w-full sm:w-1/2 shadow-lg hover:scale-[1.02]"
+            />
+            <ZaloButton
+              person="groom"
+              variant="solid"
+              withAvatar={true}
+              className="w-full sm:w-1/2 shadow-lg hover:scale-[1.02]"
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row w-full gap-3 justify-center">
+            <ZaloButton
+              person="groomMother"
+              variant="outline"
+              className="w-full sm:w-1/2 shadow-sm hover:scale-[1.02] border-white/60 text-white"
+            />
+            <ZaloButton
+              person="brideMother"
+              variant="outline"
+              className="w-full sm:w-1/2 shadow-sm hover:scale-[1.02] border-white/60 text-white"
+            />
+          </div>
         </Reveal>
 
         {/* RSVP Deadline notice */}

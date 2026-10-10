@@ -27,26 +27,34 @@ export function Timeline() {
           }
         />
 
-        {/* Tab Switcher */}
-        <div className="mt-12 flex justify-center">
-          <div className="inline-flex rounded-full border border-maroon/20 bg-cream-deep/70 p-1.5 shadow-2xs backdrop-blur-xs">
-            {wedding.timeline.map((day, idx) => (
-              <button
-                key={day.key}
-                type="button"
-                onClick={() => setActiveTab(idx)}
-                className={cn(
-                  "rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.14em] transition-all duration-300 sm:px-8 sm:text-sm font-display",
-                  activeTab === idx
-                    ? "bg-[#610401] text-[#faf6f0] shadow-md"
-                    : "text-[#3d271d]/70 hover:text-[#610401]",
-                )}
-              >
-                {t(day.tab)}
-              </button>
-            ))}
+        {/* Schedule Header / Tabs */}
+        {wedding.timeline.length > 1 ? (
+          <div className="mt-12 flex justify-center">
+            <div className="inline-flex rounded-full border border-maroon/20 bg-cream-deep/70 p-1.5 shadow-2xs backdrop-blur-xs">
+              {wedding.timeline.map((day, idx) => (
+                <button
+                  key={day.key}
+                  type="button"
+                  onClick={() => setActiveTab(idx)}
+                  className={cn(
+                    "rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.14em] transition-all duration-300 sm:px-8 sm:text-sm font-display",
+                    activeTab === idx
+                      ? "bg-[#610401] text-[#faf6f0] shadow-md"
+                      : "text-[#3d271d]/70 hover:text-[#610401]",
+                  )}
+                >
+                  {t(day.tab)}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="mt-10 flex justify-center">
+            <span className="inline-flex items-center rounded-full border border-[#610401]/30 bg-[#610401]/10 px-6 py-2 font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-[#610401]">
+              {t(currentSchedule.tab)} · {wedding.venue.name}
+            </span>
+          </div>
+        )}
 
         {/* Date subtitle */}
         <p className="mt-4 text-center font-display text-sm tracking-[0.16em] text-[#3d271d]/75">
