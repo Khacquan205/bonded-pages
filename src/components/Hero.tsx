@@ -61,14 +61,14 @@ export function Hero() {
         </motion.div>
 
         {/* Official Save The Date Typography Artwork */}
-        <motion.div {...fade(0.18)} className="my-2 sm:my-3 flex flex-col items-center">
+        <motion.div {...fade(0.18)} className="my-1.5 sm:my-2.5 flex flex-col items-center">
           <h1 className="sr-only">
             Save The Date · 11.12.2026 · {wedding.couple.bride.name} &amp; {wedding.couple.groom.name}
           </h1>
           <img
             src="/images/save-the-date-white.png"
             alt="Save the date 11.12.26"
-            className="h-auto w-44 sm:w-56 md:w-64 max-h-[28vh] object-contain drop-shadow-[0_4px_28px_rgba(0,0,0,0.65)]"
+            className="h-auto w-32 sm:w-38 md:w-44 max-h-[18vh] object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.65)]"
           />
         </motion.div>
 
