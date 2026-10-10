@@ -52,13 +52,12 @@
 }
 
 @theme inline {
-  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
-  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-display: "DFVN TAN - MON CHERI", "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-serif: "DFVN TAN - MON CHERI", "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Montserrat", "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
   --font-script: "DFVN Desirable Calligraphy", "Alex Brush", cursive;
   --font-brush: "DFVN Desirable Brush", cursive;
   --font-alex: "Alex Brush", cursive;
-  --font-mon-cheri: "DFVN TAN - MON CHERI", serif;
   --color-maroon: var(--maroon);
   --color-maroon-deep: var(--maroon-deep);
   --color-maroon-light: var(--maroon-light);
