@@ -6,24 +6,110 @@ import { ContactPicker } from "./ContactPicker";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 
 export function Info() {
   const { lang } = useLanguage();
   const t = useT();
-  const [isCardZoomOpen, setIsCardZoomOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<"reception" | "ceremony">("reception");
+  const [receptionSide, setReceptionSide] = useState<"back" | "front">("back");
+
+  const currentCardImg =
+    selectedCard === "ceremony"
+      ? "/images/thiep-le-vu-quy.png"
+      : receptionSide === "front"
+        ? "/images/thiep-vat-ly-mat-truoc.png"
+        : "/images/thiep-vat-ly-mat-sau.png";
+
+  const currentCardTitle =
+    selectedCard === "ceremony"
+      ? (lang === "vi" ? "Thiệp Lễ Thành Hôn (Tư Gia)" : "Traditional Ceremony Invitation")
+      : receptionSide === "front"
+        ? (lang === "vi" ? "Mặt Trước — Bìa Dập Nổi Monogram" : "Front Cover — Embossed Monogram")
+        : (lang === "vi" ? "Mặt Sau — Thiệp Tiệc Cưới Chính Thức" : "Official Reception Invitation");
+
+  const downloadFilename =
+    selectedCard === "ceremony"
+      ? "Thiep-Le-Thanh-Hon-Huyen-Nga-Thanh-Long.png"
+      : receptionSide === "front"
+        ? "Bia-Thiep-Cuoi-Huyen-Nga-Thanh-Long.png"
+        : "Thiep-Tiec-Cuoi-Huyen-Nga-Thanh-Long.png";
 
   return (
     <section id="info" className="relative bg-[#f4efe6] px-5 py-20 sm:px-6 sm:py-28 scroll-mt-16">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
-          label={lang === "vi" ? "Thiệp Báo Tin" : "Official Invitation"}
-          title={lang === "vi" ? "Trân Trọng Báo Tin Tiệc Cưới" : "Wedding Announcement"}
+          label={lang === "vi" ? "Thiệp Cưới Vật Lý" : "Official Invitation"}
+          title={lang === "vi" ? "Thiệp Cưới Chính Thức" : "Wedding Stationery"}
         />
 
         {/* ------------------------------------------------------------- */}
-        {/* CENTERPIECE: OFFICIAL WEDDING INVITATION CARD (ARTBOARD 2)   */}
+        {/* CARD SELECTOR TABS: RECEPTION vs CEREMONY                     */}
         {/* ------------------------------------------------------------- */}
-        <Reveal delay={0.1} className="mt-12 sm:mt-16">
+        <div className="mt-8 sm:mt-10 flex flex-col items-center gap-3">
+          <div className="inline-flex rounded-full border border-[#2d081d]/20 bg-[#faf7f2] p-1.5 shadow-2xs">
+            <button
+              type="button"
+              onClick={() => setSelectedCard("reception")}
+              className={cn(
+                "rounded-full px-5 py-2 text-xs font-medium uppercase tracking-[0.14em] transition-all duration-300 sm:px-7 sm:text-sm font-display",
+                selectedCard === "reception"
+                  ? "bg-[#610401] text-[#faf6f0] shadow-md"
+                  : "text-[#3d271d]/70 hover:text-[#610401]",
+              )}
+            >
+              {lang === "vi" ? "Tiệc Cưới (11.12)" : "Reception (Dec 11)"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedCard("ceremony")}
+              className={cn(
+                "rounded-full px-5 py-2 text-xs font-medium uppercase tracking-[0.14em] transition-all duration-300 sm:px-7 sm:text-sm font-display",
+                selectedCard === "ceremony"
+                  ? "bg-[#610401] text-[#faf6f0] shadow-md"
+                  : "text-[#3d271d]/70 hover:text-[#610401]",
+              )}
+            >
+              {lang === "vi" ? "Lễ Thành Hôn (06.12)" : "Ceremony (Dec 06)"}
+            </button>
+          </div>
+
+          {/* Sub-toggle for Reception card: Front vs Back */}
+          {selectedCard === "reception" && (
+            <div className="inline-flex items-center gap-2 text-xs font-display">
+              <span className="text-[#3d271d]/60">{lang === "vi" ? "Xem mặt:" : "View side:"}</span>
+              <button
+                type="button"
+                onClick={() => setReceptionSide("back")}
+                className={cn(
+                  "rounded-full px-3 py-1 font-medium transition-all",
+                  receptionSide === "back"
+                    ? "bg-[#2d081d] text-[#faf6f0] shadow-2xs"
+                    : "border border-[#2d081d]/20 text-[#2d081d]/80 hover:border-[#2d081d]",
+                )}
+              >
+                {lang === "vi" ? "Ruột thiệp mời" : "Inside Card"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setReceptionSide("front")}
+                className={cn(
+                  "rounded-full px-3 py-1 font-medium transition-all",
+                  receptionSide === "front"
+                    ? "bg-[#2d081d] text-[#faf6f0] shadow-2xs"
+                    : "border border-[#2d081d]/20 text-[#2d081d]/80 hover:border-[#2d081d]",
+                )}
+              >
+                {lang === "vi" ? "Bìa dập nổi đỏ" : "Front Cover"}
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* ------------------------------------------------------------- */}
+        {/* CENTERPIECE: OFFICIAL WEDDING INVITATION CARD                 */}
+        {/* ------------------------------------------------------------- */}
+        <Reveal delay={0.1} className="mt-8 sm:mt-10">
           <div className="mx-auto max-w-lg sm:max-w-xl">
             {/* Stationery Mount Frame: Clickable to view full card */}
             <div
@@ -42,10 +128,10 @@ export function Info() {
               {/* Inner card container: scales image smoothly on hover without any blur or dimming */}
               <div className="relative overflow-hidden rounded-xs border border-[#2d081d]/12 bg-[#faf7f2]">
                 <img
-                  src="/images/official-invitation-card.png"
-                  alt="Thiệp Báo Tin Tiệc Cưới - Nguyễn Huyền Nga & Trần Thành Long - JW Marriott Hotel"
-                  width={975}
-                  height={1350}
+                  src={currentCardImg}
+                  alt={currentCardTitle}
+                  width={1536}
+                  height={2304}
                   className="w-full h-auto object-contain block transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   loading="eager"
                 />
@@ -54,7 +140,7 @@ export function Info() {
               {/* Card Footer Bar */}
               <div className="mt-3 flex items-center justify-between px-1 text-[0.6875rem] font-display uppercase tracking-[0.16em] text-[#2d081d]/75">
                 <span className="font-semibold text-[#610401]">
-                  {lang === "vi" ? "Thiệp cưới chính thức" : "Official Invitation"}
+                  {currentCardTitle}
                 </span>
                 <span className="inline-flex items-center gap-1.5 font-medium text-[#2d081d]/70 transition-colors group-hover:text-[#610401]">
                   <ZoomIn className="size-3.5" />
@@ -66,11 +152,13 @@ export function Info() {
             {/* Semantic screen-reader content for SEO and Accessibility */}
             <div className="sr-only">
               <h2>TRÂN TRỌNG KÍNH MỜI ĐẾN DỰ BUỔI TIỆC THÂN MẬT CÙNG GIA ĐÌNH CHÚNG TÔI</h2>
-              <p>Huyền Nga &amp; Thành Long</p>
-              <p>Địa điểm: JW Marriott Hotel</p>
-              <p>Địa chỉ: Đường Hai Bà Trưng, Quận 1, TP. Hồ Chí Minh</p>
-              <p>Thời gian: Vào lúc 18 giờ 00 · Thứ Sáu, ngày 11 tháng 12 năm 2026 (11.12.2026)</p>
-              <p>Rất hân hạnh được đón tiếp</p>
+              <p>Trần Thành Long (Trưởng nam) &amp; Nguyễn Huyền Nga (Ái nữ)</p>
+              <p>Nhà trai: Bà Tạ Thị Tuyết Mai</p>
+              <p>Nhà gái: Bà Nguyễn Thị Thủy</p>
+              <p>Địa điểm tiệc cưới: JW Marriott Hotel &amp; Suites Saigon</p>
+              <p>Địa chỉ: Góc đường Hai Bà Trưng &amp; Đại Lộ Lê Duẩn, phường Sài Gòn, TP. Hồ Chí Minh</p>
+              <p>Thời gian tiệc: Vào lúc 18 giờ 00 · Thứ Sáu, ngày 11 tháng 12 năm 2026 (11.12.2026)</p>
+              <p>Hôn lễ tại tư gia: Vào lúc 09 giờ 00 · Chủ Nhật, ngày 06 tháng 12 năm 2026 (06.12.2026 - Nhằm 28/10 Âm lịch)</p>
             </div>
           </div>
         </Reveal>
@@ -79,18 +167,18 @@ export function Info() {
         <Dialog open={isCardZoomOpen} onOpenChange={setIsCardZoomOpen}>
           <DialogContent className="max-w-3xl border border-white/20 bg-black/95 p-3 sm:p-5 text-white shadow-2xl backdrop-blur-xl">
             <DialogTitle className="sr-only">
-              {lang === "vi" ? "Thiệp Báo Tin Tiệc Cưới" : "Wedding Announcement Card"}
+              {currentCardTitle}
             </DialogTitle>
             <div className="relative flex flex-col items-center max-h-[85vh] overflow-y-auto pt-2">
               <img
-                src="/images/official-invitation-card.png"
-                alt="Thiệp Báo Tin Tiệc Cưới - Nguyễn Huyền Nga & Trần Thành Long"
+                src={currentCardImg}
+                alt={currentCardTitle}
                 className="max-h-[75vh] w-auto rounded-sm object-contain shadow-2xl"
               />
               <div className="mt-4 flex items-center gap-3">
                 <a
-                  href="/images/official-invitation-card.png"
-                  download="Thiep-Bao-Tin-Tiec-Cuoi-Huyen-Nga-Thanh-Long.png"
+                  href={currentCardImg}
+                  download={downloadFilename}
                   className="inline-flex items-center gap-2 rounded-full bg-[#610401] px-5 py-2.5 font-display text-xs font-medium uppercase tracking-[0.16em] text-[#faf6f0] shadow-md transition-all hover:bg-[#780602] hover:scale-105"
                 >
                   <Download className="size-4" />

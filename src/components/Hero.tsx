@@ -82,7 +82,7 @@ export function Hero() {
             <div className="flex items-center gap-3 sm:gap-5">
               <span className="h-px w-6 bg-white/40 sm:w-12" />
               <p className="font-display text-xs uppercase tracking-[0.24em] text-white sm:text-sm md:text-base drop-shadow-xs">
-                {wedding.venue.name} · TP. Hồ Chí Minh
+                {wedding.venue.name}
               </p>
               <span className="h-px w-6 bg-white/40 sm:w-12" />
             </div>
