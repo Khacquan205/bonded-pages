@@ -61,19 +61,19 @@ export function Hero() {
         </motion.div>
 
         {/* Official Save The Date Typography Artwork */}
-        <motion.div {...fade(0.18)} className="mt-1 sm:mt-1.5 mb-0 flex flex-col items-center">
+        <motion.div {...fade(0.18)} className="mt-2 sm:mt-2.5 mb-0 flex w-full flex-col items-center justify-center text-center">
           <h1 className="sr-only">
             Save The Date · 11.12.2026 · {wedding.couple.bride.name} &amp; {wedding.couple.groom.name}
           </h1>
           <img
             src="/images/save-the-date-white.png"
             alt="Save the date 11.12.26"
-            className="h-auto w-28 sm:w-34 md:w-40 max-h-[16vh] object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.65)]"
+            className="mx-auto h-auto w-36 sm:w-44 md:w-52 max-h-[20vh] object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.65)]"
           />
         </motion.div>
 
         {/* Venue & Ceremony Date Banner with generous top spacing */}
-        <motion.div {...fade(0.28)} className="mt-6 sm:mt-8 md:mt-9 flex flex-col items-center gap-1 sm:gap-1.5">
+        <motion.div {...fade(0.28)} className="mt-10 sm:mt-13 md:mt-16 flex flex-col items-center gap-1 sm:gap-1.5">
           <div className="flex items-center gap-3 sm:gap-5">
             <span className="h-px w-6 bg-white/40 sm:w-12" />
             <p className="font-display text-xs uppercase tracking-[0.24em] text-white sm:text-sm md:text-base drop-shadow-xs">
