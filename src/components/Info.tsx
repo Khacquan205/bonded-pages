@@ -13,6 +13,7 @@ export function Info() {
   const t = useT();
   const [selectedCard, setSelectedCard] = useState<"reception" | "ceremony">("reception");
   const [receptionSide, setReceptionSide] = useState<"back" | "front">("back");
+  const [isCardZoomOpen, setIsCardZoomOpen] = useState(false);
 
   const currentCardImg =
     selectedCard === "ceremony"
