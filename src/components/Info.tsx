@@ -224,9 +224,6 @@ export function Info() {
                     <span className="mt-2 font-serif text-xs font-medium text-[#2d081d] sm:text-sm">
                       {t(s.name)}
                     </span>
-                    <span className="font-mono text-[0.625rem] text-[#3d271d]/60 uppercase">
-                      {s.hex}
-                    </span>
                   </div>
                 ))}
               </div>
