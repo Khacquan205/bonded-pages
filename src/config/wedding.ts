@@ -173,7 +173,7 @@ export const wedding = {
     "/images/gallery/retouched-03.jpg",
   ],
   closing: {
-    image: "/images/gallery/closing-bg.jpg",
+    image: "/images/gallery/closing-staircase.jpg",
     title: {
       vi: "Sự hiện diện của bạn là niềm hạnh phúc của chúng mình",
       en: "Your presence is our greatest happiness",

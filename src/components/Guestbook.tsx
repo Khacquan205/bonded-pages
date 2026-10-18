@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Send, Heart, MessageSquareHeart } from "lucide-react";
+import { Send, Heart } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/context/LanguageContext";
@@ -277,21 +277,8 @@ export function Guestbook() {
         </Reveal>
 
         {/* Message List */}
-        <div className="mt-14 space-y-4">
-          {loading ? (
-            <div className="py-12 text-center text-sm text-walnut/60">
-              {lang === "vi" ? "Đang tải lời chúc..." : "Loading wishes..."}
-            </div>
-          ) : messages.length === 0 ? (
-            <div className="rounded-lg border border-dashed border-maroon/25 bg-cream-deep/50 py-12 text-center">
-              <MessageSquareHeart className="mx-auto size-8 text-maroon/50" />
-              <p className="mt-3 text-sm text-walnut/70">
-                {lang === "vi"
-                  ? "Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc nhé!"
-                  : "No wishes yet. Be the first one to leave a blessing!"}
-              </p>
-            </div>
-          ) : (
+        {!loading && messages.length > 0 && (
+          <div className="mt-14 space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               {messages.slice(0, visibleCount).map((item) => (
                 <Reveal
@@ -327,21 +314,21 @@ export function Guestbook() {
                 </Reveal>
               ))}
             </div>
-          )}
 
-          {/* Load More Button */}
-          {!loading && messages.length > visibleCount && (
-            <div className="mt-8 text-center">
-              <button
-                type="button"
-                onClick={() => setVisibleCount((prev) => prev + 6)}
-                className="inline-flex rounded-full border border-[#2d081d]/30 px-6 py-2.5 text-xs uppercase tracking-[0.14em] font-semibold text-[#2d081d] transition-colors hover:bg-[#451020] hover:text-[#faf6f0] hover:border-[#451020] font-serif"
-              >
-                {lang === "vi" ? "Xem thêm lời chúc" : "Load more wishes"}
-              </button>
-            </div>
-          )}
-        </div>
+            {/* Load More Button */}
+            {messages.length > visibleCount && (
+              <div className="mt-8 text-center">
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((prev) => prev + 6)}
+                  className="inline-flex rounded-full border border-[#2d081d]/30 px-6 py-2.5 text-xs uppercase tracking-[0.14em] font-semibold text-[#2d081d] transition-colors hover:bg-[#451020] hover:text-[#faf6f0] hover:border-[#451020] font-serif"
+                >
+                  {lang === "vi" ? "Xem thêm lời chúc" : "Load more wishes"}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );
