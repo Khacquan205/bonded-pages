@@ -16,23 +16,23 @@ interface ArtworkItem {
 
 const ARTWORKS: ArtworkItem[] = [
   {
-    title: { vi: "Hạnh phúc ngập tràn", en: "Embraced in Love" },
-    subtitle: { vi: "Vòng tay êm đềm giữa khu vườn tình yêu", en: "A tender embrace amidst the cypress garden" },
-    aspect: "aspect-[3/4]",
+    title: { vi: "Giữa hàng tùng xanh", en: "Among the Cypress" },
+    subtitle: { vi: "Bình yên bên nhau giữa khu vườn cổ điển", en: "Side by side in the evergreen garden" },
+    aspect: "aspect-[2/3]",
     spanMobile: "col-span-12",
     spanDesktop: "md:col-span-4",
   },
   {
-    title: { vi: "Tà voan hẹn ước", en: "The Cathedral Veil" },
-    subtitle: { vi: "Những bước chân chung đôi trên lối về hạnh phúc", en: "Walking together along the garden path" },
-    aspect: "aspect-[3/4]",
+    title: { vi: "Bên đài phun nước", en: "By the Fountain" },
+    subtitle: { vi: "Tựa vai nhau bên lan can đá dưới bầu trời xanh", en: "Together on the stone balustrade under blue skies" },
+    aspect: "aspect-[2/3]",
     spanMobile: "col-span-12",
     spanDesktop: "md:col-span-4",
   },
   {
-    title: { vi: "Bình yên bên anh", en: "By the Lake" },
-    subtitle: { vi: "Cùng nhìn về tương lai êm đềm bên làn nước trong", en: "Finding peace by the tranquil fountain lake" },
-    aspect: "aspect-[3/4]",
+    title: { vi: "Nụ hôn dưới tà voan", en: "A Kiss Beneath the Veil" },
+    subtitle: { vi: "Khoảnh khắc dịu dàng giữa khu vườn Jardin", en: "A tender moment in the Jardin garden" },
+    aspect: "aspect-[2/3]",
     spanMobile: "col-span-12",
     spanDesktop: "md:col-span-4",
   },
@@ -133,11 +133,11 @@ export function Gallery() {
                       handleOpen(idx);
                     }
                   }}
-                  className="group relative h-full cursor-zoom-in text-left transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#610401]"
+                  className="group relative h-full cursor-zoom-in text-left transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#451020]"
                 >
                   {/* Fine Art Museum Mat Board Container */}
                   <div className={cn(
-                    "flex h-full flex-col rounded-xs border border-[#2d081d]/15 bg-[#fffdfa] shadow-[0_8px_24px_-8px_rgba(45,8,29,0.12)] transition-all duration-500 group-hover:-translate-y-1 group-hover:border-[#610401]/35 group-hover:shadow-[0_18px_36px_-10px_rgba(45,8,29,0.22)]",
+                    "flex h-full flex-col rounded-xs border border-[#2d081d]/15 bg-[#fffdfa] shadow-[0_8px_24px_-8px_rgba(45,8,29,0.12)] transition-all duration-500 group-hover:-translate-y-1 group-hover:border-[#451020]/35 group-hover:shadow-[0_18px_36px_-10px_rgba(45,8,29,0.22)]",
                     isDualCard ? "p-2 sm:p-3" : "p-2.5 sm:p-4"
                   )}>
                     {/* Inner hairline border around the photo */}
@@ -161,20 +161,20 @@ export function Gallery() {
                     )}>
                       <div className="min-w-0 flex-1 pr-2">
                         <span className={cn(
-                          "font-mono font-semibold uppercase tracking-[0.22em] text-[#610401]",
+                          "font-mono font-semibold uppercase tracking-[0.22em] text-[#451020]",
                           isDualCard ? "text-[0.5625rem] sm:text-[0.625rem]" : "text-[0.625rem] sm:text-xs"
                         )}>
                           NO. {String(idx + 1).padStart(2, "0")}
                         </span>
                         <h4 className={cn(
-                          "mt-0.5 font-serif font-normal text-[#2d081d] leading-tight transition-colors group-hover:text-[#610401]",
-                          isDualCard ? "text-[0.8125rem] sm:text-base truncate" : "text-sm sm:text-lg md:text-xl"
+                          "mt-0.5 font-serif font-normal text-[#2d081d] leading-tight transition-colors group-hover:text-[#451020]",
+                          isDualCard ? "text-[0.8125rem] sm:text-base truncate" : "text-base sm:text-lg md:text-xl"
                         )}>
                           {t(art.title)}
                         </h4>
                         <p className={cn(
                           "mt-0.5 font-serif italic text-[#3d271d]/70",
-                          isDualCard ? "text-[0.625rem] sm:text-xs truncate" : "text-xs sm:text-sm"
+                          isDualCard ? "text-[0.625rem] sm:text-xs truncate" : "text-[0.8125rem] sm:text-sm"
                         )}>
                           {t(art.subtitle)}
                         </p>
@@ -182,7 +182,7 @@ export function Gallery() {
 
                       {/* View Action Pill */}
                       <div className={cn(
-                        "inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#2d081d]/15 bg-[#faf7f2] font-display uppercase tracking-[0.14em] text-[#2d081d] shadow-2xs transition-all group-hover:bg-[#610401] group-hover:text-[#faf6f0] group-hover:border-[#610401]",
+                        "inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#2d081d]/15 bg-[#faf7f2] font-serif font-semibold uppercase tracking-[0.14em] text-[#2d081d] shadow-2xs transition-all group-hover:bg-[#451020] group-hover:text-[#faf6f0] group-hover:border-[#451020]",
                         isDualCard ? "p-1.5 sm:px-2.5 sm:py-1 text-[0.5625rem]" : "px-2.5 py-1 sm:px-3 sm:py-1.5 text-[0.625rem]"
                       )}>
                         <Maximize2 className={isDualCard ? "size-2.5 sm:size-3" : "size-3 sm:size-3.5"} />

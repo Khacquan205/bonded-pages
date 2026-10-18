@@ -37,10 +37,10 @@ export function Timeline() {
                   type="button"
                   onClick={() => setActiveTab(idx)}
                   className={cn(
-                    "rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.14em] transition-all duration-300 sm:px-8 sm:text-sm font-display",
+                    "rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] transition-all duration-300 sm:px-8 sm:text-sm font-serif",
                     activeTab === idx
-                      ? "bg-[#610401] text-[#faf6f0] shadow-md"
-                      : "text-[#3d271d]/70 hover:text-[#610401]",
+                      ? "bg-[#451020] text-[#faf6f0] shadow-md"
+                      : "text-[#3d271d]/70 hover:text-[#451020]",
                   )}
                 >
                   {t(day.tab)}
@@ -50,21 +50,21 @@ export function Timeline() {
           </div>
         ) : (
           <div className="mt-10 flex justify-center">
-            <span className="inline-flex items-center rounded-full border border-[#610401]/30 bg-[#610401]/10 px-6 py-2 font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-[#610401]">
+            <span className="inline-flex items-center rounded-full border border-[#451020]/30 bg-[#451020]/10 px-6 py-2 font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-[#451020]">
               {t(currentSchedule.tab)} · {wedding.venue.name}
             </span>
           </div>
         )}
 
         {/* Date subtitle */}
-        <p className="mt-4 text-center font-display text-sm tracking-[0.16em] text-[#3d271d]/75">
+        <p className="mt-4 text-center font-serif text-sm italic lining-nums tracking-[0.04em] text-[#3d271d]/75 sm:text-base">
           {fmt(currentSchedule.date)}
         </p>
 
         {/* Vertical Timeline */}
         <div className="relative mt-12 pl-6 sm:pl-0">
           {/* Vertical line for mobile (left) / desktop (center) */}
-          <div className="absolute left-[35px] top-4 bottom-4 w-px bg-[#610401]/20 sm:left-1/2 sm:-translate-x-1/2" />
+          <div className="absolute left-[35px] top-4 bottom-4 w-px bg-[#451020]/20 sm:left-1/2 sm:-translate-x-1/2" />
 
           <div className="space-y-10 sm:space-y-12">
             {currentSchedule.items.map((item, idx) => {
@@ -80,21 +80,21 @@ export function Timeline() {
                     {/* Time & Content Box */}
                     <div
                       className={cn(
-                        "ml-8 w-auto rounded-lg border border-[#2d081d]/15 bg-white/80 p-5 shadow-xs backdrop-blur-xs transition-colors hover:border-[#610401]/40 sm:ml-0 sm:w-[calc(50%-2.5rem)] sm:p-6",
+                        "ml-8 w-auto rounded-lg border border-[#2d081d]/15 bg-white/80 p-5 shadow-xs backdrop-blur-xs transition-colors hover:border-[#451020]/40 sm:ml-0 sm:w-[calc(50%-2.5rem)] sm:p-6",
                         isEven ? "sm:text-right" : "sm:text-left",
                       )}
                     >
                       <div
                         className={cn(
-                          "inline-flex items-center gap-1.5 rounded-full bg-[#610401]/10 px-3 py-1 font-display text-xs sm:text-sm font-medium text-[#610401]",
+                          "inline-flex items-center gap-1.5 rounded-full bg-[#451020]/10 px-3 py-1 font-display text-xs sm:text-sm font-medium text-[#451020]",
                           isEven ? "sm:flex-row-reverse" : "",
                         )}
                       >
-                        <Clock className="size-3.5 text-[#610401]" />
+                        <Clock className="size-3.5 text-[#451020]" />
                         <span>{item.time}</span>
                       </div>
 
-                      <h4 className="mt-3 font-display text-xl font-medium text-[#2d081d] sm:text-2xl">
+                      <h4 className="mt-3 font-serif text-xl font-medium text-[#2d081d] sm:text-2xl">
                         {t(item.title)}
                       </h4>
 
@@ -105,19 +105,19 @@ export function Timeline() {
                       {item.location ? (
                         <div
                           className={cn(
-                            "mt-3 flex items-center gap-1.5 text-xs font-display text-[#610401]/90",
+                            "mt-3 flex items-center gap-1.5 text-xs font-serif text-[#451020]/90 sm:text-sm",
                             isEven ? "sm:justify-end" : "sm:justify-start",
                           )}
                         >
-                          <MapPin className="size-3.5 shrink-0 text-[#610401]" />
+                          <MapPin className="size-3.5 shrink-0 text-[#451020]" />
                           <span>{t(item.location)}</span>
                         </div>
                       ) : null}
                     </div>
 
                     {/* Timeline center bullet */}
-                    <div className="absolute left-[11px] top-6 flex size-6 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[#610401] bg-[#faf7f2] shadow-xs sm:left-1/2 sm:top-1/2 sm:-translate-y-1/2">
-                      <span className="size-2 rounded-full bg-[#610401]" />
+                    <div className="absolute left-[11px] top-6 flex size-6 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[#451020] bg-[#faf7f2] shadow-xs sm:left-1/2 sm:top-1/2 sm:-translate-y-1/2">
+                      <span className="size-2 rounded-full bg-[#451020]" />
                     </div>
 
                     {/* Empty placeholder for symmetry on desktop */}

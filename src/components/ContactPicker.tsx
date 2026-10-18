@@ -128,7 +128,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder={lang === "vi" ? "Ví dụ: Nguyễn Văn A..." : "E.g. John Doe..."}
-          className="mt-1.5 w-full rounded-md border border-[#2d081d]/25 bg-white px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/50 focus:border-[#610401] focus:outline-none focus:ring-1 focus:ring-[#610401]"
+          className="mt-1.5 w-full rounded-md border border-[#2d081d]/25 bg-white px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/50 focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
         />
       </div>
 
@@ -144,8 +144,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
             className={cn(
               "flex items-center justify-center gap-1.5 rounded-md border py-2 text-xs font-medium transition-all duration-200",
               attendance === "yes"
-                ? "border-[#610401] bg-[#610401] text-[#faf6f0] shadow-xs"
-                : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#610401]/60",
+                ? "border-[#451020] bg-[#451020] text-[#faf6f0] shadow-xs"
+                : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#451020]/60",
             )}
           >
             <CheckCircle2 className="size-3.5" />
@@ -158,7 +158,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
               "flex items-center justify-center gap-1.5 rounded-md border py-2 text-xs font-medium transition-all duration-200",
               attendance === "no"
                 ? "border-[#2d081d] bg-[#2d081d]/10 text-[#2d081d] font-semibold shadow-xs"
-                : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#610401]/60",
+                : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#451020]/60",
             )}
           >
             <span>{lang === "vi" ? "Rất tiếc, tôi bận" : "Cannot attend"}</span>
@@ -184,8 +184,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
                 className={cn(
                   "flex-1 rounded-md border py-1.5 text-center text-xs font-medium transition-all duration-200",
                   !isCustomCount && guestCount === num
-                    ? "border-[#610401] bg-[#610401] text-[#faf6f0] shadow-xs"
-                    : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#610401]/60",
+                    ? "border-[#451020] bg-[#451020] text-[#faf6f0] shadow-xs"
+                    : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#451020]/60",
                 )}
               >
                 {num} {lang === "vi" ? "người" : num === 1 ? "guest" : "guests"}
@@ -202,8 +202,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
               className={cn(
                 "flex-1 rounded-md border py-1.5 text-center text-xs font-medium transition-all duration-200",
                 isCustomCount
-                  ? "border-[#610401] bg-[#610401] text-[#faf6f0] shadow-xs"
-                  : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#610401]/60",
+                  ? "border-[#451020] bg-[#451020] text-[#faf6f0] shadow-xs"
+                  : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#451020]/60",
               )}
             >
               {lang === "vi" ? "Khác..." : "Other..."}
@@ -221,7 +221,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
                   <button
                     type="button"
                     onClick={() => setGuestCount((prev) => Math.max(1, prev - 1))}
-                    className="flex size-7 items-center justify-center rounded-md border border-[#2d081d]/20 bg-white text-ink-muted transition hover:border-[#610401]/70 hover:bg-[#faf7f2] hover:text-ink active:scale-95"
+                    className="flex size-7 items-center justify-center rounded-md border border-[#2d081d]/20 bg-white text-ink-muted transition hover:border-[#451020]/70 hover:bg-[#faf7f2] hover:text-ink active:scale-95"
                     aria-label="Decrease guest count"
                   >
                     <Minus className="size-3.5" />
@@ -245,12 +245,12 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
                     onBlur={() => {
                       if (guestCount < 1) setGuestCount(1);
                     }}
-                    className="w-12 rounded-md border border-[#2d081d]/25 bg-white py-1 text-center text-xs font-semibold text-ink focus:border-[#610401] focus:outline-none focus:ring-1 focus:ring-[#610401]"
+                    className="w-12 rounded-md border border-[#2d081d]/25 bg-white py-1 text-center text-xs font-semibold text-ink focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
                   />
                   <button
                     type="button"
                     onClick={() => setGuestCount((prev) => Math.min(20, (prev || 0) + 1))}
-                    className="flex size-7 items-center justify-center rounded-md border border-[#2d081d]/20 bg-white text-ink-muted transition hover:border-[#610401]/70 hover:bg-[#faf7f2] hover:text-ink active:scale-95"
+                    className="flex size-7 items-center justify-center rounded-md border border-[#2d081d]/20 bg-white text-ink-muted transition hover:border-[#451020]/70 hover:bg-[#faf7f2] hover:text-ink active:scale-95"
                     aria-label="Increase guest count"
                   >
                     <Plus className="size-3.5" />
@@ -271,7 +271,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           {lang === "vi" ? "Bạn là khách của *" : "You are a guest of *"}
         </label>
         <div className="mt-1.5 flex gap-2">
-          {(["both", "bride", "groom"] as SideType[]).map((val) => (
+          {(["both", "groom", "bride"] as SideType[]).map((val) => (
             <button
               key={val}
               type="button"
@@ -279,8 +279,8 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
               className={cn(
                 "flex-1 rounded-md border py-1.5 text-xs font-medium transition-all duration-200",
                 side === val
-                  ? "border-[#610401] bg-[#610401] text-[#faf6f0] shadow-xs"
-                  : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#610401]/60",
+                  ? "border-[#451020] bg-[#451020] text-[#faf6f0] shadow-xs"
+                  : "border-[#2d081d]/20 bg-white text-ink-muted hover:border-[#451020]/60",
               )}
             >
               {val === "both"
@@ -306,7 +306,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           value={note}
           onChange={(e) => setNote(e.target.value)}
           placeholder={lang === "vi" ? "Nhập lời chúc hoặc lưu ý..." : "Any wishes or note..."}
-          className="mt-1.5 w-full rounded-md border border-[#2d081d]/25 bg-white px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/50 focus:border-[#610401] focus:outline-none focus:ring-1 focus:ring-[#610401]"
+          className="mt-1.5 w-full rounded-md border border-[#2d081d]/25 bg-white px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/50 focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
         />
       </div>
 
@@ -315,7 +315,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
         <button
           type="submit"
           disabled={submitting}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-[#610401] py-3 text-sm font-medium uppercase tracking-[0.14em] text-[#faf6f0] shadow-md transition-all hover:bg-[#780602] hover:shadow-lg disabled:opacity-60"
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-[#451020] py-3 font-serif text-sm font-semibold uppercase tracking-[0.14em] text-[#faf6f0] shadow-md transition-all hover:bg-[#5c1a2e] hover:shadow-lg disabled:opacity-60"
         >
           <Send className="size-4" />
           <span>
@@ -346,8 +346,8 @@ function SuccessView({
 
   return (
     <div className="space-y-5 px-6 pb-8 pt-4 text-center">
-      <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[#610401]/10 text-[#610401]">
-        <Heart className="size-7 fill-[#610401] text-[#610401]" />
+      <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-[#451020]/10 text-[#451020]">
+        <Heart className="size-7 fill-[#451020] text-[#451020]" />
       </div>
 
       <div>
@@ -367,21 +367,21 @@ function SuccessView({
 
       {/* Zalo Direct Buttons */}
       <div className="rounded-lg border border-[#2d081d]/15 bg-[#faf7f2] p-4 space-y-3">
-        <p className="text-xs uppercase tracking-[0.14em] text-[#610401] font-medium">
+        <p className="text-xs uppercase tracking-[0.14em] text-[#451020] font-medium">
           {lang === "vi" ? "Nhắn tin trực tiếp qua Zalo" : "Message on Zalo"}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <ZaloButton person="bride" className="w-full text-xs py-2.5" />
-          <ZaloButton person="groom" className="w-full text-xs py-2.5" />
-          <ZaloButton person="groomMother" className="w-full text-xs py-2.5" />
-          <ZaloButton person="brideMother" className="w-full text-xs py-2.5" />
+          <ZaloButton person="groom" className="w-full px-4 sm:py-2.5" />
+          <ZaloButton person="bride" className="w-full px-4 sm:py-2.5" />
+          <ZaloButton person="groomMother" variant="outlineDark" className="w-full px-4 sm:py-2.5" />
+          <ZaloButton person="brideMother" variant="outlineDark" className="w-full px-4 sm:py-2.5" />
         </div>
       </div>
 
       <button
         type="button"
         onClick={onReset}
-        className="text-xs text-ink-muted underline underline-offset-4 hover:text-[#610401] transition-colors"
+        className="text-xs text-ink-muted underline underline-offset-4 hover:text-[#451020] transition-colors"
       >
         {lang === "vi" ? "Chỉnh sửa lại thông tin" : "Edit my response"}
       </button>

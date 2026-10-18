@@ -23,8 +23,8 @@ function endOf(iso: string, hours = 4) {
 export function eventTitle(lang: "vi" | "en") {
   const { bride, groom } = wedding.couple;
   return lang === "vi"
-    ? `Tiệc cưới ${bride.shortName} & ${groom.shortName}`
-    : `Wedding of ${bride.shortName} & ${groom.shortName}`;
+    ? `Tiệc cưới ${groom.shortName} & ${bride.shortName}`
+    : `Wedding of ${groom.shortName} & ${bride.shortName}`;
 }
 
 export function googleCalendarUrl(lang: "vi" | "en") {

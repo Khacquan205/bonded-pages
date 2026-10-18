@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown, CalendarPlus } from "lucide-react";
 import { wedding } from "@/config/wedding";
-import { useFormatDate, useLanguage } from "@/context/LanguageContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { ContactPicker } from "./ContactPicker";
 import { downloadIcs, googleCalendarUrl } from "@/lib/calendar";
 
@@ -13,75 +13,68 @@ const fade = (delay: number) => ({
 
 export function Hero() {
   const { lang } = useLanguage();
-  const fmt = useFormatDate();
 
   return (
-    <section id="top" className="relative min-h-[100svh] w-full overflow-hidden flex items-center justify-center">
-      {/* Background couple photo */}
+    <section id="top" className="relative min-h-[100svh] w-full overflow-hidden bg-[#451020]">
+      {/* Embossed floral plum paper, taken from the printed Save the Date card */}
       <img
-        src={wedding.hero.image}
-        alt={lang === "vi" ? "Ảnh cưới của Huyền Nga và Thành Long" : "Wedding photo of Huyen Nga and Thanh Long"}
+        src="/images/save-the-date-texture.jpg"
+        alt=""
+        aria-hidden="true"
         decoding="async"
-        className="absolute inset-0 size-full object-cover object-[center_35%]"
+        className="absolute inset-0 size-full object-cover"
       />
 
-      {/* Deep bordeaux tint and cinematic vignette tuned for the new couple photo */}
-      <div className="absolute inset-0 bg-[#2d081d]/25 mix-blend-multiply" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/70" />
-
-      {/* Fine-art stationery double hairline frame */}
-      <div className="pointer-events-none absolute inset-3 sm:inset-5 md:inset-7 z-10 border border-white/25" />
-      <div className="pointer-events-none absolute inset-4 sm:inset-6 md:inset-8 z-10 border border-white/10" />
-
       {/* Content Container */}
-      <div className="relative z-20 mx-auto flex min-h-[100svh] w-full max-w-4xl flex-col items-center justify-between px-5 pt-16 pb-4 text-center sm:px-6 sm:pt-20 sm:pb-6">
-        {/* Top & Center Group */}
-        <div className="flex w-full flex-col items-center my-auto pt-2 sm:pt-4">
-          {/* Monogram Crest & Couple Names */}
-          <motion.div {...fade(0.05)} className="flex flex-col items-center gap-1 sm:gap-1.5">
-            <div className="relative mb-0.5 flex items-center justify-center">
-              <img
-                src="/images/logo-cat-mouse-white.png"
-                alt="Logo Lan & Nam"
-                className="h-16 sm:h-20 md:h-24 w-auto object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] transition-transform duration-500 hover:scale-105"
-              />
-            </div>
-            <div
-              className="flex flex-col items-center gap-0.5 text-center"
-              aria-label={`${wedding.couple.bride.name} & ${wedding.couple.groom.name}`}
-            >
-              <span className="font-display text-[0.7rem] sm:text-xs md:text-sm font-medium uppercase tracking-[0.22em] sm:tracking-[0.28em] text-white/95 whitespace-nowrap">
-                {wedding.couple.bride.name}
-              </span>
-              <span className="font-display text-[0.5625rem] sm:text-[0.625rem] font-light text-white/65">
-                &amp;
-              </span>
-              <span className="font-display text-[0.7rem] sm:text-xs md:text-sm font-medium uppercase tracking-[0.22em] sm:tracking-[0.28em] text-white/95 whitespace-nowrap">
-                {wedding.couple.groom.name}
-              </span>
-            </div>
-          </motion.div>
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-4xl flex-col items-center px-2 pt-20 pb-3 text-center sm:px-6 sm:pt-[5.5rem] sm:pb-4">
+        <h1 className="sr-only">
+          Save The Date · 11.12.2026 · {wedding.couple.groom.name} &amp; {wedding.couple.bride.name}
+        </h1>
 
-          {/* Official Save The Date Typography Artwork (Enlarged & Centered) */}
-          <motion.div {...fade(0.18)} className="mt-3 sm:mt-5 mb-1 flex w-full flex-col items-center justify-center text-center">
-            <h1 className="sr-only">
-              Save The Date · 11.12.2026 · {wedding.couple.bride.name} &amp; {wedding.couple.groom.name}
-            </h1>
+        {/* Save The Date artwork: the photo fills the whole block, script overlaid on its corners */}
+        <motion.div {...fade(0.1)} className="my-auto flex w-full flex-col items-center">
+          <div
+            className="relative aspect-[664/822] [--hero-reserve:21rem] sm:[--hero-reserve:16.5rem]"
+            style={{ width: "min(100%, max(calc((100svh - var(--hero-reserve)) * 0.808), 18.4rem), 40rem)" }}
+          >
             <img
-              src="/images/save-the-date-white.png"
-              alt="Save the date 11.12.26"
-              className="mx-auto h-auto w-48 sm:w-60 md:w-72 max-h-[25vh] sm:max-h-[28vh] object-contain drop-shadow-[0_4px_28px_rgba(0,0,0,0.7)]"
+              src={wedding.hero.image}
+              alt={
+                lang === "vi"
+                  ? "Ảnh cưới của Thành Long và Huyền Nga"
+                  : "Wedding photo of Thanh Long and Huyen Nga"
+              }
+              decoding="async"
+              className="absolute inset-0 size-full object-cover"
             />
-          </motion.div>
-        </div>
+            {/* Soft top/bottom shading so the white script stays legible on the photo */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-[25%] bg-gradient-to-b from-black/40 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/65 via-black/35 to-transparent" />
+            <img
+              src="/images/save-the-date-save.png"
+              alt=""
+              aria-hidden="true"
+              className="absolute left-[3%] top-[2%] w-[42.5%] drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
+            />
+            <img
+              src="/images/save-the-date-the-date.png"
+              alt=""
+              aria-hidden="true"
+              className="absolute right-[2%] bottom-[0.5%] w-[69.4%] drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]"
+            />
+          </div>
+          <p className="mt-3 font-serif text-sm italic lining-nums tracking-[0.04em] text-[#faf6f0]/90 sm:mt-4 sm:text-base">
+            11th December 2026.
+          </p>
+        </motion.div>
 
         {/* Bottom Section: Venue, Date, CTA Buttons & Scroll */}
-        <div className="w-full flex flex-col items-center mt-auto pt-3">
-          {/* Venue & Ceremony Date Banner */}
+        <div className="w-full flex flex-col items-center pt-3">
+          {/* Venue & Reception Time Banner */}
           <motion.div {...fade(0.28)} className="flex flex-col items-center gap-1 sm:gap-1.5">
             <div className="flex items-center gap-3 sm:gap-5">
               <span className="h-px w-6 bg-white/40 sm:w-12" />
-              <p className="font-display text-xs uppercase tracking-[0.24em] text-white sm:text-sm md:text-base drop-shadow-xs">
+              <p className="font-display text-xs uppercase tracking-[0.24em] text-white sm:text-sm md:text-base">
                 {wedding.venue.name}
               </p>
               <span className="h-px w-6 bg-white/40 sm:w-12" />
@@ -92,11 +85,11 @@ export function Hero() {
           </motion.div>
 
           {/* CTA Buttons */}
-          <motion.div {...fade(0.38)} className="mt-4 flex w-full flex-col items-center gap-2.5 sm:mt-5 sm:w-auto sm:flex-row sm:gap-4">
+          <motion.div {...fade(0.38)} className="mt-3 flex w-full flex-col items-center gap-2.5 sm:mt-4 sm:w-auto sm:flex-row sm:gap-4">
             <ContactPicker>
               <button
                 type="button"
-                className="w-full rounded-full bg-[#610401] px-7 py-2.5 font-display text-xs font-medium uppercase tracking-[0.16em] text-[#faf6f0] shadow-lg transition-all hover:scale-[1.02] hover:bg-[#780602] hover:shadow-xl sm:w-auto sm:text-sm sm:px-8 sm:py-3"
+                className="w-full rounded-full bg-[#faf6f0] px-7 py-2.5 font-serif text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[#451020] shadow-lg transition-all hover:scale-[1.02] hover:bg-white hover:shadow-xl sm:w-auto sm:text-sm sm:px-8 sm:py-3"
               >
                 {lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance"}
               </button>
@@ -106,12 +99,22 @@ export function Hero() {
               <button
                 type="button"
                 onClick={() => downloadIcs(lang)}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/75 bg-black/20 backdrop-blur-xs px-6 py-2.5 font-display text-xs font-medium uppercase tracking-[0.14em] text-white transition-all hover:bg-white/20 sm:w-auto sm:text-sm sm:px-7 sm:py-3"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/75 bg-white/5 px-6 py-2.5 font-serif text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-white transition-all hover:bg-white/15 sm:w-auto sm:text-sm sm:px-7 sm:py-3"
               >
                 <CalendarPlus className="size-4" />
                 {lang === "vi" ? "Lưu vào lịch" : "Save the date"}
               </button>
             </div>
+
+            {/* On larger screens the Google Calendar link sits in the button row to free up height for the photo */}
+            <a
+              href={googleCalendarUrl(lang)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden font-serif text-sm tracking-[0.02em] text-white/80 underline underline-offset-4 transition-colors hover:text-white sm:inline"
+            >
+              {lang === "vi" ? "Thêm vào Google Calendar" : "Add to Google Calendar"}
+            </a>
           </motion.div>
 
           <motion.a
@@ -119,7 +122,7 @@ export function Hero() {
             href={googleCalendarUrl(lang)}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 font-display text-[0.6875rem] sm:text-xs tracking-[0.12em] text-white/80 underline underline-offset-4 hover:text-white transition-colors"
+            className="mt-2 font-serif text-xs tracking-[0.02em] text-white/80 underline underline-offset-4 hover:text-white transition-colors sm:hidden"
           >
             {lang === "vi" ? "Thêm vào Google Calendar" : "Add to Google Calendar"}
           </motion.a>
@@ -128,7 +131,7 @@ export function Hero() {
           <a
             href="#info"
             aria-label={lang === "vi" ? "Cuộn xuống" : "Scroll down"}
-            className="mt-2 sm:mt-3 text-white/65 transition-colors hover:text-white"
+            className="mt-2 text-white/65 transition-colors hover:text-white sm:hidden"
           >
             <ChevronDown className="size-5 animate-bounce" />
           </a>

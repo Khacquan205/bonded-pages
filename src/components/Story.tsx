@@ -36,7 +36,7 @@ export function Story() {
               <span className="label-caps text-olive">
                 {lang === "vi" ? "Cô dâu" : "The Bride"}
               </span>
-              <h3 className="mt-2 font-display text-3xl sm:text-4xl text-olive-deep font-light">
+              <h3 className="mt-2 font-serif text-3xl sm:text-4xl text-olive-deep">
                 {t(wedding.story.bride.title)}
               </h3>
               <div className="mt-4 flex items-center justify-center md:justify-start gap-2">
@@ -55,7 +55,7 @@ export function Story() {
               <span className="label-caps text-olive">
                 {lang === "vi" ? "Chú rể" : "The Groom"}
               </span>
-              <h3 className="mt-2 font-display text-3xl sm:text-4xl text-olive-deep font-light">
+              <h3 className="mt-2 font-serif text-3xl sm:text-4xl text-olive-deep">
                 {t(wedding.story.groom.title)}
               </h3>
               <div className="mt-4 flex items-center justify-center md:justify-end gap-2">

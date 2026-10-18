@@ -197,7 +197,7 @@ export function Guestbook() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder={lang === "vi" ? "Nhập tên hoặc biệt danh..." : "Your name..."}
-                  className="mt-2 w-full rounded-md border border-[#2d081d]/20 bg-white/90 px-4 py-2.5 text-sm text-[#3d271d] placeholder:text-[#3d271d]/40 focus:border-[#610401] focus:outline-none focus:ring-1 focus:ring-[#610401]"
+                  className="mt-2 w-full rounded-md border border-[#2d081d]/20 bg-white/90 px-4 py-2.5 text-sm text-[#3d271d] placeholder:text-[#3d271d]/40 focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
                 />
               </div>
 
@@ -206,16 +206,16 @@ export function Guestbook() {
                   {lang === "vi" ? "Bạn là khách của *" : "You are a guest of *"}
                 </label>
                 <div className="mt-2 flex gap-2">
-                  {(["both", "bride", "groom"] as SideType[]).map((val) => (
+                  {(["both", "groom", "bride"] as SideType[]).map((val) => (
                     <button
                       key={val}
                       type="button"
                       onClick={() => setSide(val)}
                       className={cn(
-                        "flex-1 rounded-md border py-2 text-xs font-medium transition-all duration-200 font-display",
+                        "flex-1 rounded-md border py-2 text-xs font-medium transition-all duration-200 font-serif",
                         side === val
-                          ? "border-[#610401] bg-[#610401] text-[#faf6f0] shadow-xs"
-                          : "border-[#2d081d]/20 bg-white/80 text-[#3d271d]/80 hover:border-[#610401]/50 hover:text-[#610401]",
+                          ? "border-[#451020] bg-[#451020] text-[#faf6f0] shadow-xs"
+                          : "border-[#2d081d]/20 bg-white/80 text-[#3d271d]/80 hover:border-[#451020]/50 hover:text-[#451020]",
                       )}
                     >
                       {val === "both"
@@ -251,7 +251,7 @@ export function Guestbook() {
                     ? "Gửi lời chúc trăm năm hạnh phúc đến cặp đôi..."
                     : "Write your heartfelt wishes for the couple..."
                 }
-                className="mt-2 w-full resize-none rounded-md border border-[#2d081d]/20 bg-white/90 px-4 py-2.5 text-sm text-[#3d271d] placeholder:text-[#3d271d]/40 focus:border-[#610401] focus:outline-none focus:ring-1 focus:ring-[#610401]"
+                className="mt-2 w-full resize-none rounded-md border border-[#2d081d]/20 bg-white/90 px-4 py-2.5 text-sm text-[#3d271d] placeholder:text-[#3d271d]/40 focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
               />
             </div>
 
@@ -259,7 +259,7 @@ export function Guestbook() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#610401] px-7 py-3 text-xs sm:text-sm font-medium uppercase tracking-[0.14em] text-[#faf6f0] shadow-md transition-all hover:bg-[#780602] hover:shadow-lg disabled:opacity-60 hover:scale-[1.01] font-display"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#451020] px-7 py-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] text-[#faf6f0] shadow-md transition-all hover:bg-[#5c1a2e] hover:shadow-lg disabled:opacity-60 hover:scale-[1.01] font-serif"
               >
                 <Send className="size-4" />
                 <span>
@@ -296,14 +296,14 @@ export function Guestbook() {
               {messages.slice(0, visibleCount).map((item) => (
                 <Reveal
                   key={item.id}
-                  className="flex flex-col justify-between rounded-lg border border-[#2d081d]/15 bg-white/85 p-5 shadow-xs backdrop-blur-xs transition-colors hover:border-[#610401]/35"
+                  className="flex flex-col justify-between rounded-lg border border-[#2d081d]/15 bg-white/85 p-5 shadow-xs backdrop-blur-xs transition-colors hover:border-[#451020]/35"
                 >
                   <div>
                     <div className="flex items-start justify-between gap-2">
-                      <h4 className="font-display text-lg font-medium text-[#2d081d]">
+                      <h4 className="font-serif text-lg font-medium text-[#2d081d]">
                         {item.name}
                       </h4>
-                      <span className="shrink-0 rounded-full bg-[#610401]/10 px-2.5 py-0.5 text-[0.6875rem] font-medium font-display text-[#610401]">
+                      <span className="shrink-0 rounded-full bg-[#451020]/10 px-2.5 py-0.5 text-[0.6875rem] font-medium font-serif text-[#451020]">
                         {sideLabel(item.side)}
                       </span>
                     </div>
@@ -311,7 +311,7 @@ export function Guestbook() {
                       "{item.message}"
                     </p>
                   </div>
-                  <div className="mt-4 flex items-center justify-between border-t border-[#2d081d]/12 pt-3 text-[0.6875rem] text-[#3d271d]/60 font-display">
+                  <div className="mt-4 flex items-center justify-between border-t border-[#2d081d]/12 pt-3 text-[0.6875rem] text-[#3d271d]/60 font-serif">
                     <span>
                       {new Date(item.created_at).toLocaleDateString(
                         lang === "vi" ? "vi-VN" : "en-US",
@@ -322,7 +322,7 @@ export function Guestbook() {
                         },
                       )}
                     </span>
-                    <Heart className="size-3.5 text-[#610401]/70 fill-[#610401]/25" />
+                    <Heart className="size-3.5 text-[#451020]/70 fill-[#451020]/25" />
                   </div>
                 </Reveal>
               ))}
@@ -335,7 +335,7 @@ export function Guestbook() {
               <button
                 type="button"
                 onClick={() => setVisibleCount((prev) => prev + 6)}
-                className="inline-flex rounded-full border border-[#2d081d]/30 px-6 py-2.5 text-xs uppercase tracking-[0.14em] font-medium text-[#2d081d] transition-colors hover:bg-[#610401] hover:text-[#faf6f0] hover:border-[#610401] font-display"
+                className="inline-flex rounded-full border border-[#2d081d]/30 px-6 py-2.5 text-xs uppercase tracking-[0.14em] font-semibold text-[#2d081d] transition-colors hover:bg-[#451020] hover:text-[#faf6f0] hover:border-[#451020] font-serif"
               >
                 {lang === "vi" ? "Xem thêm lời chúc" : "Load more wishes"}
               </button>

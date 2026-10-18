@@ -100,12 +100,14 @@ export function Navbar() {
                 scrolled || open ? "text-[#2d081d]" : "text-white drop-shadow-xs",
               )}
             >
-              <span className="font-script text-[0.95rem] sm:text-base md:text-[1.125rem] tracking-normal leading-none pr-0.5">
-                Nga &amp; Long
-              </span>
+              <img
+                src={scrolled || open ? "/images/monogram-ln-plum.png" : "/images/monogram-ln-cream.png"}
+                alt="Long & Nga"
+                className="h-9 w-auto sm:h-11"
+              />
               <span
                 className={cn(
-                  "hidden min-[390px]:inline-block font-display text-xs tracking-[0.16em] sm:text-sm whitespace-nowrap",
+                  "inline-block font-display text-xs tracking-[0.16em] sm:text-sm whitespace-nowrap",
                   scrolled || open ? "text-[#2d081d]/75" : "text-white/85",
                 )}
               >
@@ -124,7 +126,7 @@ export function Navbar() {
                   className={cn(
                     "whitespace-nowrap font-display text-xs uppercase tracking-[0.2em] transition-colors",
                     scrolled
-                      ? "text-[#3d271d] hover:text-[#610401] font-medium"
+                      ? "text-[#3d271d] hover:text-[#451020] font-medium"
                       : "text-white/90 hover:text-white drop-shadow-xs",
                   )}
                 >
@@ -150,7 +152,7 @@ export function Navbar() {
                   "transition-colors",
                   lang === "vi"
                     ? scrolled || open
-                      ? "font-semibold text-[#610401]"
+                      ? "font-semibold text-[#451020]"
                       : "font-semibold text-white"
                     : "opacity-60 hover:opacity-100",
                 )}
@@ -166,7 +168,7 @@ export function Navbar() {
                   "transition-colors",
                   lang === "en"
                     ? scrolled || open
-                      ? "font-semibold text-[#610401]"
+                      ? "font-semibold text-[#451020]"
                       : "font-semibold text-white"
                     : "opacity-60 hover:opacity-100",
                 )}
@@ -179,9 +181,9 @@ export function Navbar() {
               <button
                 type="button"
                 className={cn(
-                  "hidden shrink-0 whitespace-nowrap rounded-full px-5 py-2 font-display text-xs font-medium uppercase tracking-[0.14em] transition-all duration-300 sm:inline-flex",
+                  "hidden shrink-0 whitespace-nowrap rounded-full px-5 py-2 font-serif text-xs font-semibold uppercase tracking-[0.14em] transition-all duration-300 sm:inline-flex",
                   scrolled
-                    ? "bg-[#610401] text-[#faf6f0] shadow-xs hover:bg-[#780602] hover:shadow-sm"
+                    ? "bg-[#451020] text-[#faf6f0] shadow-xs hover:bg-[#5c1a2e] hover:shadow-sm"
                     : "border border-white/75 bg-white/10 text-white backdrop-blur-xs hover:bg-white/25",
                 )}
               >
@@ -216,7 +218,7 @@ export function Navbar() {
                 <a
                   href={`#${l.id}`}
                   onClick={(e) => scrollToSection(e, l.id)}
-                  className="font-display text-2xl tracking-[0.08em] text-[#2d081d] transition-colors hover:text-[#610401]"
+                  className="font-serif text-2xl tracking-[0.02em] text-[#2d081d] transition-colors hover:text-[#451020]"
                 >
                   {l[lang]}
                 </a>
@@ -228,7 +230,7 @@ export function Navbar() {
             <ContactPicker>
               <button
                 type="button"
-                className="w-full rounded-full bg-[#610401] py-3.5 text-center font-display text-xs font-medium uppercase tracking-[0.2em] text-[#faf6f0] shadow-md transition-colors hover:bg-[#780602]"
+                className="w-full rounded-full bg-[#451020] py-3.5 text-center font-serif text-xs font-semibold uppercase tracking-[0.2em] text-[#faf6f0] shadow-md transition-colors hover:bg-[#5c1a2e]"
               >
                 {cta}
               </button>

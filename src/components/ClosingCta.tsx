@@ -26,12 +26,12 @@ export function ClosingCta() {
           <p className="font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#faf6f0]/90">
             {lang === "vi" ? "Lời Ngỏ" : "Warm Invitation"}
           </p>
-          <h2 className="mt-4 font-display text-3xl font-light leading-tight sm:text-5xl text-cream">
+          <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-5xl text-cream">
             {t(wedding.closing.title)}
           </h2>
           <div className="mx-auto mt-6 flex items-center justify-center gap-3">
             <span className="h-px w-12 bg-white/40" />
-            <span className="size-2 rotate-45 bg-[#610401] border border-white/40" />
+            <span className="size-2 rotate-45 bg-[#451020] border border-white/40" />
             <span className="h-px w-12 bg-white/40" />
           </div>
           <p className="mt-6 text-sm sm:text-base leading-relaxed text-white/90">
@@ -42,31 +42,29 @@ export function ClosingCta() {
         </Reveal>
 
         {/* Zalo Buttons for Couple and Mothers */}
-        <Reveal delay={0.15} className="mt-10 flex flex-col items-center justify-center gap-3 max-w-xl mx-auto">
+        <Reveal delay={0.15} className="mt-10 flex flex-col items-center justify-center gap-3 max-w-3xl mx-auto">
           <div className="flex flex-col sm:flex-row w-full gap-3 justify-center">
             <ZaloButton
-              person="bride"
-              variant="solid"
-              withAvatar={true}
-              className="w-full sm:w-1/2 shadow-lg hover:scale-[1.02]"
+              person="groom"
+              variant="light"
+              className="w-full sm:w-1/2 hover:scale-[1.02]"
             />
             <ZaloButton
-              person="groom"
-              variant="solid"
-              withAvatar={true}
-              className="w-full sm:w-1/2 shadow-lg hover:scale-[1.02]"
+              person="bride"
+              variant="light"
+              className="w-full sm:w-1/2 hover:scale-[1.02]"
             />
           </div>
           <div className="flex flex-col sm:flex-row w-full gap-3 justify-center">
             <ZaloButton
               person="groomMother"
               variant="outline"
-              className="w-full sm:w-1/2 shadow-sm hover:scale-[1.02] border-white/60 text-white"
+              className="w-full sm:w-1/2 hover:scale-[1.02]"
             />
             <ZaloButton
               person="brideMother"
               variant="outline"
-              className="w-full sm:w-1/2 shadow-sm hover:scale-[1.02] border-white/60 text-white"
+              className="w-full sm:w-1/2 hover:scale-[1.02]"
             />
           </div>
         </Reveal>
@@ -86,15 +84,15 @@ export function ClosingCta() {
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-2.5 px-6">
           <div className="relative mb-1 flex items-center justify-center">
             <img
-              src="/images/logo-cat-mouse-white.png"
-              alt="Logo Lan & Nam"
+              src="/images/monogram-ln-cream.png"
+              alt="Monogram Long & Nga"
               className="h-14 sm:h-16 w-auto object-contain opacity-90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)]"
             />
           </div>
           <div className="flex flex-col items-center gap-0.5 font-display text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-white/85">
-            <span className="whitespace-nowrap">{wedding.couple.bride.name}</span>
-            <span className="text-[0.625rem] text-white/60">&amp;</span>
             <span className="whitespace-nowrap">{wedding.couple.groom.name}</span>
+            <span className="text-[0.625rem] text-white/60">&amp;</span>
+            <span className="whitespace-nowrap">{wedding.couple.bride.name}</span>
           </div>
           <p className="font-display text-[0.6875rem] tracking-[0.16em] text-white/60 uppercase">
             11.12.2026 · {wedding.venue.name}

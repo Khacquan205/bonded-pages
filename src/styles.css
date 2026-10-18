@@ -53,7 +53,8 @@
 
 @theme inline {
   --font-display: "DFVN TAN - MON CHERI", "Cormorant Garamond", ui-serif, Georgia, serif;
-  --font-serif: "DFVN TAN - MON CHERI", "Cormorant Garamond", ui-serif, Georgia, serif;
+  /* Playfair Display for headings and lowercase text; MON CHERI (font-display) stays for uppercase labels and figures */
+  --font-serif: "Playfair Display", "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Montserrat", "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
   --font-script: "DFVN Desirable Calligraphy", "Alex Brush", cursive;
   --font-brush: "DFVN Desirable Brush", cursive;
@@ -70,7 +71,7 @@
   --color-olive-deep: var(--olive-deep);
   --color-eucalyptus: var(--eucalyptus);
   --color-sage-mist: var(--sage-mist);
-  --color-fig-red: #610401;
+  --color-fig-red: #451020;
   --color-dusty-lilac: #7f88bb;
   --color-blush-rose: #a66680;
   --color-olive-milk: #a9bd73;
@@ -212,7 +213,7 @@
   }
 
   h1, h2, h3, h4 {
-    font-family: var(--font-display);
+    font-family: var(--font-serif);
     font-weight: 300;
     color: var(--maroon);
   }

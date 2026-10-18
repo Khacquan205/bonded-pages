@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Quản lý khách mời & Lưu bút — Huyền Nga & Thành Long" },
+      { title: "Quản lý khách mời & Lưu bút — Thành Long & Huyền Nga" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -271,7 +271,7 @@ function AdminPage() {
           <!-- Thông tin Cô dâu & Chú rể -->
           <tr>
             <td colspan="7" align="center" style="background-color:#F1EBE0; color:#4A5240; font-size:11pt; font-style:italic; text-align:center; height:34px; vertical-align:middle; border:1px solid #C5CFBF;">
-              Cô dâu: <b>${wedding.couple.bride.name}</b> &amp; Chú rể: <b>${wedding.couple.groom.name}</b> — Ngày cưới: <b>15/11/2026</b>
+              Chú rể: <b>${wedding.couple.groom.name}</b> &amp; Cô dâu: <b>${wedding.couple.bride.name}</b> — Ngày cưới: <b>11/12/2026</b>
             </td>
           </tr>
 
@@ -341,7 +341,7 @@ function AdminPage() {
           <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-olive/15 text-olive">
             <Lock className="size-7" />
           </div>
-          <h1 className="mt-4 font-display text-2xl text-olive-deep font-light">
+          <h1 className="mt-4 font-serif text-2xl text-olive-deep">
             Quản trị Thiệp Cưới
           </h1>
           <p className="mt-2 text-xs text-ink-muted leading-relaxed">
@@ -406,11 +406,11 @@ function AdminPage() {
                 <ArrowLeft className="size-4" />
               </Link>
               <div>
-                <h1 className="font-display text-2xl sm:text-3xl text-olive-deep">
+                <h1 className="font-serif text-2xl sm:text-3xl text-olive-deep">
                   Danh Sách Khách Mời & Lưu Bút
                 </h1>
                 <p className="text-xs text-ink-muted tracking-[0.1em] mt-0.5">
-                  {monogram} — 15.11.2026
+                  {monogram} — 11.12.2026
                 </p>
               </div>
             </div>
@@ -646,7 +646,7 @@ function AdminPage() {
                   >
                     <div>
                       <div className="flex items-center justify-between gap-2">
-                        <h3 className="font-display text-lg text-olive-deep font-medium">
+                        <h3 className="font-serif text-lg text-olive-deep font-medium">
                           {item.name}
                         </h3>
                         <span className="rounded-full bg-sage-mist px-2 py-0.5 text-[0.6875rem] text-olive-deep">

@@ -8,8 +8,6 @@ export const wedding = {
       role: { vi: "Ái nữ", en: "Daughter" },
       mother: { vi: "Bà Nguyễn Thị Thuỷ", en: "Mrs. Nguyen Thi Thuy" },
       zalo: "https://zalo.me/0985868349",
-      avatar:
-        "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80",
     },
     groom: {
       name: "Trần Thành Long",
@@ -17,8 +15,6 @@ export const wedding = {
       role: { vi: "Trưởng nam", en: "Eldest son" },
       mother: { vi: "Bà Tạ Thị Tuyết Mai", en: "Mrs. Ta Thi Tuyet Mai" },
       zalo: "https://zalo.me/0366200504",
-      avatar:
-        "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400&q=80",
     },
     mothers: {
       groomMother: {
@@ -63,7 +59,7 @@ export const wedding = {
       "https://www.google.com/maps?q=JW+Marriott+Hotel+and+Suites+Saigon&output=embed",
   },
   hero: {
-    image: "/images/hero-couple.png",
+    image: "/images/save-the-date-photo.jpg",
     label: { vi: "Save the date", en: "Save the date" },
     dateDisplay: "11.12.26",
   },
@@ -99,10 +95,10 @@ export const wedding = {
         en: "To make our celebration even more memorable, guests are kindly requested to dress in the requested colors.",
       },
       swatches: [
-        { name: "Cream", hex: "#f5f0e8", image: "/images/swatch-cream.png" },
-        { name: "Dusty Lilac", hex: "#7f88bb", image: "/images/swatch-dusty-lilac.png" },
-        { name: "Blush Rose", hex: "#a66680", image: "/images/swatch-blush-rose.png" },
-        { name: "Deep Bordeaux", hex: "#4a040b", image: "/images/swatch-fig-red.png" },
+        { name: { vi: "Nâu đất", en: "Earth Brown" }, hex: "#553a2d" },
+        { name: { vi: "Be cát", en: "Sand Beige" }, hex: "#c9b197" },
+        { name: { vi: "Đỏ rượu vang", en: "Wine Red" }, hex: "#4e161a" },
+        { name: { vi: "Mận chín", en: "Deep Plum" }, hex: "#451020" },
       ],
     },
     notes: {
@@ -132,7 +128,7 @@ export const wedding = {
           location: { vi: "Sảnh tiệc chính (Grand Ballroom)", en: "Grand Ballroom" },
         },
         {
-          time: "20:30",
+          time: "20:00",
           title: { vi: "Giao lưu & Âm nhạc", en: "Party & Music" },
           desc: { vi: "Cùng nâng ly chúc phúc và lưu giữ khoảnh khắc đáng nhớ.", en: "Toasts, music and memorable moments." },
           location: { vi: "JW Marriott Hotel & Suites Saigon", en: "JW Marriott Hotel & Suites Saigon" },
@@ -172,9 +168,9 @@ export const wedding = {
     },
   ],
   gallery: [
-    "/images/gallery/gallery-01.jpg",
-    "/images/gallery/gallery-03.jpg",
-    "/images/gallery/gallery-07.jpg",
+    "/images/gallery/retouched-01.jpg",
+    "/images/gallery/retouched-02.jpg",
+    "/images/gallery/retouched-03.jpg",
   ],
   closing: {
     image: "/images/gallery/closing-bg.jpg",
@@ -201,4 +197,4 @@ export const wedding = {
 
 export type Wedding = typeof wedding;
 const initial = (n: string) => (n.trim().split(/\s+/).pop() ?? n).charAt(0).toUpperCase();
-export const monogram = `${initial(wedding.couple.bride.shortName)} & ${initial(wedding.couple.groom.shortName)}`;
+export const monogram = `${initial(wedding.couple.groom.shortName)} & ${initial(wedding.couple.bride.shortName)}`;

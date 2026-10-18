@@ -16,13 +16,13 @@ const OG_IMAGE =
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Huyền Nga & Thành Long — Thiệp cưới 11.12.2026" },
+      { title: "Thành Long & Huyền Nga — Thiệp cưới 11.12.2026" },
       {
         name: "description",
         content:
-          "Thiệp cưới của Huyền Nga & Thành Long — 11 tháng 12, 2026 tại JW Marriott Hotel, TP. Hồ Chí Minh. Xem chương trình, album và xác nhận tham dự.",
+          "Thiệp cưới của Thành Long & Huyền Nga — 11 tháng 12, 2026 tại JW Marriott Hotel, TP. Hồ Chí Minh. Xem chương trình, album và xác nhận tham dự.",
       },
-      { property: "og:title", content: "Huyền Nga & Thành Long — Thiệp cưới 11.12.2026" },
+      { property: "og:title", content: "Thành Long & Huyền Nga — Thiệp cưới 11.12.2026" },
       {
         property: "og:description",
         content:
