@@ -140,13 +140,6 @@ export function Info() {
                   loading="eager"
                 />
               </div>
-
-              {/* Card Footer Bar: Full-width title */}
-              <div className="mt-3.5 px-1 sm:px-2 text-center">
-                <p className="font-display text-[0.6875rem] sm:text-xs md:text-sm font-semibold uppercase tracking-[0.05em] sm:tracking-[0.14em] text-[#451020] text-balance leading-relaxed">
-                  {currentCardTitle}
-                </p>
-              </div>
             </div>
 
             {/* Semantic screen-reader content for SEO and Accessibility */}
@@ -211,9 +204,6 @@ export function Info() {
                   Dress code
                 </h3>
               </div>
-              <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#3d271d]/85 max-w-lg mx-auto">
-                {t(wedding.info.dresscode.text)}
-              </p>
 
               {/* 4 square swatches matching the printed stationery */}
               <div className="mt-6 grid grid-cols-4 gap-3 sm:gap-6 max-w-md mx-auto text-center">
