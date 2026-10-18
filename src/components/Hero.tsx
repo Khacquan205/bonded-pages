@@ -3,7 +3,7 @@ import { ChevronDown, CalendarPlus } from "lucide-react";
 import { wedding } from "@/config/wedding";
 import { useLanguage } from "@/context/LanguageContext";
 import { ContactPicker } from "./ContactPicker";
-import { downloadIcs, googleCalendarUrl } from "@/lib/calendar";
+import { googleCalendarUrl } from "@/lib/calendar";
 
 const fade = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -105,37 +105,16 @@ export function Hero() {
               </button>
             </ContactPicker>
 
-            <div className="flex w-full items-center gap-3 sm:w-auto">
-              <button
-                type="button"
-                onClick={() => downloadIcs(lang)}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/75 bg-white/5 px-6 py-2.5 font-serif text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-white transition-all hover:bg-white/15 sm:w-auto sm:text-sm sm:px-7 sm:py-3"
-              >
-                <CalendarPlus className="size-4" />
-                {lang === "vi" ? "Lưu vào lịch" : "Save the date"}
-              </button>
-            </div>
-
-            {/* On larger screens the Google Calendar link sits in the button row to free up height for the photo */}
             <a
               href={googleCalendarUrl(lang)}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden font-serif text-sm tracking-[0.02em] text-white/80 underline underline-offset-4 transition-colors hover:text-white sm:inline"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/75 bg-white/5 px-6 py-2.5 font-serif text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-white transition-all hover:bg-white/15 sm:w-auto sm:text-sm sm:px-7 sm:py-3"
             >
-              {lang === "vi" ? "Thêm vào Google Calendar" : "Add to Google Calendar"}
+              <CalendarPlus className="size-4" />
+              {lang === "vi" ? "Lưu vào lịch" : "Save the date"}
             </a>
           </motion.div>
-
-          <motion.a
-            {...fade(0.48)}
-            href={googleCalendarUrl(lang)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 font-serif text-xs tracking-[0.02em] text-white/80 underline underline-offset-4 hover:text-white transition-colors sm:hidden"
-          >
-            {lang === "vi" ? "Thêm vào Google Calendar" : "Add to Google Calendar"}
-          </motion.a>
 
           {/* Scroll down indicator */}
           <a
