@@ -12,29 +12,35 @@ export function Info() {
   const { lang } = useLanguage();
   const t = useT();
   const [selectedCard, setSelectedCard] = useState<"reception" | "ceremony">("reception");
-  const [receptionSide, setReceptionSide] = useState<"back" | "front">("back");
+  const [cardSide, setCardSide] = useState<"back" | "front">("back");
   const [isCardZoomOpen, setIsCardZoomOpen] = useState(false);
 
   const currentCardImg =
-    selectedCard === "ceremony"
-      ? "/images/thiep-le-vu-quy.png"
-      : receptionSide === "front"
-        ? "/images/thiep-vat-ly-mat-truoc.png"
-        : "/images/thiep-vat-ly-mat-sau.png";
+    selectedCard === "reception"
+      ? cardSide === "front"
+        ? "/images/thiep-tiec-cuoi-mat-truoc.png"
+        : "/images/thiep-tiec-cuoi-mat-sau.png"
+      : cardSide === "front"
+        ? "/images/thiep-le-thanh-hon-mat-truoc.png"
+        : "/images/thiep-le-thanh-hon-mat-sau.png";
 
   const currentCardTitle =
-    selectedCard === "ceremony"
-      ? (lang === "vi" ? "Thiệp Lễ Thành Hôn\u00A0(Tư\u00A0Gia)" : "Traditional Ceremony\u00A0Invitation")
-      : receptionSide === "front"
+    selectedCard === "reception"
+      ? cardSide === "front"
+        ? (lang === "vi" ? "Mặt Trước — Save The Date" : "Front Cover — Save The Date")
+        : (lang === "vi" ? "Mặt Sau — Thiệp Tiệc Cưới Chính\u00A0Thức" : "Official Reception\u00A0Invitation")
+      : cardSide === "front"
         ? (lang === "vi" ? "Mặt Trước — Bìa Dập Nổi\u00A0Monogram" : "Front Cover — Embossed\u00A0Monogram")
-        : (lang === "vi" ? "Mặt Sau — Thiệp Tiệc Cưới Chính\u00A0Thức" : "Official Reception\u00A0Invitation");
+        : (lang === "vi" ? "Mặt Sau — Thiệp Lễ Thành Hôn\u00A0(Tư\u00A0Gia)" : "Ceremony Invitation — Back");
 
   const downloadFilename =
-    selectedCard === "ceremony"
-      ? "Thiep-Le-Thanh-Hon-Thanh-Long-Huyen-Nga.png"
-      : receptionSide === "front"
-        ? "Bia-Thiep-Cuoi-Thanh-Long-Huyen-Nga.png"
-        : "Thiep-Tiec-Cuoi-Thanh-Long-Huyen-Nga.png";
+    selectedCard === "reception"
+      ? cardSide === "front"
+        ? "Thiep-Tiec-Cuoi-Mat-Truoc-Thanh-Long-Huyen-Nga.png"
+        : "Thiep-Tiec-Cuoi-Mat-Sau-Thanh-Long-Huyen-Nga.png"
+      : cardSide === "front"
+        ? "Thiep-Le-Thanh-Hon-Mat-Truoc-Thanh-Long-Huyen-Nga.png"
+        : "Thiep-Le-Thanh-Hon-Mat-Sau-Thanh-Long-Huyen-Nga.png";
 
   return (
     <section id="info" className="relative bg-[#f4efe6] px-5 py-20 sm:px-6 sm:py-28 scroll-mt-16">
@@ -75,35 +81,33 @@ export function Info() {
             </button>
           </div>
 
-          {/* Sub-toggle for Reception card: 2 Tabs Mặt Sau & Mặt Trước */}
-          {selectedCard === "reception" && (
-            <div className="inline-flex items-center rounded-full border border-[#2d081d]/15 bg-[#faf7f2] p-1 shadow-2xs font-serif text-xs">
-              <button
-                type="button"
-                onClick={() => setReceptionSide("back")}
-                className={cn(
-                  "rounded-full px-4 py-1.5 font-medium transition-all duration-200",
-                  receptionSide === "back"
-                    ? "bg-[#2d081d] text-[#faf6f0] shadow-2xs font-semibold"
-                    : "text-[#2d081d]/75 hover:text-[#2d081d] hover:bg-black/5",
-                )}
-              >
-                {lang === "vi" ? "Mặt Sau" : "Back"}
-              </button>
-              <button
-                type="button"
-                onClick={() => setReceptionSide("front")}
-                className={cn(
-                  "rounded-full px-4 py-1.5 font-medium transition-all duration-200",
-                  receptionSide === "front"
-                    ? "bg-[#2d081d] text-[#faf6f0] shadow-2xs font-semibold"
-                    : "text-[#2d081d]/75 hover:text-[#2d081d] hover:bg-black/5",
-                )}
-              >
-                {lang === "vi" ? "Mặt Trước" : "Front"}
-              </button>
-            </div>
-          )}
+          {/* Sub-toggle: 2 Tabs Mặt Sau & Mặt Trước for both cards */}
+          <div className="inline-flex items-center rounded-full border border-[#2d081d]/15 bg-[#faf7f2] p-1 shadow-2xs font-serif text-xs">
+            <button
+              type="button"
+              onClick={() => setCardSide("back")}
+              className={cn(
+                "rounded-full px-4 py-1.5 font-medium transition-all duration-200",
+                cardSide === "back"
+                  ? "bg-[#2d081d] text-[#faf6f0] shadow-2xs font-semibold"
+                  : "text-[#2d081d]/75 hover:text-[#2d081d] hover:bg-black/5",
+              )}
+            >
+              {lang === "vi" ? "Mặt Sau" : "Back"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setCardSide("front")}
+              className={cn(
+                "rounded-full px-4 py-1.5 font-medium transition-all duration-200",
+                cardSide === "front"
+                  ? "bg-[#2d081d] text-[#faf6f0] shadow-2xs font-semibold"
+                  : "text-[#2d081d]/75 hover:text-[#2d081d] hover:bg-black/5",
+              )}
+            >
+              {lang === "vi" ? "Mặt Trước" : "Front"}
+            </button>
+          </div>
         </div>
 
         {/* ------------------------------------------------------------- */}
