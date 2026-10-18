@@ -4,6 +4,8 @@ import { wedding } from "@/config/wedding";
 import { useLanguage } from "@/context/LanguageContext";
 import { ContactPicker } from "./ContactPicker";
 import { googleCalendarUrl } from "@/lib/calendar";
+import saveTextImg from "@/assets/save-the-date-save.png";
+import dateTextImg from "@/assets/save-the-date-the-date.png";
 
 const fade = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -51,29 +53,29 @@ export function Hero() {
             <div className="pointer-events-none absolute inset-x-0 top-0 h-[25%] bg-gradient-to-b from-black/40 to-transparent" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/65 via-black/35 to-transparent" />
             <img
-              src="/images/save-the-date-save.png"
-              alt=""
+              src={saveTextImg}
+              alt="Save"
               aria-hidden="true"
               style={{
-                left: "-12%",
-                top: "-11%",
-                width: "64%",
+                left: "-16.27%",
+                top: "-13.14%",
+                width: "66.57%",
               }}
-              className="pointer-events-none absolute drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]"
+              className="pointer-events-none absolute z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]"
             />
             <img
-              src="/images/save-the-date-the-date.png"
-              alt=""
+              src={dateTextImg}
+              alt="the date"
               aria-hidden="true"
               style={{
-                left: "6%",
-                top: "91%",
-                width: "105%",
+                left: "8.28%",
+                top: "92.94%",
+                width: "108.43%",
               }}
-              className="pointer-events-none absolute drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
+              className="pointer-events-none absolute z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
             />
           </div>
-          <p className="mt-6 font-serif text-xs italic lining-nums tracking-[0.04em] text-[#faf6f0]/90 sm:mt-8 sm:text-base">
+          <p className="mt-10 font-serif text-xs italic lining-nums tracking-[0.04em] text-[#faf6f0]/90 sm:mt-12 sm:text-base">
             11th December 2026.
           </p>
         </motion.div>

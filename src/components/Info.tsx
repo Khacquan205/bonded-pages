@@ -27,10 +27,10 @@ export function Info() {
   const currentCardTitle =
     selectedCard === "reception"
       ? cardSide === "front"
-        ? (lang === "vi" ? "Mặt Trước — Save The Date" : "Front Cover — Save The Date")
+        ? (lang === "vi" ? "Mặt Trước — Bìa Dập Nổi\u00A0Monogram" : "Front Cover — Embossed\u00A0Monogram")
         : (lang === "vi" ? "Mặt Sau — Thiệp Tiệc Cưới Chính\u00A0Thức" : "Official Reception\u00A0Invitation")
       : cardSide === "front"
-        ? (lang === "vi" ? "Mặt Trước — Bìa Dập Nổi\u00A0Monogram" : "Front Cover — Embossed\u00A0Monogram")
+        ? (lang === "vi" ? "Mặt Trước — Save The Date" : "Front Cover — Save The Date")
         : (lang === "vi" ? "Mặt Sau — Thiệp Lễ Thành Hôn\u00A0(Tư\u00A0Gia)" : "Ceremony Invitation — Back");
 
   const downloadFilename =
