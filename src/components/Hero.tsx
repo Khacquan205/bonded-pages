@@ -57,9 +57,9 @@ export function Hero() {
               alt="Save"
               aria-hidden="true"
               style={{
-                left: "-16.27%",
-                top: "-13.14%",
-                width: "66.57%",
+                left: "-12%",
+                top: "-9%",
+                width: "54%",
               }}
               className="pointer-events-none absolute z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]"
             />
