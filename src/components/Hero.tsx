@@ -26,7 +26,7 @@ export function Hero() {
       />
 
       {/* Content Container */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-4xl flex-col items-center px-3 pt-16 pb-2.5 text-center sm:px-6 sm:pt-20 sm:pb-4">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-4xl flex-col items-center px-3 pt-14 pb-2.5 text-center sm:px-6 sm:pt-16 sm:pb-4">
         <h1 className="sr-only">
           Save The Date · 11.12.2026 · {wedding.couple.groom.name} &amp; {wedding.couple.bride.name}
         </h1>
@@ -34,8 +34,8 @@ export function Hero() {
         {/* Save The Date artwork: the photo fills the whole block, script overlaid on its corners */}
         <motion.div {...fade(0.1)} className="my-auto flex w-full flex-col items-center">
           <div
-            className="relative aspect-[664/822] [--hero-reserve:19rem] sm:[--hero-reserve:15rem] shadow-[0_16px_45px_rgba(0,0,0,0.45)]"
-            style={{ width: "min(72vw, max(calc((100svh - var(--hero-reserve)) * 0.808 * 0.76), 16rem), 32rem)" }}
+            className="relative aspect-[664/822] [--hero-reserve:14rem] sm:[--hero-reserve:12rem] shadow-[0_16px_45px_rgba(0,0,0,0.45)]"
+            style={{ width: "min(78vw, max(calc((100svh - var(--hero-reserve)) * 0.808 * 0.88), 18rem), 35rem)" }}
           >
             <img
               src={wedding.hero.image}
@@ -55,9 +55,9 @@ export function Hero() {
               alt=""
               aria-hidden="true"
               style={{
-                left: "-16.27%",
-                top: "-13.14%",
-                width: "66.57%",
+                left: "-12%",
+                top: "-11%",
+                width: "64%",
               }}
               className="pointer-events-none absolute drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]"
             />
@@ -66,32 +66,27 @@ export function Hero() {
               alt=""
               aria-hidden="true"
               style={{
-                left: "8.28%",
-                top: "92.94%",
-                width: "108.43%",
+                left: "6%",
+                top: "91%",
+                width: "105%",
               }}
               className="pointer-events-none absolute drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
             />
           </div>
-          <p className="mt-8 font-serif text-xs italic lining-nums tracking-[0.04em] text-[#faf6f0]/90 sm:mt-11 sm:text-base">
+          <p className="mt-6 font-serif text-xs italic lining-nums tracking-[0.04em] text-[#faf6f0]/90 sm:mt-8 sm:text-base">
             11th December 2026.
           </p>
         </motion.div>
 
-        {/* Bottom Section: Venue, Date, CTA Buttons & Scroll */}
+        {/* Bottom Section: Venue, CTA Buttons & Scroll */}
         <div className="w-full flex flex-col items-center pt-2 sm:pt-3">
-          {/* Venue & Reception Time Banner */}
-          <motion.div {...fade(0.28)} className="flex flex-col items-center gap-1 sm:gap-1.5">
-            <div className="flex items-center gap-3 sm:gap-5">
-              <span className="h-px w-6 bg-white/40 sm:w-12" />
-              <p className="font-display text-xs uppercase tracking-[0.24em] text-white sm:text-sm md:text-base">
-                {wedding.venue.name}
-              </p>
-              <span className="h-px w-6 bg-white/40 sm:w-12" />
-            </div>
-            <p className="font-sans text-[0.6875rem] tracking-[0.16em] text-white/85 sm:text-xs uppercase">
-              {lang === "vi" ? "18:00 · Thứ Sáu, 11 Tháng 12, 2026" : "6:00 PM · Friday, December 11, 2026"}
+          {/* Venue Banner */}
+          <motion.div {...fade(0.28)} className="flex items-center gap-3 sm:gap-5">
+            <span className="h-px w-6 bg-white/40 sm:w-12" />
+            <p className="font-display text-xs uppercase tracking-[0.24em] text-white sm:text-sm md:text-base">
+              {wedding.venue.name}
             </p>
+            <span className="h-px w-6 bg-white/40 sm:w-12" />
           </motion.div>
 
           {/* CTA Buttons */}
