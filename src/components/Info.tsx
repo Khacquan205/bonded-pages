@@ -198,7 +198,7 @@ export function Info() {
 
           <Reveal delay={0.2} className="mt-8 max-w-2xl mx-auto">
             <div className="rounded-xl border border-[#2d081d]/15 bg-[#faf7f2] p-6 sm:p-8 shadow-xs text-center">
-              <div className="flex items-center justify-center gap-2.5">
+              <div className="flex items-center justify-center gap-2.5 pb-1">
                 <Palette className="size-5 text-[#451020]" strokeWidth={1.5} aria-hidden="true" />
                 <h3 className="font-script text-3xl sm:text-4xl text-[#2d081d]">
                   Dress code
@@ -206,7 +206,7 @@ export function Info() {
               </div>
 
               {/* 4 square swatches matching the printed stationery */}
-              <div className="mt-6 grid grid-cols-4 gap-3 sm:gap-6 max-w-md mx-auto text-center">
+              <div className="mt-9 sm:mt-12 grid grid-cols-4 gap-3 sm:gap-6 max-w-md mx-auto text-center">
                 {wedding.info.dresscode.swatches.map((s) => (
                   <div key={s.hex} className="flex flex-col items-center">
                     <div
