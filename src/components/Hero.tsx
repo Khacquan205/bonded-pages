@@ -34,8 +34,8 @@ export function Hero() {
         {/* Save The Date artwork: the photo fills the whole block, script overlaid on its corners */}
         <motion.div {...fade(0.1)} className="my-auto flex w-full flex-col items-center">
           <div
-            className="relative aspect-[664/822] [--hero-reserve:16rem] sm:[--hero-reserve:13.5rem] shadow-[0_16px_45px_rgba(0,0,0,0.45)]"
-            style={{ width: "min(92vw, max(calc((100svh - var(--hero-reserve)) * 0.808), 20rem), 42rem)" }}
+            className="relative aspect-[664/822] [--hero-reserve:19rem] sm:[--hero-reserve:15rem] shadow-[0_16px_45px_rgba(0,0,0,0.45)]"
+            style={{ width: "min(72vw, max(calc((100svh - var(--hero-reserve)) * 0.808 * 0.76), 16rem), 32rem)" }}
           >
             <img
               src={wedding.hero.image}
@@ -54,16 +54,26 @@ export function Hero() {
               src="/images/save-the-date-save.png"
               alt=""
               aria-hidden="true"
-              className="absolute left-[3%] top-[2%] w-[42.5%] drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
+              style={{
+                left: "-16.27%",
+                top: "-13.14%",
+                width: "66.57%",
+              }}
+              className="pointer-events-none absolute drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]"
             />
             <img
               src="/images/save-the-date-the-date.png"
               alt=""
               aria-hidden="true"
-              className="absolute right-[2%] bottom-[0.5%] w-[69.4%] drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]"
+              style={{
+                left: "8.28%",
+                top: "92.94%",
+                width: "108.43%",
+              }}
+              className="pointer-events-none absolute drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
             />
           </div>
-          <p className="mt-2 font-serif text-xs italic lining-nums tracking-[0.04em] text-[#faf6f0]/90 sm:mt-3 sm:text-base">
+          <p className="mt-8 font-serif text-xs italic lining-nums tracking-[0.04em] text-[#faf6f0]/90 sm:mt-11 sm:text-base">
             11th December 2026.
           </p>
         </motion.div>
