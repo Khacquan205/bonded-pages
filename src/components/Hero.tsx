@@ -26,7 +26,7 @@ export function Hero() {
       />
 
       {/* Content Container */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-4xl flex-col items-center px-2 pt-20 pb-3 text-center sm:px-6 sm:pt-[5.5rem] sm:pb-4">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-4xl flex-col items-center px-3 pt-16 pb-2.5 text-center sm:px-6 sm:pt-20 sm:pb-4">
         <h1 className="sr-only">
           Save The Date · 11.12.2026 · {wedding.couple.groom.name} &amp; {wedding.couple.bride.name}
         </h1>
@@ -34,8 +34,8 @@ export function Hero() {
         {/* Save The Date artwork: the photo fills the whole block, script overlaid on its corners */}
         <motion.div {...fade(0.1)} className="my-auto flex w-full flex-col items-center">
           <div
-            className="relative aspect-[664/822] [--hero-reserve:21rem] sm:[--hero-reserve:16.5rem]"
-            style={{ width: "min(100%, max(calc((100svh - var(--hero-reserve)) * 0.808), 18.4rem), 40rem)" }}
+            className="relative aspect-[664/822] [--hero-reserve:16rem] sm:[--hero-reserve:13.5rem] shadow-[0_16px_45px_rgba(0,0,0,0.45)]"
+            style={{ width: "min(92vw, max(calc((100svh - var(--hero-reserve)) * 0.808), 20rem), 42rem)" }}
           >
             <img
               src={wedding.hero.image}
@@ -63,13 +63,13 @@ export function Hero() {
               className="absolute right-[2%] bottom-[0.5%] w-[69.4%] drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]"
             />
           </div>
-          <p className="mt-3 font-serif text-sm italic lining-nums tracking-[0.04em] text-[#faf6f0]/90 sm:mt-4 sm:text-base">
+          <p className="mt-2 font-serif text-xs italic lining-nums tracking-[0.04em] text-[#faf6f0]/90 sm:mt-3 sm:text-base">
             11th December 2026.
           </p>
         </motion.div>
 
         {/* Bottom Section: Venue, Date, CTA Buttons & Scroll */}
-        <div className="w-full flex flex-col items-center pt-3">
+        <div className="w-full flex flex-col items-center pt-2 sm:pt-3">
           {/* Venue & Reception Time Banner */}
           <motion.div {...fade(0.28)} className="flex flex-col items-center gap-1 sm:gap-1.5">
             <div className="flex items-center gap-3 sm:gap-5">
