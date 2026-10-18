@@ -9,82 +9,78 @@ export function ClosingCta() {
   const fmt = useFormatDate();
 
   return (
-    <section className="relative overflow-hidden bg-[#120d0e] text-center text-white">
-      <div className="relative pt-20 sm:pt-28">
-        {/* Background Image & Overlay: the couple sits in the open band below the RSVP note */}
-        <img
-          src={wedding.closing.image}
-          alt="Wedding background"
-          loading="lazy"
-          decoding="async"
-          className="absolute -bottom-[13%] left-1/2 h-[107%] w-auto max-w-none -translate-x-1/2 sm:inset-0 sm:size-full sm:max-w-full sm:translate-x-0 sm:object-cover sm:object-[center_25%] lg:object-[center_40%] xl:object-[center_49%]"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.62)_58%,rgba(0,0,0,0.15)_80%,rgba(0,0,0,0.3)_100%)]" />
+    <section className="relative overflow-hidden pt-20 pb-0 sm:pt-28 sm:pb-0 text-center text-white">
+      {/* Background Image & Overlay: anchored low so the top of the photo is cropped and the couple stays in frame */}
+      <img
+        src={wedding.closing.image}
+        alt="Wedding background"
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-x-0 bottom-0 h-[150%] w-full object-cover sm:h-full sm:object-[center_75%]"
+      />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60" />
 
-        <div className="relative mx-auto max-w-3xl px-6">
-          <Reveal>
-            <p className="font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#faf6f0]/90">
-              {lang === "vi" ? "Lời Ngỏ" : "Warm Invitation"}
-            </p>
-            <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-5xl text-cream">
-              {t(wedding.closing.title)}
-            </h2>
-            <div className="mx-auto mt-6 flex items-center justify-center gap-3">
-              <span className="h-px w-12 bg-white/40" />
-              <span className="size-2 rotate-45 bg-[#451020] border border-white/40" />
-              <span className="h-px w-12 bg-white/40" />
-            </div>
-            <p className="mt-6 text-sm sm:text-base leading-relaxed text-white/90">
-              {lang === "vi"
-                ? "Hãy nhắn tin cho chúng mình qua Zalo để xác nhận tham dự và giúp chúng mình chuẩn bị đón tiếp bạn chu đáo nhất nhé."
-                : "Please send us a message via Zalo to confirm your attendance so we can best prepare for your warm welcome."}
-            </p>
-          </Reveal>
+      <div className="relative mx-auto max-w-3xl px-6">
+        <Reveal>
+          <p className="font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#faf6f0]/90">
+            {lang === "vi" ? "Lời Ngỏ" : "Warm Invitation"}
+          </p>
+          <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-5xl text-cream">
+            {t(wedding.closing.title)}
+          </h2>
+          <div className="mx-auto mt-6 flex items-center justify-center gap-3">
+            <span className="h-px w-12 bg-white/40" />
+            <span className="size-2 rotate-45 bg-[#451020] border border-white/40" />
+            <span className="h-px w-12 bg-white/40" />
+          </div>
+          <p className="mt-6 text-sm sm:text-base leading-relaxed text-white/90">
+            {lang === "vi"
+              ? "Hãy nhắn tin cho chúng mình qua Zalo để xác nhận tham dự và giúp chúng mình chuẩn bị đón tiếp bạn chu đáo nhất nhé."
+              : "Please send us a message via Zalo to confirm your attendance so we can best prepare for your warm welcome."}
+          </p>
+        </Reveal>
 
-          {/* Zalo Buttons for Couple and Mothers */}
-          <Reveal delay={0.15} className="mt-10 flex flex-col items-center justify-center gap-3 max-w-3xl mx-auto">
-            <div className="flex flex-col sm:flex-row w-full gap-3 justify-center">
-              <ZaloButton
-                person="groom"
-                variant="light"
-                className="w-full sm:w-1/2 hover:scale-[1.02]"
-              />
-              <ZaloButton
-                person="bride"
-                variant="light"
-                className="w-full sm:w-1/2 hover:scale-[1.02]"
-              />
-            </div>
-            <div className="flex flex-col sm:flex-row w-full gap-3 justify-center">
-              <ZaloButton
-                person="groomMother"
-                variant="outline"
-                className="w-full sm:w-1/2 hover:scale-[1.02]"
-              />
-              <ZaloButton
-                person="brideMother"
-                variant="outline"
-                className="w-full sm:w-1/2 hover:scale-[1.02]"
-              />
-            </div>
-          </Reveal>
+        {/* Zalo Buttons for Couple and Mothers */}
+        <Reveal delay={0.15} className="mt-10 flex flex-col items-center justify-center gap-3 max-w-3xl mx-auto">
+          <div className="flex flex-col sm:flex-row w-full gap-3 justify-center">
+            <ZaloButton
+              person="groom"
+              variant="light"
+              className="w-full sm:w-1/2 hover:scale-[1.02]"
+            />
+            <ZaloButton
+              person="bride"
+              variant="light"
+              className="w-full sm:w-1/2 hover:scale-[1.02]"
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row w-full gap-3 justify-center">
+            <ZaloButton
+              person="groomMother"
+              variant="outline"
+              className="w-full sm:w-1/2 hover:scale-[1.02]"
+            />
+            <ZaloButton
+              person="brideMother"
+              variant="outline"
+              className="w-full sm:w-1/2 hover:scale-[1.02]"
+            />
+          </div>
+        </Reveal>
 
-          {/* RSVP Deadline notice */}
-          <Reveal delay={0.25} className="mt-8">
-            <p className="text-xs uppercase tracking-[0.18em] text-white/75">
-              {lang === "vi"
-                ? `* Vui lòng phản hồi trước ngày ${fmt(wedding.rsvpDeadline)}`
-                : `* Please kindly RSVP before ${fmt(wedding.rsvpDeadline)}`}
-            </p>
-          </Reveal>
-        </div>
-
-        {/* Open band that lets the couple in the photo show through */}
-        <div aria-hidden="true" className="h-72 sm:h-80" />
+        {/* RSVP Deadline notice */}
+        <Reveal delay={0.25} className="mt-8">
+          <p className="text-xs uppercase tracking-[0.18em] text-white/75">
+            {lang === "vi"
+              ? `* Vui lòng phản hồi trước ngày ${fmt(wedding.rsvpDeadline)}`
+              : `* Please kindly RSVP before ${fmt(wedding.rsvpDeadline)}`}
+          </p>
+        </Reveal>
       </div>
 
       {/* Bespoke Stationery Footer */}
-      <footer className="relative z-10 border-t border-white/15 bg-black/60 py-8 sm:py-10 text-center backdrop-blur-sm">
+      <footer className="relative z-10 mt-16 sm:mt-20 border-t border-white/15 bg-black/60 py-8 sm:py-10 text-center backdrop-blur-sm">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-2.5 px-6">
           <div className="relative mb-1 flex items-center justify-center">
             <img
