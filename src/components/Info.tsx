@@ -24,10 +24,10 @@ export function Info() {
 
   const currentCardTitle =
     selectedCard === "ceremony"
-      ? (lang === "vi" ? "Thiệp Lễ Thành Hôn (Tư Gia)" : "Traditional Ceremony Invitation")
+      ? (lang === "vi" ? "Thiệp Lễ Thành Hôn\u00A0(Tư\u00A0Gia)" : "Traditional Ceremony\u00A0Invitation")
       : receptionSide === "front"
-        ? (lang === "vi" ? "Mặt Trước — Bìa Dập Nổi Monogram" : "Front Cover — Embossed Monogram")
-        : (lang === "vi" ? "Mặt Sau — Thiệp Tiệc Cưới Chính Thức" : "Official Reception Invitation");
+        ? (lang === "vi" ? "Mặt Trước — Bìa Dập Nổi\u00A0Monogram" : "Front Cover — Embossed\u00A0Monogram")
+        : (lang === "vi" ? "Mặt Sau — Thiệp Tiệc Cưới Chính\u00A0Thức" : "Official Reception\u00A0Invitation");
 
   const downloadFilename =
     selectedCard === "ceremony"
@@ -138,8 +138,8 @@ export function Info() {
               </div>
 
               {/* Card Footer Bar: Full-width title */}
-              <div className="mt-3.5 px-2 text-center">
-                <p className="font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-[#451020]">
+              <div className="mt-3.5 px-1 sm:px-2 text-center">
+                <p className="font-display text-[0.6875rem] sm:text-xs md:text-sm font-semibold uppercase tracking-[0.05em] sm:tracking-[0.14em] text-[#451020] text-balance leading-relaxed">
                   {currentCardTitle}
                 </p>
               </div>
