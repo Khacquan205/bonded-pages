@@ -11,36 +11,23 @@ import { cn } from "@/lib/utils";
 export function Info() {
   const { lang } = useLanguage();
   const t = useT();
-  const [selectedCard, setSelectedCard] = useState<"reception" | "ceremony">("reception");
   const [cardSide, setCardSide] = useState<"back" | "front">("back");
   const [isCardZoomOpen, setIsCardZoomOpen] = useState(false);
 
   const currentCardImg =
-    selectedCard === "reception"
-      ? cardSide === "front"
-        ? "/images/thiep-tiec-cuoi-mat-truoc.png"
-        : "/images/thiep-tiec-cuoi-mat-sau.png"
-      : cardSide === "front"
-        ? "/images/thiep-le-thanh-hon-mat-truoc.png"
-        : "/images/thiep-le-thanh-hon-mat-sau.png";
+    cardSide === "front"
+      ? "/images/thiep-tiec-cuoi-mat-truoc.png"
+      : "/images/thiep-tiec-cuoi-mat-sau.png";
 
   const currentCardTitle =
-    selectedCard === "reception"
-      ? cardSide === "front"
-        ? (lang === "vi" ? "Mặt Trước — Bìa Dập Nổi\u00A0Monogram" : "Front Cover — Embossed\u00A0Monogram")
-        : (lang === "vi" ? "Mặt Sau — Thiệp Tiệc Cưới Chính\u00A0Thức" : "Official Reception\u00A0Invitation")
-      : cardSide === "front"
-        ? (lang === "vi" ? "Mặt Trước — Save The Date" : "Front Cover — Save The Date")
-        : (lang === "vi" ? "Mặt Sau — Thiệp Lễ Thành Hôn\u00A0(Tư\u00A0Gia)" : "Ceremony Invitation — Back");
+    cardSide === "front"
+      ? (lang === "vi" ? "Mặt Trước — Bìa Dập Nổi\u00A0Monogram" : "Front Cover — Embossed\u00A0Monogram")
+      : (lang === "vi" ? "Mặt Sau — Thiệp Tiệc Cưới Chính\u00A0Thức" : "Official Reception\u00A0Invitation");
 
   const downloadFilename =
-    selectedCard === "reception"
-      ? cardSide === "front"
-        ? "Thiep-Tiec-Cuoi-Mat-Truoc-Thanh-Long-Huyen-Nga.png"
-        : "Thiep-Tiec-Cuoi-Mat-Sau-Thanh-Long-Huyen-Nga.png"
-      : cardSide === "front"
-        ? "Thiep-Le-Thanh-Hon-Mat-Truoc-Thanh-Long-Huyen-Nga.png"
-        : "Thiep-Le-Thanh-Hon-Mat-Sau-Thanh-Long-Huyen-Nga.png";
+    cardSide === "front"
+      ? "Thiep-Tiec-Cuoi-Mat-Truoc-Thanh-Long-Huyen-Nga.png"
+      : "Thiep-Tiec-Cuoi-Mat-Sau-Thanh-Long-Huyen-Nga.png";
 
   return (
     <section id="info" className="relative bg-[#f4efe6] px-5 py-20 sm:px-6 sm:py-28 scroll-mt-16">
@@ -51,43 +38,15 @@ export function Info() {
         />
 
         {/* ------------------------------------------------------------- */}
-        {/* CARD SELECTOR TABS: RECEPTION vs CEREMONY                     */}
+        {/* CARD SIDE TOGGLE: MẶT SAU & MẶT TRƯỚC                         */}
         {/* ------------------------------------------------------------- */}
-        <div className="mt-8 sm:mt-10 flex flex-col items-center gap-3">
-          <div className="inline-flex rounded-full border border-[#2d081d]/20 bg-[#faf7f2] p-1.5 shadow-2xs">
-            <button
-              type="button"
-              onClick={() => setSelectedCard("reception")}
-              className={cn(
-                "rounded-full px-5 py-2 text-xs font-semibold uppercase lining-nums tracking-[0.14em] transition-all duration-300 sm:px-7 sm:text-sm font-serif",
-                selectedCard === "reception"
-                  ? "bg-[#451020] text-[#faf6f0] shadow-md"
-                  : "text-[#3d271d]/70 hover:text-[#451020]",
-              )}
-            >
-              {lang === "vi" ? "Tiệc Cưới (11.12)" : "Reception (Dec 11)"}
-            </button>
-            <button
-              type="button"
-              onClick={() => setSelectedCard("ceremony")}
-              className={cn(
-                "rounded-full px-5 py-2 text-xs font-semibold uppercase lining-nums tracking-[0.14em] transition-all duration-300 sm:px-7 sm:text-sm font-serif",
-                selectedCard === "ceremony"
-                  ? "bg-[#451020] text-[#faf6f0] shadow-md"
-                  : "text-[#3d271d]/70 hover:text-[#451020]",
-              )}
-            >
-              {lang === "vi" ? "Lễ Thành Hôn (06.12)" : "Ceremony (Dec 06)"}
-            </button>
-          </div>
-
-          {/* Sub-toggle: 2 Tabs Mặt Sau & Mặt Trước for both cards */}
-          <div className="inline-flex items-center rounded-full border border-[#2d081d]/15 bg-[#faf7f2] p-1 shadow-2xs font-serif text-xs">
+        <div className="mt-8 sm:mt-10 flex justify-center">
+          <div className="inline-flex items-center rounded-full border border-[#2d081d]/15 bg-[#faf7f2] p-1.5 shadow-2xs font-serif text-xs sm:text-sm">
             <button
               type="button"
               onClick={() => setCardSide("back")}
               className={cn(
-                "rounded-full px-4 py-1.5 font-medium transition-all duration-200",
+                "rounded-full px-5 py-2 font-medium transition-all duration-200",
                 cardSide === "back"
                   ? "bg-[#2d081d] text-[#faf6f0] shadow-2xs font-semibold"
                   : "text-[#2d081d]/75 hover:text-[#2d081d] hover:bg-black/5",
@@ -99,7 +58,7 @@ export function Info() {
               type="button"
               onClick={() => setCardSide("front")}
               className={cn(
-                "rounded-full px-4 py-1.5 font-medium transition-all duration-200",
+                "rounded-full px-5 py-2 font-medium transition-all duration-200",
                 cardSide === "front"
                   ? "bg-[#2d081d] text-[#faf6f0] shadow-2xs font-semibold"
                   : "text-[#2d081d]/75 hover:text-[#2d081d] hover:bg-black/5",
@@ -187,8 +146,8 @@ export function Info() {
         {/* ------------------------------------------------------------- */}
         <div className="mt-16 sm:mt-24 pt-12 border-t border-[#2d081d]/12">
           <SectionHeading
-            label={lang === "vi" ? "Trang Phục" : "Dress Code"}
-            title={lang === "vi" ? "Bảng Màu Trang Phục" : "Dress Code"}
+            label={lang === "vi" ? "Dress Code" : "Dress Code"}
+            title={lang === "vi" ? "Trang Phục" : "Dress Code"}
             desc={
               lang === "vi"
                 ? "Để buổi tiệc thêm phần đồng điệu và trang nhã, quý khách vui lòng ưu tiên trang phục theo các gam màu gợi ý."
@@ -205,17 +164,17 @@ export function Info() {
                 </h3>
               </div>
 
-              {/* 4 square swatches matching the printed stationery */}
-              <div className="mt-9 sm:mt-12 grid grid-cols-4 gap-3 sm:gap-6 max-w-md mx-auto text-center">
+              {/* 5 square swatches matching the printed stationery */}
+              <div className="mt-9 sm:mt-12 grid grid-cols-5 gap-2 sm:gap-4 md:gap-6 max-w-lg mx-auto text-center">
                 {wedding.info.dresscode.swatches.map((s) => (
                   <div key={s.hex} className="flex flex-col items-center">
                     <div
                       role="img"
                       aria-label={t(s.name)}
                       style={{ backgroundColor: s.hex }}
-                      className="size-14 sm:size-18 shadow-[3px_4px_6px_rgba(45,8,29,0.28)] transition-transform hover:scale-105"
+                      className="size-11 sm:size-16 shadow-[3px_4px_6px_rgba(45,8,29,0.28)] transition-transform hover:scale-105"
                     />
-                    <span className="mt-2 font-serif text-xs font-medium text-[#2d081d] sm:text-sm">
+                    <span className="mt-2 font-serif text-[0.6875rem] sm:text-xs md:text-sm font-medium text-[#2d081d]">
                       {t(s.name)}
                     </span>
                   </div>

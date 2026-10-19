@@ -75,13 +75,10 @@ export function Hero() {
               className="pointer-events-none absolute z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
             />
           </div>
-          <p className="mt-10 font-serif text-xs italic lining-nums tracking-[0.04em] text-[#faf6f0]/90 sm:mt-12 sm:text-base">
-            11th December 2026.
-          </p>
         </motion.div>
 
         {/* Bottom Section: Venue, CTA Buttons & Scroll */}
-        <div className="w-full flex flex-col items-center pt-2 sm:pt-3">
+        <div className="w-full flex flex-col items-center pt-7 sm:pt-9">
           {/* Venue Banner */}
           <motion.div {...fade(0.28)} className="flex items-center gap-3 sm:gap-5">
             <span className="h-px w-6 bg-white/40 sm:w-12" />

@@ -99,6 +99,7 @@ export const wedding = {
         { name: { vi: "Be cát", en: "Sand Beige" }, hex: "#c9b197" },
         { name: { vi: "Đỏ rượu vang", en: "Wine Red" }, hex: "#4e161a" },
         { name: { vi: "Mận chín", en: "Deep Plum" }, hex: "#451020" },
+        { name: { vi: "Đen", en: "Black" }, hex: "#1c1917" },
       ],
     },
     notes: {
@@ -138,31 +139,6 @@ export const wedding = {
           title: { vi: "Tiễn khách", en: "Farewell" },
           desc: { vi: "Cảm ơn bạn đã ở đây chung vui cùng gia đình chúng mình.", en: "Thank you for being here with us." },
           location: { vi: "JW Marriott Hotel & Suites Saigon", en: "JW Marriott Hotel & Suites Saigon" },
-        },
-      ],
-    },
-    {
-      key: "ceremony",
-      tab: { vi: "Lễ Thành Hôn", en: "Wedding Ceremony" },
-      date: "2026-12-06T09:00:00+07:00",
-      items: [
-        {
-          time: "08:30",
-          title: { vi: "Đón tiếp họ hàng", en: "Welcoming Family" },
-          desc: { vi: "Hai bên gia đình đón tiếp quan khách và chuẩn bị nghi thức.", en: "Families gather and prepare for the ceremony." },
-          location: { vi: "Tư gia", en: "Private Residence" },
-        },
-        {
-          time: "09:00",
-          title: { vi: "Cử hành Hôn Lễ gia tiên", en: "Traditional Ancestor Ceremony" },
-          desc: { vi: "Nghi thức thắp hương gia tiên báo cáo tổ tiên tại tư gia (28/10 Âm lịch).", en: "Traditional ancestor rites at private residence." },
-          location: { vi: "Tư gia", en: "Private Residence" },
-        },
-        {
-          time: "10:30",
-          title: { vi: "Tiệc thân mật cùng gia đình", en: "Family Lunch" },
-          desc: { vi: "Dùng bữa cơm thân mật chung vui cùng hai họ.", en: "Intimate lunch with close family." },
-          location: { vi: "Tư gia", en: "Private Residence" },
         },
       ],
     },
