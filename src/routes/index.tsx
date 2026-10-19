@@ -11,7 +11,9 @@ import { wedding } from "@/config/wedding";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 // Link preview (Zalo / Facebook / Messenger): 1200x630 crop of the veil portrait from the Retouched album
-const OG_IMAGE = "/images/og-cover.jpg";
+// Must be an absolute URL: Zalo / Facebook crawlers don't resolve relative og:image paths
+const SITE_URL = "https://bonded-pages.nguyenkhacquanpr2017.workers.dev";
+const OG_IMAGE = `${SITE_URL}/images/og-cover.jpg`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,6 +31,7 @@ export const Route = createFileRoute("/")({
           "Trân trọng kính mời bạn đến chung vui cùng gia đình chúng tôi tại JW Marriott Hotel, TP. Hồ Chí Minh.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/` },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
