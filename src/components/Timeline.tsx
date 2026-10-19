@@ -49,9 +49,13 @@ export function Timeline() {
             </div>
           </div>
         ) : (
-          <div className="mt-10 flex justify-center">
-            <span className="inline-flex items-center rounded-full border border-[#451020]/30 bg-[#451020]/10 px-6 py-2 font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-[#451020]">
-              {t(currentSchedule.tab)} · {wedding.venue.name}
+          <div className="mt-10 flex justify-center px-3">
+            <span className="inline-flex flex-col sm:flex-row items-center justify-center text-center rounded-2xl sm:rounded-full border border-[#451020]/30 bg-[#451020]/10 px-5 py-2.5 sm:px-7 sm:py-2 font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-[#451020] leading-relaxed shadow-2xs">
+              <span>{t(currentSchedule.tab)}</span>
+              <span className="hidden sm:inline mx-2 text-[#451020]/40">·</span>
+              <span className="text-[0.6875rem] sm:text-sm font-medium sm:font-semibold text-[#451020]/90 sm:text-[#451020]">
+                {wedding.venue.name}
+              </span>
             </span>
           </div>
         )}
