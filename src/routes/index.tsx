@@ -10,8 +10,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { wedding } from "@/config/wedding";
 import { LanguageProvider } from "@/context/LanguageContext";
 
-const OG_IMAGE =
-  "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&h=630&q=80";
+// Link preview (Zalo / Facebook / Messenger): 1200x630 crop of the veil portrait from the Retouched album
+const OG_IMAGE = "/images/og-cover.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,6 +30,8 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: OG_IMAGE },
     ],
