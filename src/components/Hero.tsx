@@ -64,8 +64,10 @@ export function Hero() {
                 left: "-12%",
                 top: "-9%",
                 width: "54%",
+                filter:
+                  "drop-shadow(0 0 1.5px rgba(25, 4, 15, 0.95)) drop-shadow(0 1.5px 3px rgba(35, 6, 22, 0.9)) drop-shadow(0 3px 8px rgba(45, 8, 29, 0.75)) drop-shadow(0 8px 22px rgba(45, 8, 29, 0.5))",
               }}
-              className="pointer-events-none absolute z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] drop-shadow-[0_1px_4px_rgba(69,16,32,0.4)]"
+              className="pointer-events-none absolute z-10"
             />
             <img
               src={dateTextImg}
@@ -75,8 +77,10 @@ export function Hero() {
                 left: "6%",
                 top: "91%",
                 width: "95%",
+                filter:
+                  "drop-shadow(0 0 1.5px rgba(25, 4, 15, 0.95)) drop-shadow(0 1.5px 3px rgba(35, 6, 22, 0.9)) drop-shadow(0 3px 8px rgba(45, 8, 29, 0.75)) drop-shadow(0 8px 22px rgba(45, 8, 29, 0.5))",
               }}
-              className="pointer-events-none absolute z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] drop-shadow-[0_1px_4px_rgba(69,16,32,0.4)]"
+              className="pointer-events-none absolute z-10"
             />
           </div>
         </motion.div>
