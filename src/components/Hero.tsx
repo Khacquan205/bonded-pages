@@ -3,8 +3,8 @@ import { ChevronDown } from "lucide-react";
 import { wedding } from "@/config/wedding";
 import { useLanguage } from "@/context/LanguageContext";
 import { ContactPicker } from "./ContactPicker";
-import saveTextImg from "@/assets/save-the-date-save-red.png";
-import dateTextImg from "@/assets/save-the-date-the-date-red.png";
+import saveTextImg from "@/assets/save-the-date-save.png";
+import dateTextImg from "@/assets/save-the-date-the-date.png";
 
 const fade = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -50,32 +50,33 @@ export function Hero() {
                 decoding="async"
                 className="size-full object-cover"
               />
-              {/* Soft bottom vignette for contrast */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[22%] bg-gradient-to-t from-black/35 to-transparent" />
+              {/* Soft top/bottom shading so the white script stays legible on the photo */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-[25%] bg-gradient-to-b from-black/40 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/65 via-black/35 to-transparent" />
             </div>
 
-            {/* Smaller script overlays: top-left & bottom-right */}
+            {/* Original white script overlays: top-left & bottom-right */}
             <img
               src={saveTextImg}
               alt="Save"
               aria-hidden="true"
               style={{
-                left: "-5%",
-                top: "-5%",
-                width: "40%",
+                left: "-12%",
+                top: "-9%",
+                width: "54%",
               }}
-              className="pointer-events-none absolute z-10 drop-shadow-[0_1px_3px_rgba(255,255,255,0.85)] drop-shadow-[0_0_1px_rgba(255,250,240,0.9)]"
+              className="pointer-events-none absolute z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
             />
             <img
               src={dateTextImg}
               alt="the date"
               aria-hidden="true"
               style={{
-                right: "-5%",
-                top: "90%",
-                width: "72%",
+                left: "6%",
+                top: "82%",
+                width: "92%",
               }}
-              className="pointer-events-none absolute z-10 drop-shadow-[0_1px_3px_rgba(255,255,255,0.85)] drop-shadow-[0_0_1px_rgba(255,250,240,0.9)]"
+              className="pointer-events-none absolute z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
             />
           </div>
         </motion.div>
