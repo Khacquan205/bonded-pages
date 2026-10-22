@@ -114,12 +114,12 @@ export function Hero() {
         {/* Bottom Section: Venue, Date, CTA Button & Scroll */}
         <div className="w-full flex flex-col items-center pt-10 sm:pt-12">
           {/* Venue Banner */}
-          <motion.div {...fade(0.28)} className="flex items-center gap-3 sm:gap-5">
-            <span className="h-px w-6 bg-[#451020]/30 sm:w-12" />
-            <p className="font-display text-xs uppercase tracking-[0.24em] text-[#451020] sm:text-sm md:text-base font-semibold">
+          <motion.div {...fade(0.28)} className="flex items-center gap-2.5 sm:gap-5">
+            <span className="h-px w-4 sm:w-12 bg-[#451020]/30 shrink-0" />
+            <p className="font-display text-xs uppercase tracking-[0.2em] sm:tracking-[0.24em] text-[#451020] sm:text-sm md:text-base font-semibold whitespace-nowrap">
               {wedding.venue.name}
             </p>
-            <span className="h-px w-6 bg-[#451020]/30 sm:w-12" />
+            <span className="h-px w-4 sm:w-12 bg-[#451020]/30 shrink-0" />
           </motion.div>
 
           {/* Date from navbar - clear, sharp & bold */}
