@@ -34,7 +34,7 @@ export function Timeline() {
           title={lang === "vi" ? "Lịch trình ngày vui" : "Wedding Timeline"}
           desc={
             lang === "vi"
-              ? "Từng khoảnh khắc trọn vẹn và ý nghĩa trong ngày hạnh phúc của gia đình."
+              ? "Từng khoảnh khắc trọn vẹn và ý nghĩa trong ngày hạnh phúc của gia\u00A0đình."
               : "Every meaningful moment of our special day."
           }
         />
@@ -63,14 +63,17 @@ export function Timeline() {
         )}
 
         {/* Date highlight - prominent & elegant */}
-        <Reveal delay={0.1} className="mt-8 sm:mt-10 text-center">
-          <div className="inline-flex items-center justify-center gap-3 sm:gap-5">
-            <span className="h-px w-8 bg-[#451020]/25 sm:w-16" />
-            <p className="font-serif text-lg sm:text-2xl md:text-[1.75rem] font-medium tracking-[0.04em] text-[#451020] italic">
+        <Reveal delay={0.1} className="mt-8 sm:mt-12 text-center">
+          <div className="inline-flex items-center justify-center gap-3.5 sm:gap-6">
+            <span className="h-px w-8 bg-[#451020]/30 sm:w-16 md:w-20" />
+            <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium tracking-[0.03em] text-[#451020] italic leading-tight">
               {fmt(currentSchedule.date)}
             </p>
-            <span className="h-px w-8 bg-[#451020]/25 sm:w-16" />
+            <span className="h-px w-8 bg-[#451020]/30 sm:w-16 md:w-20" />
           </div>
+          <p className="mt-3 font-serif text-base sm:text-lg md:text-xl tracking-[0.03em] text-[#3d271d]/85 italic">
+            {t(wedding.date.receptionLunar)}
+          </p>
         </Reveal>
 
         {/* Vertical Timeline */}

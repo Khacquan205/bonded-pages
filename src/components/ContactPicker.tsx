@@ -83,7 +83,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
 
       const messageContent =
         lang === "vi"
-          ? `Chào hai bạn, mình là ${trimmedName}, mình ${attendanceText} vào ngày 11.12 nhé! ${note ? `Lời nhắn: "${note.trim()}"` : ""}`
+          ? `Chào hai bạn, mình là ${trimmedName}, mình ${attendanceText} vào ngày 11.12! ${note ? `Lời nhắn: "${note.trim()}"` : ""}`
           : `Hello, I am ${trimmedName}, I ${attendanceText} on Dec 11th! ${note ? `Note: "${note.trim()}"` : ""}`;
 
       try {
@@ -357,10 +357,10 @@ function SuccessView({
         <p className="mt-2 text-sm text-ink-muted leading-relaxed">
           {attendance === "yes"
             ? lang === "vi"
-              ? "Chúng mình đã ghi nhận xác nhận tham dự của bạn. Đã tự động sao chép tin nhắn, bạn có thể bấm gửi thêm tin nhắn Zalo bên dưới nhé!"
+              ? "Gia đình đã ghi nhận xác nhận tham dự của bạn. Đã tự động sao chép tin nhắn, bạn có thể bấm gửi thêm tin nhắn Zalo bên dưới!"
               : "We have recorded your attendance. You can also send a direct Zalo message below!"
             : lang === "vi"
-              ? "Cảm ơn bạn đã phản hồi. Rất tiếc vì bạn không thể đến nhưng chúng mình rất trân quý tình cảm của bạn!"
+              ? "Cảm ơn bạn đã phản hồi. Rất tiếc vì bạn không thể đến nhưng gia đình rất trân quý tình cảm của bạn!"
               : "Thank you for letting us know. We appreciate your warm thoughts!"}
         </p>
       </div>
@@ -409,7 +409,7 @@ export function ContactPicker({ children }: { children: ReactNode }) {
   const title = lang === "vi" ? "Xác nhận tham dự" : "Confirm your attendance";
   const desc =
     lang === "vi"
-      ? "Vui lòng cho cô dâu & chú rể biết bạn sẽ đến chung vui nhé."
+      ? "Vui lòng cho cô dâu & chú rể biết bạn sẽ đến chung vui."
       : "Please let the couple know if you can join our celebration.";
 
   const header = (

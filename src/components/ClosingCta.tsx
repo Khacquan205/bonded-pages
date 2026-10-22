@@ -23,10 +23,7 @@ export function ClosingCta() {
 
       <div className="relative mx-auto max-w-3xl px-6">
         <Reveal>
-          <p className="font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#faf6f0]/90">
-            {lang === "vi" ? "Lời Ngỏ" : "Warm Invitation"}
-          </p>
-          <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-5xl text-cream">
+          <h2 className="font-serif text-3xl leading-tight sm:text-5xl text-cream">
             {t(wedding.closing.title)}
           </h2>
           <div className="mx-auto mt-6 flex items-center justify-center gap-3">
@@ -36,34 +33,22 @@ export function ClosingCta() {
           </div>
           <p className="mt-6 text-sm sm:text-base leading-relaxed text-white/90">
             {lang === "vi"
-              ? "Hãy nhắn tin cho chúng mình qua Zalo để xác nhận tham dự và giúp chúng mình chuẩn bị đón tiếp bạn chu đáo nhất nhé."
+              ? "Hãy nhắn tin cho gia đình qua Zalo để xác nhận tham dự và giúp gia đình chuẩn bị đón tiếp bạn chu đáo nhất."
               : "Please send us a message via Zalo to confirm your attendance so we can best prepare for your warm welcome."}
           </p>
         </Reveal>
 
-        {/* Zalo Buttons for Couple and Mothers */}
-        <Reveal delay={0.15} className="mt-10 flex flex-col items-center justify-center gap-3 max-w-3xl mx-auto">
-          <div className="flex flex-col sm:flex-row w-full gap-3 justify-center">
-            <ZaloButton
-              person="groom"
-              variant="light"
-              className="w-full sm:w-1/2 hover:scale-[1.02]"
-            />
-            <ZaloButton
-              person="bride"
-              variant="light"
-              className="w-full sm:w-1/2 hover:scale-[1.02]"
-            />
-          </div>
+        {/* Zalo Buttons for Mothers */}
+        <Reveal delay={0.15} className="mt-10 flex flex-col items-center justify-center gap-3 max-w-2xl mx-auto">
           <div className="flex flex-col sm:flex-row w-full gap-3 justify-center">
             <ZaloButton
               person="groomMother"
-              variant="outline"
+              variant="light"
               className="w-full sm:w-1/2 hover:scale-[1.02]"
             />
             <ZaloButton
               person="brideMother"
-              variant="outline"
+              variant="light"
               className="w-full sm:w-1/2 hover:scale-[1.02]"
             />
           </div>

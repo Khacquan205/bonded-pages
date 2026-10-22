@@ -35,15 +35,15 @@ export const wedding = {
     ceremony: "2026-12-06T09:00:00+07:00",
     reception: "2026-12-11T18:00:00+07:00",
     ceremonyLunar: {
-      vi: "Nhằm ngày 28 tháng 10 năm Bính Ngọ",
+      vi: "Nhằm ngày 28 tháng 10 năm Bính\u00A0Ngọ",
       en: "Lunar calendar: Day 28, Month 10, Year of the Horse",
     },
     receptionLunar: {
-      vi: "Tức ngày 03 tháng 11 năm Bính Ngọ",
+      vi: "Nhằm ngày 03 tháng 11 năm Bính\u00A0Ngọ",
       en: "Lunar calendar: Day 03, Month 11, Year of the Horse",
     },
     lunar: {
-      vi: "Tức ngày 03 tháng 11 năm Bính Ngọ",
+      vi: "Nhằm ngày 03 tháng 11 năm Bính\u00A0Ngọ",
       en: "Lunar calendar: Day 03, Month 11, Year of the Horse",
     },
   },
@@ -91,21 +91,21 @@ export const wedding = {
     dresscode: {
       title: { vi: "Dress code", en: "Dress code" },
       text: {
-        vi: "Để buổi tiệc thêm phần trọn vẹn và trang nhã, quý khách vui lòng chọn trang phục theo bảng màu dress code gợi ý bên dưới.",
-        en: "To make our celebration even more memorable, guests are kindly requested to dress in the requested colors.",
+        vi: "Bảng màu mang tính gợi ý, quý khách có thể thoải mái lựa chọn trang phục theo sở\u00A0thích.",
+        en: "The color palette is optional — please feel free to dress in whatever makes you feel comfortable.",
       },
       swatches: [
-        { name: { vi: "Nâu đất", en: "Earth Brown" }, hex: "#553a2d" },
-        { name: { vi: "Be cát", en: "Sand Beige" }, hex: "#c9b197" },
-        { name: { vi: "Đỏ rượu vang", en: "Wine Red" }, hex: "#4e161a" },
-        { name: { vi: "Mận chín", en: "Deep Plum" }, hex: "#451020" },
         { name: { vi: "Đen", en: "Black" }, hex: "#1c1917" },
+        { name: { vi: "Đỏ", en: "Red" }, hex: "#6e1828" },
+        { name: { vi: "Be", en: "Beige" }, hex: "#c9b197" },
+        { name: { vi: "Hồng nude", en: "Nude Pink" }, hex: "#dfb4a8" },
+        { name: { vi: "Vàng gold", en: "Gold" }, hex: "#c5a059" },
       ],
     },
     notes: {
       title: { vi: "Lưu ý & Đậu xe", en: "Arrival & Parking" },
       text: {
-        vi: "Bãi giữ xe rộng rãi tại tầng hầm khách sạn JW Marriott Hotel & Suites Saigon. Vui lòng đến trước giờ khai tiệc 30 phút để chúng mình kịp chào đón bạn.",
+        vi: "Bãi giữ xe rộng rãi tại tầng hầm khách sạn JW Marriott Hotel & Suites Saigon. Khách mời vui lòng đến trước giờ khai tiệc 30 phút để gia đình kịp chào\u00A0đón.",
         en: "Hotel basement parking available at JW Marriott Hotel & Suites Saigon. Please arrive 30 minutes before reception so we have time to greet you.",
       },
     },
@@ -118,26 +118,26 @@ export const wedding = {
       items: [
         {
           time: "18:00",
-          title: { vi: "Đón khách & Chụp ảnh lưu niệm", en: "Guest Welcome & Photos" },
-          desc: { vi: "Chụp ảnh lưu niệm tại photo booth cùng cô dâu & chú rể.", en: "Welcome drinks and photos with the couple." },
+          title: { vi: "Đón khách & Chụp ảnh lưu\u00A0niệm", en: "Guest Welcome & Photos" },
+          desc: { vi: "Chụp ảnh lưu niệm cùng cô dâu & chú\u00A0rể.", en: "Welcome drinks and photos with the couple." },
           location: { vi: "JW Marriott Hotel & Suites Saigon", en: "JW Marriott Hotel & Suites Saigon" },
         },
         {
           time: "18:30",
-          title: { vi: "Nghi thức cưới & Khai tiệc", en: "Ceremony & Dinner" },
-          desc: { vi: "Cô dâu chú rể tiến vào lễ đường và khai tiệc tối ấm cúng.", en: "The couple walks down the aisle and dinner begins." },
+          title: { vi: "Nghi thức lễ cưới & Khai\u00A0tiệc", en: "Ceremony & Dinner" },
+          desc: { vi: "Cùng cô dâu & chú rể khai tiệc tối ấm\u00A0cúng.", en: "The couple walks down the aisle and dinner begins." },
           location: { vi: "Sảnh tiệc chính (Grand Ballroom)", en: "Grand Ballroom" },
         },
         {
           time: "20:00",
-          title: { vi: "Giao lưu & Âm nhạc", en: "Party & Music" },
-          desc: { vi: "Cùng nâng ly chúc phúc và lưu giữ khoảnh khắc đáng nhớ.", en: "Toasts, music and memorable moments." },
+          title: { vi: "Giao lưu & Âm\u00A0nhạc", en: "Party & Music" },
+          desc: { vi: "Cùng nâng ly chúc phúc và lưu giữ khoảnh khắc đáng\u00A0nhớ.", en: "Toasts, music and memorable moments." },
           location: { vi: "JW Marriott Hotel & Suites Saigon", en: "JW Marriott Hotel & Suites Saigon" },
         },
         {
           time: "21:00",
-          title: { vi: "Tiễn khách", en: "Farewell" },
-          desc: { vi: "Cảm ơn bạn đã ở đây chung vui cùng gia đình chúng mình.", en: "Thank you for being here with us." },
+          title: { vi: "Tiễn\u00A0khách", en: "Farewell" },
+          desc: { vi: "Cảm ơn bạn đã ở đây chung vui cùng gia\u00A0đình.", en: "Thank you for being here with us." },
           location: { vi: "JW Marriott Hotel & Suites Saigon", en: "JW Marriott Hotel & Suites Saigon" },
         },
       ],
@@ -151,7 +151,7 @@ export const wedding = {
   closing: {
     image: "/images/gallery/closing-staircase.jpg",
     title: {
-      vi: "Sự hiện diện của bạn là niềm hạnh phúc của chúng mình",
+      vi: "Sự hiện diện của quý vị là niềm vinh hạnh của gia đình chúng\u00A0tôi",
       en: "Your presence is our greatest happiness",
     },
   },

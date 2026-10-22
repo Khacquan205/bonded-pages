@@ -78,7 +78,7 @@ export function useFormatDate() {
         const month = new Intl.DateTimeFormat("vi-VN", { month: "numeric", timeZone: "Asia/Ho_Chi_Minh" }).format(d);
         const year = new Intl.DateTimeFormat("vi-VN", { year: "numeric", timeZone: "Asia/Ho_Chi_Minh" }).format(d);
         const cap = weekday.charAt(0).toUpperCase() + weekday.slice(1);
-        return `${cap}, ${day} tháng ${month}, ${year}`;
+        return `${cap}, ${day}\u00A0tháng\u00A0${month},\u00A0${year}`;
       }
       return new Intl.DateTimeFormat("en-US", { ...options, timeZone: "Asia/Ho_Chi_Minh" }).format(d);
     },

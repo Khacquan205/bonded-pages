@@ -162,7 +162,6 @@ export function Guestbook() {
     <section id="guestbook" className="bg-cream px-6 py-20 sm:py-28 scroll-mt-16">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
-          label={lang === "vi" ? "Lưu bút" : "Guestbook"}
           title={lang === "vi" ? "Sổ lưu bút chúc phúc" : "Words of Love"}
           desc={
             lang === "vi"

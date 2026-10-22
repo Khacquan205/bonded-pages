@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { wedding } from "@/config/wedding";
@@ -16,13 +16,26 @@ const fade = (delay: number) => ({
 
 export function Hero() {
   const { lang } = useLanguage();
-  const slotRef = useRef<HTMLDivElement>(null);
   const { isSticky, setIsSticky } = useRsvpButton();
 
   useEffect(() => {
+    let ticking = false;
     const checkScroll = () => {
-      // Trigger immediately when user starts scrolling down (> 30px)
-      setIsSticky(window.scrollY > 30);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY;
+          // Hysteresis buffer prevents jitter:
+          // Scroll down past 50px -> become sticky
+          // Scroll up to within 20px of top -> return to hero slot
+          if (y > 50) {
+            setIsSticky(true);
+          } else if (y < 20) {
+            setIsSticky(false);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", checkScroll, { passive: true });
@@ -118,16 +131,16 @@ export function Hero() {
           </motion.p>
 
           {/* CTA Button Slot: Seamless shared transition to sticky bottom button */}
-          <div ref={slotRef} className="mt-4 sm:mt-5 flex justify-center min-h-[46px] sm:min-h-[52px]">
+          <div className="mt-4 sm:mt-5 flex items-center justify-center h-12 sm:h-14">
             {!isSticky ? (
               <motion.div
                 layoutId="rsvp-main-button"
-                transition={{ type: "spring", stiffness: 280, damping: 26, mass: 0.8 }}
+                transition={{ type: "spring", stiffness: 260, damping: 25, mass: 0.8 }}
               >
                 <ContactPicker>
                   <button
                     type="button"
-                    className="rounded-full bg-[#451020] px-8 py-3 font-serif text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[#faf6f0] shadow-md transition-all hover:scale-[1.02] hover:bg-[#5c1a2e] hover:shadow-lg sm:text-sm sm:px-10 sm:py-3.5 whitespace-nowrap cursor-pointer"
+                    className="rounded-full bg-[#451020] px-8 py-3 font-serif text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[#faf6f0] shadow-md transition-colors duration-200 hover:bg-[#5c1a2e] active:scale-[0.98] sm:text-sm sm:px-10 sm:py-3.5 whitespace-nowrap cursor-pointer"
                   >
                     {lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance"}
                   </button>

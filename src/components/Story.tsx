@@ -12,7 +12,6 @@ export function Story() {
     <section id="story" className="bg-cream px-6 py-20 sm:py-28">
       <div className="mx-auto max-w-5xl">
         <SectionHeading
-          label={lang === "vi" ? "Chuyện chúng mình" : "Our story"}
           title={lang === "vi" ? "Sáu năm và một lời hẹn" : "Six years, one promise"}
           desc={t(wedding.story.intro)}
         />
