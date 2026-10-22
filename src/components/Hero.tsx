@@ -92,7 +92,8 @@ export function Hero() {
                 left: "-12%",
                 top: "-9%",
                 width: "54%",
-                filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45))",
+                filter:
+                  "drop-shadow(0 2px 5px rgba(0, 0, 0, 0.6)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.4))",
               }}
               className="pointer-events-none absolute z-10"
             />
@@ -104,7 +105,8 @@ export function Hero() {
                 left: "6%",
                 top: "91%",
                 width: "95%",
-                filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45))",
+                filter:
+                  "drop-shadow(0 2px 5px rgba(0, 0, 0, 0.6)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.4))",
               }}
               className="pointer-events-none absolute z-10"
             />
