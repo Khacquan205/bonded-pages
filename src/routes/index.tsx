@@ -6,6 +6,7 @@ import { Timeline } from "@/components/Timeline";
 import { Gallery } from "@/components/Gallery";
 import { Guestbook } from "@/components/Guestbook";
 import { ClosingCta } from "@/components/ClosingCta";
+import { StickyRsvpButton } from "@/components/StickyRsvpButton";
 import { Toaster } from "@/components/ui/sonner";
 import { wedding } from "@/config/wedding";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -60,6 +61,7 @@ function Invitation() {
         <Guestbook />
         <ClosingCta />
       </main>
+      <StickyRsvpButton />
     </div>
   );
 }
