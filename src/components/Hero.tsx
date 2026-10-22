@@ -21,11 +21,8 @@ export function Hero() {
 
   useEffect(() => {
     const checkScroll = () => {
-      if (!slotRef.current) return;
-      const rect = slotRef.current.getBoundingClientRect();
-      // When the button slot scrolls near the top of the viewport (<= 90px),
-      // transition it to sticky bottom; when scrolling back, transition back into hero slot.
-      setIsSticky(rect.top <= 90);
+      // Trigger immediately when user starts scrolling down (> 30px)
+      setIsSticky(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", checkScroll, { passive: true });
@@ -125,7 +122,7 @@ export function Hero() {
             {!isSticky ? (
               <motion.div
                 layoutId="rsvp-main-button"
-                transition={{ type: "spring", stiffness: 300, damping: 28 }}
+                transition={{ type: "spring", stiffness: 280, damping: 26, mass: 0.8 }}
               >
                 <ContactPicker>
                   <button

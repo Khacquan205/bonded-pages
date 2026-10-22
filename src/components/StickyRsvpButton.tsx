@@ -12,7 +12,7 @@ export function StickyRsvpButton() {
       {isSticky && (
         <motion.div
           layoutId="rsvp-main-button"
-          transition={{ type: "spring", stiffness: 300, damping: 28 }}
+          transition={{ type: "spring", stiffness: 280, damping: 26, mass: 0.8 }}
           className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-40 pointer-events-auto"
         >
           <ContactPicker>
