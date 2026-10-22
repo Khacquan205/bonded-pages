@@ -129,7 +129,7 @@ export function Info() {
               </div>
 
               {/* Gentle non-mandatory dress code guidance note */}
-              <p className="mt-6 sm:mt-8 font-serif text-xs sm:text-sm italic text-[#3d271d]/85 leading-relaxed max-w-md mx-auto">
+              <p className="mt-6 sm:mt-8 font-serif text-xs sm:text-sm italic text-[#3d271d]/85 leading-relaxed max-w-md mx-auto text-pretty">
                 <span className="text-[#451020] font-bold not-italic mr-1.5">*</span>
                 {t(wedding.info.dresscode.text)}
               </p>
@@ -189,7 +189,7 @@ export function Info() {
                   <p className="font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.12em] text-[#2d081d]">
                     {lang === "vi" ? "Lưu ý đậu xe" : "Parking Guidance"}
                   </p>
-                  <p className="mt-1 text-xs sm:text-sm text-[#3d271d]/85 leading-relaxed">
+                  <p className="mt-1 text-xs sm:text-sm text-[#3d271d]/85 leading-relaxed text-pretty">
                     {t(wedding.info.notes.text)}
                   </p>
                 </div>
