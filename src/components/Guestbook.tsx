@@ -73,7 +73,7 @@ export function Guestbook() {
     if (!trimmedName || !trimmedMsg) {
       toast.error(
         lang === "vi"
-          ? "Vui lòng nhập tên và lời chúc của bạn nhé!"
+          ? "Vui lòng nhập tên và lời chúc của bạn!"
           : "Please enter your name and heartfelt message!",
       );
       return;
@@ -87,7 +87,7 @@ export function Guestbook() {
         const remaining = COOLDOWN_SECONDS - diff;
         toast.error(
           lang === "vi"
-            ? `Vui lòng đợi ${remaining}s trước khi gửi lời chúc tiếp theo nhé.`
+            ? `Vui lòng đợi ${remaining}s trước khi gửi lời chúc tiếp theo.`
             : `Please wait ${remaining}s before sending another message.`,
         );
         return;
