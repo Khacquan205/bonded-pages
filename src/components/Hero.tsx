@@ -3,8 +3,8 @@ import { ChevronDown } from "lucide-react";
 import { wedding } from "@/config/wedding";
 import { useLanguage } from "@/context/LanguageContext";
 import { ContactPicker } from "./ContactPicker";
-import saveTextImg from "@/assets/save-the-date-save.png";
-import dateTextImg from "@/assets/save-the-date-the-date.png";
+import saveTextImg from "@/assets/save-the-date-save-red.png";
+import dateTextImg from "@/assets/save-the-date-the-date-red.png";
 
 const fade = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -50,12 +50,11 @@ export function Hero() {
                 decoding="async"
                 className="size-full object-cover"
               />
-              {/* Soft top/bottom shading so the white script stays legible on the photo */}
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-[25%] bg-gradient-to-b from-black/40 to-transparent" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/65 via-black/35 to-transparent" />
+              {/* Subtle shading for photo depth */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[22%] bg-gradient-to-t from-black/35 to-transparent" />
             </div>
 
-            {/* White script overlays: top-left & bottom-right (matching card layout) */}
+            {/* Red script overlays: top-left & bottom-right (matching card layout) */}
             <img
               src={saveTextImg}
               alt="Save"
@@ -65,7 +64,7 @@ export function Hero() {
                 top: "-9%",
                 width: "54%",
               }}
-              className="pointer-events-none absolute z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
+              className="pointer-events-none absolute z-10 drop-shadow-[0_1px_4px_rgba(255,255,255,0.95)] drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]"
             />
             <img
               src={dateTextImg}
@@ -76,7 +75,7 @@ export function Hero() {
                 top: "91%",
                 width: "95%",
               }}
-              className="pointer-events-none absolute z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] drop-shadow-[0_1px_4px_rgba(69,16,32,0.4)]"
+              className="pointer-events-none absolute z-10 drop-shadow-[0_1px_4px_rgba(255,255,255,0.95)] drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]"
             />
           </div>
         </motion.div>
