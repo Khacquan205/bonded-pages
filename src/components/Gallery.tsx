@@ -102,11 +102,10 @@ export function Gallery() {
     <section id="gallery" className="relative bg-[#f4efe6] px-4 py-20 sm:px-6 sm:py-28 scroll-mt-16">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          label={lang === "vi" ? "Khoảnh Khắc" : "Moments"}
           title={lang === "vi" ? "Phòng Trưng Bày Kỷ Niệm" : "Fine Art Gallery"}
           desc={
             lang === "vi"
-              ? "Từng khoảnh khắc đong đầy yêu thương được nâng niu trong từng khung hình nghệ thuật."
+              ? "Từng khoảnh khắc đong đầy yêu thương được nâng niu trong từng khung hình."
               : "Love measured in shared laughter, gentle glances, and quiet moments together."
           }
         />
@@ -159,26 +158,12 @@ export function Gallery() {
                       "mt-auto flex items-center justify-between border-t border-[#2d081d]/10",
                       isDualCard ? "pt-2 sm:pt-2.5" : "pt-2.5 sm:pt-3"
                     )}>
-                      <div className="min-w-0 flex-1 pr-2">
-                        <span className={cn(
-                          "font-mono font-semibold uppercase tracking-[0.22em] text-[#451020]",
-                          isDualCard ? "text-[0.5625rem] sm:text-[0.625rem]" : "text-[0.625rem] sm:text-xs"
-                        )}>
-                          NO. {String(idx + 1).padStart(2, "0")}
-                        </span>
-                        <h4 className={cn(
-                          "mt-0.5 font-serif font-normal text-[#2d081d] leading-tight transition-colors group-hover:text-[#451020]",
-                          isDualCard ? "text-[0.8125rem] sm:text-base truncate" : "text-base sm:text-lg md:text-xl"
-                        )}>
-                          {t(art.title)}
-                        </h4>
-                        <p className={cn(
-                          "mt-0.5 font-serif italic text-[#3d271d]/70",
-                          isDualCard ? "text-[0.625rem] sm:text-xs truncate" : "text-[0.8125rem] sm:text-sm"
-                        )}>
-                          {t(art.subtitle)}
-                        </p>
-                      </div>
+                      <span className={cn(
+                        "font-mono font-semibold uppercase tracking-[0.22em] text-[#451020]",
+                        isDualCard ? "text-[0.625rem] sm:text-xs" : "text-xs sm:text-sm"
+                      )}>
+                        NO. {String(idx + 1).padStart(2, "0")}
+                      </span>
 
                       {/* View Action Pill */}
                       <div className={cn(
@@ -253,16 +238,10 @@ export function Gallery() {
               />
             </div>
 
-            {/* Caption in lightbox using elegant Cormorant Garamond */}
+            {/* Caption in lightbox */}
             <div className="mt-3.5 text-center px-4 max-w-xl">
-              <p className="font-mono text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-[#dfd5c6]">
+              <p className="font-mono text-xs sm:text-sm font-semibold uppercase tracking-[0.24em] text-[#dfd5c6]">
                 NO. {String(selectedIndex + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-1 font-serif text-lg sm:text-2xl font-light text-[#faf6f0] tracking-wide">
-                {t(ARTWORKS[selectedIndex % ARTWORKS.length].title)}
-              </h3>
-              <p className="mt-1 font-serif text-xs sm:text-sm italic text-[#faf6f0]/75">
-                {t(ARTWORKS[selectedIndex % ARTWORKS.length].subtitle)}
               </p>
             </div>
           </div>
