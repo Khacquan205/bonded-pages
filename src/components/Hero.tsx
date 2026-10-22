@@ -55,7 +55,7 @@ export function Hero() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/65 via-black/35 to-transparent" />
             </div>
 
-            {/* Original white script overlays: top-left & bottom-right */}
+            {/* White script overlays: top-left & bottom-right (matching card layout) */}
             <img
               src={saveTextImg}
               alt="Save"
@@ -73,16 +73,16 @@ export function Hero() {
               aria-hidden="true"
               style={{
                 left: "6%",
-                top: "82%",
-                width: "92%",
+                top: "91%",
+                width: "95%",
               }}
-              className="pointer-events-none absolute z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
+              className="pointer-events-none absolute z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] drop-shadow-[0_1px_4px_rgba(69,16,32,0.4)]"
             />
           </div>
         </motion.div>
 
         {/* Bottom Section: Venue, Date, CTA Button & Scroll */}
-        <div className="w-full flex flex-col items-center pt-8 sm:pt-10">
+        <div className="w-full flex flex-col items-center pt-10 sm:pt-12">
           {/* Venue Banner */}
           <motion.div {...fade(0.28)} className="flex items-center gap-3 sm:gap-5">
             <span className="h-px w-6 bg-[#451020]/30 sm:w-12" />
@@ -92,10 +92,10 @@ export function Hero() {
             <span className="h-px w-6 bg-[#451020]/30 sm:w-12" />
           </motion.div>
 
-          {/* Date from navbar */}
+          {/* Date from navbar - clear, sharp & bold */}
           <motion.p
             {...fade(0.34)}
-            className="mt-2 font-display text-xs sm:text-sm tracking-[0.2em] font-medium text-[#451020]/85 uppercase"
+            className="mt-2 font-display text-sm sm:text-base font-bold tracking-[0.24em] text-[#451020] uppercase"
           >
             11.12.2026
           </motion.p>
