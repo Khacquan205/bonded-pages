@@ -90,8 +90,37 @@ export function Navbar() {
         )}
       >
         <nav className="mx-auto flex h-16 sm:h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
-          {/* Left Column: Navigation Links on desktop / flex-1 spacer on mobile */}
+          {/* Left Column: Brand Logo on desktop / flex-1 spacer on mobile */}
           <div className="flex flex-1 items-center justify-start">
+            <a
+              href="#top"
+              onClick={(e) => scrollToSection(e, "top")}
+              className="hidden lg:flex items-center transition-transform hover:scale-105"
+              aria-label="Thành Long & Huyền Nga"
+            >
+              <img
+                src="/images/monogram-ln-plum.png"
+                alt="Long & Nga"
+                className="h-9 w-auto sm:h-11"
+              />
+            </a>
+          </div>
+
+          {/* Center Column: Navigation Links on desktop / Brand Logo on mobile */}
+          <div className="flex shrink-0 items-center justify-center">
+            <a
+              href="#top"
+              onClick={(e) => scrollToSection(e, "top")}
+              className="flex items-center justify-center transition-transform hover:scale-105 lg:hidden"
+              aria-label="Thành Long & Huyền Nga"
+            >
+              <img
+                src="/images/monogram-ln-plum.png"
+                alt="Long & Nga"
+                className="h-9 w-auto sm:h-11"
+              />
+            </a>
+
             <ul className="hidden lg:flex items-center gap-6 xl:gap-8 shrink-0">
               {links.map((l) => (
                 <li key={l.id} className="shrink-0">
@@ -105,22 +134,6 @@ export function Navbar() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Center Column: Centered Brand Logo */}
-          <div className="flex shrink-0 items-center justify-center">
-            <a
-              href="#top"
-              onClick={(e) => scrollToSection(e, "top")}
-              className="flex items-center justify-center transition-transform hover:scale-105"
-              aria-label="Thành Long & Huyền Nga"
-            >
-              <img
-                src="/images/monogram-ln-plum.png"
-                alt="Long & Nga"
-                className="h-9 w-auto sm:h-11"
-              />
-            </a>
           </div>
 
           {/* Right Column: Language Switch & RSVP Button & Mobile Menu */}
