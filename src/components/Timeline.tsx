@@ -1,10 +1,23 @@
 import { useState } from "react";
-import { Clock, MapPin } from "lucide-react";
+import { Clock } from "lucide-react";
 import { wedding } from "@/config/wedding";
 import { useFormatDate, useLanguage, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
+
+function renderWithNormalAmpersand(text: string) {
+  if (!text.includes("&")) return text;
+  const parts = text.split("&");
+  return parts.map((part, index) => (
+    <span key={index}>
+      {part}
+      {index < parts.length - 1 && (
+        <span className="font-sans font-normal text-[0.9em] mx-1">&</span>
+      )}
+    </span>
+  ));
+}
 
 export function Timeline() {
   const { lang } = useLanguage();
@@ -18,17 +31,16 @@ export function Timeline() {
     <section id="timeline" className="bg-cream px-6 py-20 sm:py-28 scroll-mt-16">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
-          label={lang === "vi" ? "Chương trình" : "Schedule"}
           title={lang === "vi" ? "Lịch trình ngày vui" : "Wedding Timeline"}
           desc={
             lang === "vi"
-              ? "Từng khoảnh khắc trọn vẹn và ý nghĩa trong ngày hạnh phúc của chúng mình."
+              ? "Từng khoảnh khắc trọn vẹn và ý nghĩa trong ngày hạnh phúc của gia đình."
               : "Every meaningful moment of our special day."
           }
         />
 
-        {/* Schedule Header / Tabs */}
-        {wedding.timeline.length > 1 ? (
+        {/* Schedule Header / Tabs (only shown if multiple events exist) */}
+        {wedding.timeline.length > 1 && (
           <div className="mt-12 flex justify-center">
             <div className="inline-flex rounded-full border border-maroon/20 bg-cream-deep/70 p-1.5 shadow-2xs backdrop-blur-xs">
               {wedding.timeline.map((day, idx) => (
@@ -48,22 +60,18 @@ export function Timeline() {
               ))}
             </div>
           </div>
-        ) : (
-          <div className="mt-10 flex justify-center px-3">
-            <span className="inline-flex flex-col sm:flex-row items-center justify-center text-center rounded-2xl sm:rounded-full border border-[#451020]/35 bg-[#451020]/10 px-6 py-2.5 sm:px-8 sm:py-2.5 font-display text-xs sm:text-sm font-bold uppercase tracking-[0.16em] text-[#451020] leading-relaxed shadow-2xs">
-              <span className="font-bold">{t(currentSchedule.tab)}</span>
-              <span className="hidden sm:inline mx-2 text-[#451020]/40">·</span>
-              <span className="text-xs sm:text-sm font-bold text-[#451020]">
-                {wedding.venue.name}
-              </span>
-            </span>
-          </div>
         )}
 
-        {/* Date subtitle */}
-        <p className="mt-4 text-center font-serif text-sm italic lining-nums tracking-[0.04em] text-[#3d271d]/75 sm:text-base">
-          {fmt(currentSchedule.date)}
-        </p>
+        {/* Date highlight - prominent & elegant */}
+        <Reveal delay={0.1} className="mt-8 sm:mt-10 text-center">
+          <div className="inline-flex items-center justify-center gap-3 sm:gap-5">
+            <span className="h-px w-8 bg-[#451020]/25 sm:w-16" />
+            <p className="font-serif text-lg sm:text-2xl md:text-[1.75rem] font-medium tracking-[0.04em] text-[#451020] italic">
+              {fmt(currentSchedule.date)}
+            </p>
+            <span className="h-px w-8 bg-[#451020]/25 sm:w-16" />
+          </div>
+        </Reveal>
 
         {/* Vertical Timeline */}
         <div className="relative mt-12 pl-6 sm:pl-0">
@@ -99,24 +107,12 @@ export function Timeline() {
                       </div>
 
                       <h4 className="mt-3 font-serif text-xl font-medium text-[#2d081d] sm:text-2xl">
-                        {t(item.title)}
+                        {renderWithNormalAmpersand(t(item.title))}
                       </h4>
 
                       <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-[#3d271d]/85">
                         {t(item.desc)}
                       </p>
-
-                      {item.location ? (
-                        <div
-                          className={cn(
-                            "mt-3 flex items-center gap-1.5 text-xs font-serif text-[#451020]/90 sm:text-sm",
-                            isEven ? "sm:justify-end" : "sm:justify-start",
-                          )}
-                        >
-                          <MapPin className="size-3.5 shrink-0 text-[#451020]" />
-                          <span>{t(item.location)}</span>
-                        </div>
-                      ) : null}
                     </div>
 
                     {/* Timeline center bullet */}
