@@ -2,7 +2,6 @@ import { useState } from "react";
 import { MapPin, Info as InfoIcon, Palette, Download } from "lucide-react";
 import { wedding } from "@/config/wedding";
 import { useLanguage, useT } from "@/context/LanguageContext";
-import { ContactPicker } from "./ContactPicker";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -11,68 +10,26 @@ import { cn } from "@/lib/utils";
 export function Info() {
   const { lang } = useLanguage();
   const t = useT();
-  const [cardSide, setCardSide] = useState<"back" | "front">("back");
   const [isCardZoomOpen, setIsCardZoomOpen] = useState(false);
 
-  const currentCardImg =
-    cardSide === "front"
-      ? "/images/thiep-tiec-cuoi-mat-truoc.png"
-      : "/images/thiep-tiec-cuoi-mat-sau.png";
-
+  const currentCardImg = "/images/thiep-tiec-cuoi-mat-sau.png";
   const currentCardTitle =
-    cardSide === "front"
-      ? (lang === "vi" ? "Mặt Trước — Bìa Dập Nổi\u00A0Monogram" : "Front Cover — Embossed\u00A0Monogram")
-      : (lang === "vi" ? "Mặt Sau — Thiệp Tiệc Cưới Chính\u00A0Thức" : "Official Reception\u00A0Invitation");
-
-  const downloadFilename =
-    cardSide === "front"
-      ? "Thiep-Tiec-Cuoi-Mat-Truoc-Thanh-Long-Huyen-Nga.png"
-      : "Thiep-Tiec-Cuoi-Mat-Sau-Thanh-Long-Huyen-Nga.png";
+    lang === "vi"
+      ? "Thiệp Tiệc Cưới Chính Thức"
+      : "Official Reception Invitation";
+  const downloadFilename = "Thiep-Tiec-Cuoi-Thanh-Long-Huyen-Nga.png";
 
   return (
     <section id="info" className="relative bg-[#f4efe6] px-5 py-20 sm:px-6 sm:py-28 scroll-mt-16">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
-          label={lang === "vi" ? "Thiệp Cưới Vật Lý" : "Official Invitation"}
-          title={lang === "vi" ? "Thiệp Cưới Chính Thức" : "Wedding Stationery"}
+          title={lang === "vi" ? "Thiệp Cưới" : "Wedding Stationery"}
         />
-
-        {/* ------------------------------------------------------------- */}
-        {/* CARD SIDE TOGGLE: MẶT SAU & MẶT TRƯỚC                         */}
-        {/* ------------------------------------------------------------- */}
-        <div className="mt-8 sm:mt-10 flex justify-center">
-          <div className="inline-flex items-center rounded-full border border-[#2d081d]/15 bg-[#faf7f2] p-1.5 shadow-2xs font-serif text-xs sm:text-sm">
-            <button
-              type="button"
-              onClick={() => setCardSide("back")}
-              className={cn(
-                "rounded-full px-5 py-2 font-medium transition-all duration-200",
-                cardSide === "back"
-                  ? "bg-[#2d081d] text-[#faf6f0] shadow-2xs font-semibold"
-                  : "text-[#2d081d]/75 hover:text-[#2d081d] hover:bg-black/5",
-              )}
-            >
-              {lang === "vi" ? "Mặt Sau" : "Back"}
-            </button>
-            <button
-              type="button"
-              onClick={() => setCardSide("front")}
-              className={cn(
-                "rounded-full px-5 py-2 font-medium transition-all duration-200",
-                cardSide === "front"
-                  ? "bg-[#2d081d] text-[#faf6f0] shadow-2xs font-semibold"
-                  : "text-[#2d081d]/75 hover:text-[#2d081d] hover:bg-black/5",
-              )}
-            >
-              {lang === "vi" ? "Mặt Trước" : "Front"}
-            </button>
-          </div>
-        </div>
 
         {/* ------------------------------------------------------------- */}
         {/* CENTERPIECE: OFFICIAL WEDDING INVITATION CARD                 */}
         {/* ------------------------------------------------------------- */}
-        <Reveal delay={0.1} className="mt-8 sm:mt-10">
+        <Reveal delay={0.1} className="mt-8 sm:mt-12">
           <div className="mx-auto max-w-lg sm:max-w-xl">
             {/* Stationery Mount Frame: Clickable to view full card */}
             <div
@@ -146,13 +103,7 @@ export function Info() {
         {/* ------------------------------------------------------------- */}
         <div className="mt-16 sm:mt-24 pt-12 border-t border-[#2d081d]/12">
           <SectionHeading
-            label={lang === "vi" ? "Dress Code" : "Dress Code"}
-            title={lang === "vi" ? "Trang Phục" : "Dress Code"}
-            desc={
-              lang === "vi"
-                ? "Để buổi tiệc thêm phần đồng điệu và trang nhã, quý khách vui lòng ưu tiên trang phục theo các gam màu gợi ý."
-                : "To make our celebration harmoniously beautiful, guests are kindly invited to wear our suggested color palette."
-            }
+            title={lang === "vi" ? "Gam màu gợi ý" : "Suggested Palette"}
           />
 
           <Reveal delay={0.2} className="mt-8 max-w-2xl mx-auto">
@@ -165,21 +116,23 @@ export function Info() {
               </div>
 
               {/* 5 square swatches matching the printed stationery */}
-              <div className="mt-9 sm:mt-12 grid grid-cols-5 gap-2 sm:gap-4 md:gap-6 max-w-lg mx-auto text-center">
+              <div className="mt-8 sm:mt-10 grid grid-cols-5 gap-2.5 sm:gap-4 md:gap-6 max-w-sm sm:max-w-md mx-auto">
                 {wedding.info.dresscode.swatches.map((s) => (
-                  <div key={s.hex} className="flex flex-col items-center">
-                    <div
-                      role="img"
-                      aria-label={t(s.name)}
-                      style={{ backgroundColor: s.hex }}
-                      className="size-11 sm:size-16 shadow-[3px_4px_6px_rgba(45,8,29,0.28)] transition-transform hover:scale-105"
-                    />
-                    <span className="mt-2 font-serif text-[0.6875rem] sm:text-xs md:text-sm font-medium text-[#2d081d]">
-                      {t(s.name)}
-                    </span>
-                  </div>
+                  <div
+                    key={s.hex}
+                    role="img"
+                    aria-label={t(s.name)}
+                    style={{ backgroundColor: s.hex }}
+                    className="aspect-square w-full shadow-[3px_4px_6px_rgba(45,8,29,0.28)] transition-transform hover:scale-105"
+                  />
                 ))}
               </div>
+
+              {/* Gentle non-mandatory dress code guidance note */}
+              <p className="mt-6 sm:mt-8 font-serif text-xs sm:text-sm italic text-[#3d271d]/85 leading-relaxed max-w-md mx-auto">
+                <span className="text-[#451020] font-bold not-italic mr-1.5">*</span>
+                {t(wedding.info.dresscode.text)}
+              </p>
             </div>
           </Reveal>
         </div>
@@ -189,12 +142,11 @@ export function Info() {
         {/* ------------------------------------------------------------- */}
         <div className="mt-14 sm:mt-20 pt-10 border-t border-[#2d081d]/10">
           <SectionHeading
-            label={lang === "vi" ? "Chỉ Dẫn & Đón Tiếp" : "Venue & Guest Guide"}
-            title={lang === "vi" ? "Địa Điểm & Bản Đồ" : "Venue & Directions"}
+            title={lang === "vi" ? "Địa Điểm" : "Venue"}
             desc={
               lang === "vi"
-                ? "Bản đồ đường đi đến tiệc cưới tại JW Marriott Hotel cùng thông tin hướng dẫn đỗ xe và đón tiếp."
-                : "Directions to our celebration at JW Marriott Hotel with integrated parking and reception details."
+                ? "Bản đồ đường đi đến tiệc cưới tại JW Marriott Hotel cùng thông tin hướng dẫn đỗ xe."
+                : "Directions to our celebration at JW Marriott Hotel with parking details."
             }
           />
 
@@ -230,32 +182,16 @@ export function Info() {
                 </a>
               </div>
 
-              {/* Seamless Parking Note & Reception Callout (Right inside Venue Card) */}
-              <div className="p-5 sm:p-6 bg-[#faf7f2]/90 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                <div className="flex items-start gap-3 text-left">
-                  <InfoIcon className="mt-0.5 size-5 shrink-0 text-[#451020]" strokeWidth={1.5} aria-hidden="true" />
-                  <div>
-                    <p className="font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.12em] text-[#2d081d]">
-                      {lang === "vi" ? "Lưu ý đậu xe & Thời gian đón khách" : "Parking & Arrival Guidance"}
-                    </p>
-                    <p className="mt-1 text-xs sm:text-sm text-[#3d271d]/85 leading-relaxed">
-                      {t(wedding.info.notes.text)}
-                    </p>
-                    <p className="mt-1.5 text-xs text-[#451020] font-medium">
-                      {lang === "vi" ? "• 18:00: Đón khách & Chụp ảnh · 18:30: Khai tiệc" : "• 18:00: Welcome & Photos · 18:30: Dinner"}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="shrink-0 w-full sm:w-auto">
-                  <ContactPicker>
-                    <button
-                      type="button"
-                      className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-[#451020] px-6 py-2.5 font-serif text-xs font-semibold uppercase tracking-[0.14em] text-[#faf6f0] shadow-md transition-all hover:bg-[#5c1a2e] hover:scale-105"
-                    >
-                      {lang === "vi" ? "Xác nhận tham dự" : "Confirm Attendance"}
-                    </button>
-                  </ContactPicker>
+              {/* Seamless Parking Note */}
+              <div className="p-5 sm:p-6 bg-[#faf7f2]/90 flex items-start gap-3 text-left">
+                <InfoIcon className="mt-0.5 size-5 shrink-0 text-[#451020]" strokeWidth={1.5} aria-hidden="true" />
+                <div>
+                  <p className="font-display text-xs sm:text-sm font-semibold uppercase tracking-[0.12em] text-[#2d081d]">
+                    {lang === "vi" ? "Lưu ý đậu xe" : "Parking Guidance"}
+                  </p>
+                  <p className="mt-1 text-xs sm:text-sm text-[#3d271d]/85 leading-relaxed">
+                    {t(wedding.info.notes.text)}
+                  </p>
                 </div>
               </div>
             </div>
