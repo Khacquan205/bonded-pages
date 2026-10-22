@@ -23,7 +23,7 @@ export function ClosingCta() {
 
       <div className="relative mx-auto max-w-3xl px-6">
         <Reveal>
-          <h2 className="font-serif text-3xl leading-tight sm:text-5xl text-cream">
+          <h2 className="font-serif text-3xl leading-tight sm:text-5xl text-cream text-balance">
             {t(wedding.closing.title)}
           </h2>
           <div className="mx-auto mt-6 flex items-center justify-center gap-3">
@@ -31,9 +31,9 @@ export function ClosingCta() {
             <span className="size-2 rotate-45 bg-[#451020] border border-white/40" />
             <span className="h-px w-12 bg-white/40" />
           </div>
-          <p className="mt-6 text-sm sm:text-base leading-relaxed text-white/90">
+          <p className="mt-6 text-sm sm:text-base leading-relaxed text-white/90 text-pretty max-w-xl mx-auto">
             {lang === "vi"
-              ? "Hãy nhắn tin cho gia đình qua Zalo để xác nhận tham dự và giúp gia đình chuẩn bị đón tiếp bạn chu đáo nhất."
+              ? "Hãy nhắn tin cho gia đình qua Zalo để xác nhận tham dự và giúp gia đình chuẩn bị đón tiếp bạn chu đáo\u00A0nhất."
               : "Please send us a message via Zalo to confirm your attendance so we can best prepare for your warm welcome."}
           </p>
         </Reveal>
