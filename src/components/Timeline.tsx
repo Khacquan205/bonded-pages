@@ -64,14 +64,14 @@ export function Timeline() {
 
         {/* Date highlight - prominent & elegant */}
         <Reveal delay={0.1} className="mt-8 sm:mt-12 text-center">
-          <div className="inline-flex items-center justify-center gap-3.5 sm:gap-6">
-            <span className="h-px w-8 bg-[#451020]/30 sm:w-16 md:w-20" />
-            <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium tracking-[0.03em] text-[#451020] italic leading-tight">
+          <div className="inline-flex max-w-full items-center justify-center gap-2.5 sm:gap-6">
+            <span className="h-px w-4 sm:w-12 md:w-20 bg-[#451020]/30 shrink-0" />
+            <p className="font-serif text-lg xs:text-xl sm:text-3xl md:text-4xl font-medium tracking-[0.03em] text-[#451020] italic leading-tight whitespace-nowrap">
               {fmt(currentSchedule.date)}
             </p>
-            <span className="h-px w-8 bg-[#451020]/30 sm:w-16 md:w-20" />
+            <span className="h-px w-4 sm:w-12 md:w-20 bg-[#451020]/30 shrink-0" />
           </div>
-          <p className="mt-3 font-serif text-base sm:text-lg md:text-xl tracking-[0.03em] text-[#3d271d]/85 italic">
+          <p className="mt-2.5 sm:mt-3 font-serif text-xs xs:text-sm sm:text-lg md:text-xl tracking-[0.03em] text-[#3d271d]/85 italic whitespace-nowrap">
             {t(wedding.date.receptionLunar)}
           </p>
         </Reveal>
