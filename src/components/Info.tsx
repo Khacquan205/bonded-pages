@@ -51,7 +51,7 @@ export function Info() {
                   src={currentCardImg}
                   alt={currentCardTitle}
                   width={1536}
-                  height={2127}
+                  height={2123}
                   className="w-full h-auto object-contain block transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   loading="eager"
                 />
