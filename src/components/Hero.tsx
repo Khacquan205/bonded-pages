@@ -1,7 +1,9 @@
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { wedding } from "@/config/wedding";
 import { useLanguage } from "@/context/LanguageContext";
+import { useRsvpButton } from "@/context/RsvpButtonContext";
 import { ContactPicker } from "./ContactPicker";
 import saveTextImg from "@/assets/save-the-date-save.png";
 import dateTextImg from "@/assets/save-the-date-the-date.png";
@@ -14,6 +16,22 @@ const fade = (delay: number) => ({
 
 export function Hero() {
   const { lang } = useLanguage();
+  const slotRef = useRef<HTMLDivElement>(null);
+  const { isSticky, setIsSticky } = useRsvpButton();
+
+  useEffect(() => {
+    const checkScroll = () => {
+      if (!slotRef.current) return;
+      const rect = slotRef.current.getBoundingClientRect();
+      // When the button slot scrolls near the top of the viewport (<= 90px),
+      // transition it to sticky bottom; when scrolling back, transition back into hero slot.
+      setIsSticky(rect.top <= 90);
+    };
+
+    window.addEventListener("scroll", checkScroll, { passive: true });
+    checkScroll();
+    return () => window.removeEventListener("scroll", checkScroll);
+  }, [setIsSticky]);
 
   return (
     <section id="top" className="relative min-h-[100svh] w-full overflow-hidden bg-[#f4efe6]">
@@ -102,17 +120,32 @@ export function Hero() {
             11.12.2026
           </motion.p>
 
-          {/* CTA Button: Confirm Attendance */}
-          <motion.div {...fade(0.4)} className="mt-4 sm:mt-5 flex justify-center">
-            <ContactPicker>
-              <button
-                type="button"
-                className="rounded-full bg-[#451020] px-8 py-3 font-serif text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[#faf6f0] shadow-md transition-all hover:scale-[1.02] hover:bg-[#5c1a2e] hover:shadow-lg sm:text-sm sm:px-10 sm:py-3.5"
+          {/* CTA Button Slot: Seamless shared transition to sticky bottom button */}
+          <div ref={slotRef} className="mt-4 sm:mt-5 flex justify-center min-h-[46px] sm:min-h-[52px]">
+            {!isSticky ? (
+              <motion.div
+                layoutId="rsvp-main-button"
+                transition={{ type: "spring", stiffness: 300, damping: 28 }}
+              >
+                <ContactPicker>
+                  <button
+                    type="button"
+                    className="rounded-full bg-[#451020] px-8 py-3 font-serif text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[#faf6f0] shadow-md transition-all hover:scale-[1.02] hover:bg-[#5c1a2e] hover:shadow-lg sm:text-sm sm:px-10 sm:py-3.5 whitespace-nowrap cursor-pointer"
+                  >
+                    {lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance"}
+                  </button>
+                </ContactPicker>
+              </motion.div>
+            ) : (
+              /* Invisible layout placeholder so Hero contents don't jump */
+              <div
+                aria-hidden="true"
+                className="invisible rounded-full px-8 py-3 font-serif text-[0.8125rem] uppercase tracking-[0.16em] sm:text-sm sm:px-10 sm:py-3.5 whitespace-nowrap select-none"
               >
                 {lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance"}
-              </button>
-            </ContactPicker>
-          </motion.div>
+              </div>
+            )}
+          </div>
 
           {/* Scroll down indicator */}
           <a

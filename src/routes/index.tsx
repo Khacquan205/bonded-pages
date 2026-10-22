@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { LayoutGroup } from "framer-motion";
+import { RsvpButtonProvider } from "@/context/RsvpButtonContext";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Info } from "@/components/Info";
@@ -42,8 +44,12 @@ export const Route = createFileRoute("/")({
   }),
   component: () => (
     <LanguageProvider>
-      <Invitation />
-    </LanguageProvider>
+      <RsvpButtonProvider>
+        <LayoutGroup id="rsvp-button-group">
+          <Invitation />
+        </LayoutGroup>
+      </RsvpButtonProvider>
+      </LanguageProvider>
   ),
 });
 
