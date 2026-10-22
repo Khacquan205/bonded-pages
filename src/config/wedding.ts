@@ -91,8 +91,8 @@ export const wedding = {
     dresscode: {
       title: { vi: "Dress code", en: "Dress code" },
       text: {
-        vi: "Bảng màu mang tính gợi ý, quý khách có thể thoải mái lựa chọn trang phục theo sở\u00A0thích.",
-        en: "The color palette is optional — please feel free to dress in whatever makes you feel comfortable.",
+        vi: "Bảng màu trên là gợi ý nhẹ nhàng, quý khách hãy thoải mái lựa chọn trang phục mà mình cảm thấy tự tin và rạng ngời nhất khi đến chung\u00A0vui.",
+        en: "The color palette is a gentle suggestion. Please feel free to dress in whatever makes you feel most confident and radiant.",
       },
       swatches: [
         { name: { vi: "Đen", en: "Black" }, hex: "#1c1917" },
