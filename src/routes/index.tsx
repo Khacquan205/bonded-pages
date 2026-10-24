@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LayoutGroup } from "framer-motion";
-import { RsvpButtonProvider } from "@/context/RsvpButtonContext";
 import { Navbar } from "@/components/Navbar";
+import { RsvpButtonProvider } from "@/context/RsvpButtonContext";
 import { Hero } from "@/components/Hero";
 import { Info } from "@/components/Info";
 import { Timeline } from "@/components/Timeline";
@@ -9,6 +9,7 @@ import { Gallery } from "@/components/Gallery";
 import { Guestbook } from "@/components/Guestbook";
 import { ClosingCta } from "@/components/ClosingCta";
 import { StickyRsvpButton } from "@/components/StickyRsvpButton";
+import { MusicPlayer } from "@/components/MusicPlayer";
 import { Toaster } from "@/components/ui/sonner";
 import { wedding } from "@/config/wedding";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -56,7 +57,7 @@ export const Route = createFileRoute("/")({
 function Invitation() {
 
   return (
-    <div className="min-h-screen bg-cream text-ink">
+    <div className="relative min-h-screen bg-cream text-ink">
       <Toaster position="top-center" richColors />
       <Navbar />
       <main>
@@ -68,6 +69,7 @@ function Invitation() {
         <ClosingCta />
       </main>
       <StickyRsvpButton />
+      <MusicPlayer />
     </div>
   );
 }

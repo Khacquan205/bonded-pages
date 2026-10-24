@@ -13,40 +13,15 @@ const links = [
 
 export function Navbar() {
   const { lang, setLang } = useLanguage();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
     if (!open) return;
-
-    // Plain `overflow: hidden` isn't enough on iOS Safari / in-app webviews
-    // (Zalo, Facebook Messenger): if the menu opens mid-momentum-scroll, the
-    // browser freezes `position: fixed` layers at the wrong offset, which
-    // shows through as ghosted/duplicated content behind the menu. Locking
-    // the body to `position: fixed` at the current scroll offset avoids that.
-    const scrollY = window.scrollY;
-    const { body } = document;
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.left = "0";
-    body.style.right = "0";
-    body.style.overflow = "hidden";
-
-    return () => {
-      body.style.position = "";
-      body.style.top = "";
-      body.style.left = "";
-      body.style.right = "";
-      body.style.overflow = "";
-      window.scrollTo(0, scrollY);
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
     };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
   }, [open]);
 
   const cta = lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance";
@@ -61,7 +36,7 @@ export function Navbar() {
       }
       const element = document.getElementById(id);
       if (element) {
-        const headerOffset = 64;
+        const headerOffset = 16;
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
         window.scrollTo({
@@ -80,118 +55,108 @@ export function Navbar() {
   };
 
   return (
-    <>
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-          scrolled || open
-            ? "border-b border-maroon/15 bg-cream/95 backdrop-blur-md shadow-2xs"
-            : "border-b border-[#2d081d]/8 bg-[#f4efe6]/80 backdrop-blur-xs",
-        )}
-      >
-        <nav className="mx-auto flex h-16 sm:h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
-          {/* Left Column: Brand Logo on desktop / flex-1 spacer on mobile */}
-          <div className="flex flex-1 items-center justify-start">
-            <a
-              href="#top"
-              onClick={(e) => scrollToSection(e, "top")}
-              className="hidden lg:flex items-center transition-transform hover:scale-105"
-              aria-label="Thành Long & Huyền Nga"
-            >
-              <img
-                src="/images/monogram-ln-plum.png"
-                alt="Long & Nga"
-                className="h-9 w-auto sm:h-11"
-              />
-            </a>
-          </div>
+    <header className="absolute inset-x-0 top-0 z-50 bg-gradient-to-b from-black/50 to-transparent lg:bg-none">
+      <nav className="mx-auto flex h-16 sm:h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
+        {/* Left Column: Brand Logo on desktop / flex-1 spacer on mobile */}
+        <div className="flex flex-1 items-center justify-start">
+          <a
+            href="#top"
+            onClick={(e) => scrollToSection(e, "top")}
+            className="hidden lg:flex items-center transition-transform hover:scale-105"
+            aria-label="Thành Long & Huyền Nga"
+          >
+            <img
+              src="/images/monogram-ln-cream.png"
+              alt="Long & Nga"
+              className="h-9 w-auto sm:h-11"
+            />
+          </a>
+        </div>
 
-          {/* Center Column: Navigation Links on desktop / Brand Logo on mobile */}
-          <div className="flex shrink-0 items-center justify-center">
-            <a
-              href="#top"
-              onClick={(e) => scrollToSection(e, "top")}
-              className="flex items-center justify-center transition-transform hover:scale-105 lg:hidden"
-              aria-label="Thành Long & Huyền Nga"
-            >
-              <img
-                src="/images/monogram-ln-plum.png"
-                alt="Long & Nga"
-                className="h-9 w-auto sm:h-11"
-              />
-            </a>
+        {/* Center Column: Navigation Links on desktop / Brand Logo on mobile */}
+        <div className="flex shrink-0 items-center justify-center">
+          <a
+            href="#top"
+            onClick={(e) => scrollToSection(e, "top")}
+            className="flex items-center justify-center transition-transform hover:scale-105 lg:hidden"
+            aria-label="Thành Long & Huyền Nga"
+          >
+            <img
+              src="/images/monogram-ln-cream.png"
+              alt="Long & Nga"
+              className="h-9 w-auto sm:h-11"
+            />
+          </a>
 
-            <ul className="hidden lg:flex items-center gap-6 xl:gap-8 shrink-0">
-              {links.map((l) => (
-                <li key={l.id} className="shrink-0">
-                  <a
-                    href={`#${l.id}`}
-                    onClick={(e) => scrollToSection(e, l.id)}
-                    className="whitespace-nowrap font-display text-xs uppercase tracking-[0.2em] transition-colors text-[#3d271d] hover:text-[#451020] font-medium"
-                  >
-                    {l[lang]}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="hidden lg:flex items-center gap-6 xl:gap-8 shrink-0">
+            {links.map((l) => (
+              <li key={l.id} className="shrink-0">
+                <a
+                  href={`#${l.id}`}
+                  onClick={(e) => scrollToSection(e, l.id)}
+                  className="whitespace-nowrap font-display text-xs uppercase tracking-[0.2em] transition-colors text-[#451020] font-medium rounded-full bg-cream/90 px-3 py-2 hover:bg-cream"
+                >
+                  {l[lang]}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          {/* Right Column: Language Switch & RSVP Button & Mobile Menu */}
-          <div className="flex flex-1 items-center justify-end gap-3.5 sm:gap-4 shrink-0 whitespace-nowrap">
-            <div className="flex items-center gap-1 text-[0.6875rem] tracking-[0.18em] font-display shrink-0 text-[#3d271d]/75">
-              <button
-                type="button"
-                onClick={() => setLang("vi")}
-                aria-label="Tiếng Việt"
-                className={cn(
-                  "transition-colors",
-                  lang === "vi"
-                    ? "font-semibold text-[#451020]"
-                    : "opacity-60 hover:opacity-100",
-                )}
-              >
-                VI
-              </button>
-              <span className="opacity-35">/</span>
-              <button
-                type="button"
-                onClick={() => setLang("en")}
-                aria-label="English"
-                className={cn(
-                  "transition-colors",
-                  lang === "en"
-                    ? "font-semibold text-[#451020]"
-                    : "opacity-60 hover:opacity-100",
-                )}
-              >
-                EN
-              </button>
-            </div>
-
-            <ContactPicker>
-              <button
-                type="button"
-                className="hidden shrink-0 whitespace-nowrap rounded-full bg-[#451020] px-5 py-2 font-serif text-xs font-semibold uppercase tracking-[0.14em] text-[#faf6f0] shadow-xs transition-all duration-300 hover:bg-[#5c1a2e] hover:shadow-sm sm:inline-flex"
-              >
-                {cta}
-              </button>
-            </ContactPicker>
-
+        {/* Right Column: Language Switch & RSVP Button & Mobile Menu */}
+        <div className="flex flex-1 items-center justify-end gap-3.5 sm:gap-4 shrink-0 whitespace-nowrap">
+          <div className="flex items-center gap-1 text-[0.6875rem] tracking-[0.18em] font-display shrink-0 text-cream lg:text-[#451020]">
             <button
               type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-label={open ? "Đóng menu" : "Mở menu"}
-              aria-expanded={open}
-              className="inline-flex size-10 items-center justify-center text-[#2d081d] lg:hidden"
+              onClick={() => setLang("vi")}
+              aria-label="Tiếng Việt"
+              className={cn(
+                "transition-colors",
+                lang === "vi" ? "font-semibold" : "opacity-60 hover:opacity-100",
+              )}
             >
-              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+              VI
+            </button>
+            <span className="opacity-35">/</span>
+            <button
+              type="button"
+              onClick={() => setLang("en")}
+              aria-label="English"
+              className={cn(
+                "transition-colors",
+                lang === "en" ? "font-semibold" : "opacity-60 hover:opacity-100",
+              )}
+            >
+              EN
             </button>
           </div>
-        </nav>
-      </header>
 
+          <ContactPicker>
+            <button
+              type="button"
+              className="hidden shrink-0 whitespace-nowrap rounded-full bg-[#451020] px-5 py-2 font-serif text-xs font-semibold uppercase tracking-[0.14em] text-[#faf6f0] shadow-xs transition-all duration-300 hover:bg-[#5c1a2e] hover:shadow-sm sm:inline-flex"
+            >
+              {cta}
+            </button>
+          </ContactPicker>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Đóng menu" : "Mở menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            className="inline-flex size-10 items-center justify-center text-cream lg:hidden"
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
+      </nav>
       {open ? (
-        <div className="fixed inset-0 top-16 z-40 flex flex-col overflow-y-auto bg-cream px-8 pb-12 pt-6 lg:hidden animate-in fade-in duration-200">
+        <div
+          id="mobile-navigation"
+          className="absolute inset-x-0 top-full z-40 flex max-h-[75svh] flex-col overflow-y-auto border-b border-maroon/15 bg-cream px-6 py-6 shadow-lg lg:hidden animate-in fade-in duration-200"
+        >
           <ul className="flex flex-col gap-6 pt-2">
             {links.map((l, index) => (
               <li key={l.id} className="flex items-baseline gap-3">
@@ -221,6 +186,6 @@ export function Navbar() {
           </div>
         </div>
       ) : null}
-    </>
+    </header>
   );
 }
