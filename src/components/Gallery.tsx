@@ -102,7 +102,7 @@ export function Gallery() {
     <section id="gallery" className="relative bg-[#f4efe6] px-4 py-20 sm:px-6 sm:py-28 scroll-mt-16">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          title={lang === "vi" ? "Phòng Trưng Bày Kỷ Niệm" : "Fine Art Gallery"}
+          title={lang === "vi" ? "Phòng Trưng Bày Kỷ Niệm" : "Gallery"}
           desc={
             lang === "vi"
               ? "Từng khoảnh khắc đong đầy yêu thương được nâng niu trong từng khung hình."
