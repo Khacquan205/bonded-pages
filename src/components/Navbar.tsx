@@ -55,7 +55,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50 bg-gradient-to-b from-black/50 to-transparent lg:bg-none">
+    <header className="absolute inset-x-0 top-0 z-50 bg-gradient-to-b from-black/50 to-transparent">
       <nav className="mx-auto flex h-16 sm:h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
         {/* Brand logo stays left on every screen size. */}
         <div className="flex flex-1 items-center justify-start">
@@ -81,7 +81,7 @@ export function Navbar() {
                 <a
                   href={`#${l.id}`}
                   onClick={(e) => scrollToSection(e, l.id)}
-                  className="whitespace-nowrap font-display text-xs uppercase tracking-[0.2em] transition-colors text-[#451020] font-medium rounded-full bg-cream/90 px-3 py-2 hover:bg-cream"
+                  className="whitespace-nowrap font-display text-xs uppercase tracking-[0.2em] transition-colors text-cream font-medium px-3 py-2 hover:text-white"
                 >
                   {l[lang]}
                 </a>
@@ -92,7 +92,7 @@ export function Navbar() {
 
         {/* Right Column: Language Switch & RSVP Button & Mobile Menu */}
         <div className="flex flex-1 items-center justify-end gap-3.5 sm:gap-4 shrink-0 whitespace-nowrap">
-          <div className="flex items-center gap-1 text-[0.6875rem] tracking-[0.18em] font-display shrink-0 text-cream lg:text-[#451020]">
+          <div className="flex items-center gap-1 text-[0.6875rem] tracking-[0.18em] font-display shrink-0 text-cream">
             <button
               type="button"
               onClick={() => setLang("vi")}

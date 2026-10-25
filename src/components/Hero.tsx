@@ -43,13 +43,19 @@ export function Hero() {
         decoding="async"
         className="absolute inset-0 size-full object-cover opacity-60 mix-blend-multiply"
       />
-      <div className="relative z-10 grid h-[100svh] w-full grid-rows-[minmax(0,1fr)_auto] text-center lg:h-auto lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:grid-rows-1">
+      <div className="relative z-10 grid h-[100svh] w-full grid-rows-[minmax(0,1fr)_auto] text-center">
         <h1 className="sr-only">
           Save The Date · 11.12.2026 · {wedding.couple.groom.name} &amp; {wedding.couple.bride.name}
         </h1>
         <motion.div {...fade(0.1)} className="h-full min-h-0 w-full min-w-0">
-          <div className="relative h-full w-full lg:h-[max(42rem,100svh)]">
-            <div className="absolute inset-0 overflow-hidden">
+          <div className="relative h-full w-full">
+            <div className="absolute inset-0 overflow-hidden bg-[#233026]">
+              <img
+                src={wedding.hero.image}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 hidden size-full scale-110 object-cover opacity-55 blur-2xl lg:block"
+              />
               <img
                 src={wedding.hero.image}
                 alt={
@@ -59,16 +65,16 @@ export function Hero() {
                 }
                 decoding="async"
                 fetchPriority="high"
-                className="size-full object-cover object-[center_30%]"
+                className="relative size-full object-cover object-[center_30%] lg:object-contain"
               />
               <div className="pointer-events-none absolute inset-x-0 top-0 h-[25%] bg-gradient-to-b from-black/40 to-transparent" />
             </div>
           </div>
         </motion.div>
-        <div className="flex min-w-0 flex-col items-center justify-center px-6 pt-3 pb-2 sm:px-10 sm:pt-4 sm:pb-3 lg:px-12 lg:py-16">
+        <div className="flex min-w-0 flex-col items-center justify-center px-6 pt-3 pb-2 sm:px-10 sm:pt-4 sm:pb-3">
           <motion.div
             {...fade(0.28)}
-            className="flex w-full max-w-md items-center justify-center gap-3"
+            className="flex w-full max-w-md items-center justify-center gap-3 lg:max-w-3xl"
           >
             <span className="h-px w-5 shrink-0 bg-[#451020]/30" />
             <p className="font-display text-base leading-relaxed font-bold uppercase tracking-[0.08em] text-[#451020] sm:text-lg lg:text-2xl">
@@ -78,11 +84,11 @@ export function Hero() {
           </motion.div>
           <motion.p
             {...fade(0.34)}
-            className="mt-1.5 font-display text-base font-bold uppercase tracking-[0.24em] text-[#451020] sm:text-lg lg:mt-6 lg:text-2xl"
+            className="mt-1.5 font-display text-base font-bold uppercase tracking-[0.24em] text-[#451020] sm:text-lg lg:text-2xl"
           >
             11.12.2026
           </motion.p>
-          <div className="mt-2 flex h-11 items-center justify-center sm:h-12 lg:mt-5 lg:h-14">
+          <div className="mt-2 flex h-11 items-center justify-center sm:h-12">
             {!isSticky ? (
               <motion.div
                 layoutId="rsvp-main-button"
