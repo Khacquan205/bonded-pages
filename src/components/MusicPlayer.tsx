@@ -1,7 +1,6 @@
 ﻿import { useEffect, useRef, useState } from "react";
 import { LoaderCircle, Music2, Pause } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import { useRsvpButton } from "@/context/RsvpButtonContext";
 
 const API_URL = "https://open.spotify.com/embed/iframe-api/v1";
 
@@ -51,7 +50,6 @@ function loadSpotifyApi() {
 
 export function MusicPlayer() {
   const { lang } = useLanguage();
-  const { isSticky } = useRsvpButton();
   const [attempt, setAttempt] = useState(0);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
   const [playing, setPlaying] = useState(false);
@@ -180,7 +178,7 @@ export function MusicPlayer() {
   return (
     <aside
       aria-label={vi ? "Nhạc thiệp cưới" : "Wedding music"}
-      className={`fixed right-3 z-40 sm:right-6 ${isSticky ? "bottom-[max(1.25rem,env(safe-area-inset-bottom))]" : "bottom-[max(0.625rem,env(safe-area-inset-bottom))]"}`}
+      className="fixed right-3 bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-40 sm:right-6"
     >
       {/* Keep Spotify mounted without a visible panel or keyboard focus targets. */}
       <div ref={host} className="sr-only pointer-events-none" aria-hidden="true" inert />

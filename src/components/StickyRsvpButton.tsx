@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
 import { useRsvpButton } from "@/context/RsvpButtonContext";
 import { ContactPicker } from "./ContactPicker";
@@ -7,13 +7,16 @@ export function StickyRsvpButton() {
   const { lang } = useLanguage();
   const { isSticky } = useRsvpButton();
 
-  if (!isSticky) return null;
-
+  // Stays mounted and only toggles opacity/transform: mounting a fixed element or
+  // animating its layout mid-scroll makes it jump or vanish in iOS / Zalo webviews.
   return (
-    <motion.div
-      layoutId="rsvp-main-button"
-      transition={{ type: "spring", stiffness: 260, damping: 25, mass: 0.8 }}
-      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-40 pointer-events-auto"
+    <div
+      aria-hidden={!isSticky}
+      inert={!isSticky}
+      className={cn(
+        "fixed inset-x-0 bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-40 mx-auto w-fit transition-[opacity,translate] duration-300 ease-out will-change-transform",
+        isSticky ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0",
+      )}
     >
       <ContactPicker>
         <button
@@ -24,6 +27,6 @@ export function StickyRsvpButton() {
           {lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance"}
         </button>
       </ContactPicker>
-    </motion.div>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-﻿import { useEffect } from "react";
+﻿import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { wedding } from "@/config/wedding";
 import { useLanguage } from "@/context/LanguageContext";
@@ -13,25 +13,20 @@ const fade = (delay: number) => ({
 
 export function Hero() {
   const { lang } = useLanguage();
-  const { isSticky, setIsSticky } = useRsvpButton();
+  const { setIsSticky } = useRsvpButton();
 
+  const ctaRef = useRef<HTMLDivElement>(null);
+
+  // Show the floating CTA only once the hero CTA has scrolled out above the viewport.
+  // IntersectionObserver avoids per-frame scroll work that stutters in iOS / Zalo webviews.
   useEffect(() => {
-    let frame = 0;
-    const checkScroll = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(() => {
-        const y = window.scrollY;
-        if (y > 50) setIsSticky(true);
-        else if (y < 20) setIsSticky(false);
-        frame = 0;
-      });
-    };
-    window.addEventListener("scroll", checkScroll, { passive: true });
-    checkScroll();
-    return () => {
-      window.removeEventListener("scroll", checkScroll);
-      window.cancelAnimationFrame(frame);
-    };
+    const el = ctaRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry) setIsSticky(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
   }, [setIsSticky]);
 
   return (
@@ -88,29 +83,15 @@ export function Hero() {
           >
             11.12.2026
           </motion.p>
-          <div className="mt-2 flex h-11 items-center justify-center sm:h-12">
-            {!isSticky ? (
-              <motion.div
-                layoutId="rsvp-main-button"
-                transition={{ type: "spring", stiffness: 260, damping: 25, mass: 0.8 }}
-              >
-                <ContactPicker>
-                  <button
-                    type="button"
-                    className="cursor-pointer whitespace-nowrap rounded-full bg-[#451020] px-6 py-3 font-serif text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[#faf6f0] shadow-md transition-colors duration-200 hover:bg-[#5c1a2e] active:scale-[0.98] sm:px-10 sm:py-3.5 sm:text-sm"
-                  >
-                    {lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance"}
-                  </button>
-                </ContactPicker>
-              </motion.div>
-            ) : (
-              <div
-                aria-hidden="true"
-                className="invisible rounded-full px-8 py-3 font-serif text-[0.8125rem] uppercase tracking-[0.16em] sm:text-sm sm:px-10 sm:py-3.5 whitespace-nowrap select-none"
+          <div ref={ctaRef} className="mt-2 flex h-11 items-center justify-center sm:h-12">
+            <ContactPicker>
+              <button
+                type="button"
+                className="cursor-pointer whitespace-nowrap rounded-full bg-[#451020] px-6 py-3 font-serif text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[#faf6f0] shadow-md transition-colors duration-200 hover:bg-[#5c1a2e] active:scale-[0.98] sm:px-10 sm:py-3.5 sm:text-sm"
               >
                 {lang === "vi" ? "Xác nhận tham dự" : "Confirm attendance"}
-              </div>
-            )}
+              </button>
+            </ContactPicker>
           </div>
         </div>
       </div>

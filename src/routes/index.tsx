@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LayoutGroup } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { RsvpButtonProvider } from "@/context/RsvpButtonContext";
 import { Hero } from "@/components/Hero";
@@ -14,10 +13,10 @@ import { Toaster } from "@/components/ui/sonner";
 import { wedding } from "@/config/wedding";
 import { LanguageProvider } from "@/context/LanguageContext";
 
-// Link preview (Zalo / Facebook / Messenger): 1200x630 crop of the veil portrait from the Retouched album
+// Link preview (Zalo / Facebook / Messenger): 1200x630 crop of the pic-time album cover (bench under the vines)
 // Must be an absolute URL: Zalo / Facebook crawlers don't resolve relative og:image paths
 const SITE_URL = "https://bonded-pages.nguyenkhacquanpr2017.workers.dev";
-const OG_IMAGE = `${SITE_URL}/images/og-cover.jpg`;
+const OG_IMAGE = `${SITE_URL}/images/og-cover-jardin.jpg`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,9 +45,7 @@ export const Route = createFileRoute("/")({
   component: () => (
     <LanguageProvider>
       <RsvpButtonProvider>
-        <LayoutGroup id="rsvp-button-group">
-          <Invitation />
-        </LayoutGroup>
+        <Invitation />
       </RsvpButtonProvider>
       </LanguageProvider>
   ),
