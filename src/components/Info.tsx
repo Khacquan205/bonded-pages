@@ -11,7 +11,7 @@ export function Info() {
   return (
     <section id="info" className="relative bg-[#f4efe6] px-5 py-20 sm:px-6 sm:py-28 scroll-mt-16">
       <div className="mx-auto max-w-4xl">
-        <SectionHeading title={lang === "vi" ? "Thiệp Cưới" : "Wedding Stationery"} />
+        <SectionHeading title={lang === "vi" ? "Thiệp Mời" : "Wedding Invitation"} />
 
         <Reveal delay={0.1} className="mt-8 sm:mt-12">
           <WeddingInvitation />

@@ -134,12 +134,6 @@ export const wedding = {
           desc: { vi: "Cùng nâng ly chúc phúc và lưu giữ khoảnh khắc đáng\u00A0nhớ.", en: "Toasts, music and memorable moments." },
           location: { vi: "JW Marriott Hotel & Suites Saigon", en: "JW Marriott Hotel & Suites Saigon" },
         },
-        {
-          time: "21:00",
-          title: { vi: "Tiễn\u00A0khách", en: "Farewell" },
-          desc: { vi: "Cảm ơn bạn đã ở đây chung vui cùng gia\u00A0đình.", en: "Thank you for being here with us." },
-          location: { vi: "JW Marriott Hotel & Suites Saigon", en: "JW Marriott Hotel & Suites Saigon" },
-        },
       ],
     },
   ],

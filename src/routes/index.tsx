@@ -16,18 +16,18 @@ import { LanguageProvider } from "@/context/LanguageContext";
 // Link preview (Zalo / Facebook / Messenger): 1200x630 crop of the pic-time album cover (bench under the vines)
 // Must be an absolute URL: Zalo / Facebook crawlers don't resolve relative og:image paths
 const SITE_URL = "https://bonded-pages.nguyenkhacquanpr2017.workers.dev";
-const OG_IMAGE = `${SITE_URL}/images/og-cover-jardin.jpg`;
+const OG_IMAGE = `${SITE_URL}/images/og-cover-jardin-v2.jpg`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Thành Long & Huyền Nga — Thiệp cưới 11.12.2026" },
+      { title: "Thành Long & Huyền Nga — Thiệp mời 11.12.2026" },
       {
         name: "description",
         content:
-          "Thiệp cưới của Thành Long & Huyền Nga — 11 tháng 12, 2026 tại JW Marriott Hotel, TP. Hồ Chí Minh. Xem chương trình, album và xác nhận tham dự.",
+          "Thiệp mời của Thành Long & Huyền Nga — 11 tháng 12, 2026 tại JW Marriott Hotel, TP. Hồ Chí Minh. Xem chương trình, album và xác nhận tham dự.",
       },
-      { property: "og:title", content: "Thành Long & Huyền Nga — Thiệp cưới 11.12.2026" },
+      { property: "og:title", content: "Thành Long & Huyền Nga — Thiệp mời 11.12.2026" },
       {
         property: "og:description",
         content:
