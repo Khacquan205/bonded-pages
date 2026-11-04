@@ -12,10 +12,10 @@ import { Toaster } from "@/components/ui/sonner";
 import { wedding } from "@/config/wedding";
 import { LanguageProvider } from "@/context/LanguageContext";
 
-// Link preview (Zalo / Facebook / Messenger): 1200x630 frame of the retouched photo in front of the tall hedges
+// Link preview (Zalo / Facebook / Messenger): the retouched hedges photo, full frame at its original 1067x1600 size
 // Must be an absolute URL: Zalo / Facebook crawlers don't resolve relative og:image paths
 const SITE_URL = "https://bonded-pages.nguyenkhacquanpr2017.workers.dev";
-const OG_IMAGE = `${SITE_URL}/images/og-cover-hedges-v2.jpg`;
+const OG_IMAGE = `${SITE_URL}/images/og-cover-hedges-full.jpg`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,8 +35,8 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: `${SITE_URL}/` },
       { property: "og:image", content: OG_IMAGE },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
+      { property: "og:image:width", content: "1067" },
+      { property: "og:image:height", content: "1600" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: OG_IMAGE },
     ],
