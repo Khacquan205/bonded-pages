@@ -36,15 +36,25 @@ export function WeddingInvitation() {
       aria-label={vi ? "Thiệp mời tiệc cưới" : "Wedding reception invitation"}
       className="mx-auto w-full max-w-2xl text-center font-serif text-base leading-relaxed text-[#451020] [container-type:inline-size]"
     >
-      <div className="grid grid-cols-2 gap-5 text-sm leading-relaxed sm:gap-10 sm:text-base">
-        <div>
-          <p className="mb-2 italic">{vi ? "Nhà Trai" : "Groom’s family"}</p>
-          <p>{motherName(wedding.couple.mothers.groomMother.name)}</p>
-        </div>
-        <div>
-          <p className="mb-2 italic">{vi ? "Nhà Gái" : "Bride’s family"}</p>
-          <p>{motherName(wedding.couple.mothers.brideMother.name)}</p>
-        </div>
+      <div className="grid grid-cols-2 gap-3 text-sm leading-relaxed sm:gap-10 sm:text-base">
+        {(
+          [
+            [vi ? "Nhà Trai" : "Groom’s family", wedding.couple.mothers.groomMother],
+            [vi ? "Nhà Gái" : "Bride’s family", wedding.couple.mothers.brideMother],
+          ] as const
+        ).map(([side, mother]) => (
+          <div key={side}>
+            <p className="mb-2 italic">{side}</p>
+            <p>{motherName(mother.name)}</p>
+            <address className="mt-1 text-[0.6875rem] not-italic leading-snug text-[#451020]/80 sm:text-sm">
+              {mother.address.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </address>
+          </div>
+        ))}
       </div>
 
       <div className="mt-8 sm:mt-10">
