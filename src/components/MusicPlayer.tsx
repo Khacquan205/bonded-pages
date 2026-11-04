@@ -65,11 +65,24 @@ export function MusicPlayer() {
     let timedOut = false;
     let ready = false;
     let embed: SpotifyController | null = null;
+    // Browsers only allow audible playback after the guest's first interaction, so try on
+    // every early input event (the first finger down, a swipe to scroll, a tap, a key)
+    // rather than waiting for a full click. Capture phase so nothing on the page can swallow it.
+    const gestureEvents = [
+      "pointerdown",
+      "pointerup",
+      "touchstart",
+      "touchend",
+      "mousedown",
+      "click",
+      "keydown",
+    ] as const;
+    const listenerOptions = { capture: true, passive: true } as const;
     const removeGestureListeners = () => {
-      document.removeEventListener("click", startOnGesture);
-      document.removeEventListener("keydown", startOnGesture);
+      for (const type of gestureEvents)
+        document.removeEventListener(type, startOnGesture, listenerOptions);
     };
-    function startOnGesture(event: MouseEvent | KeyboardEvent) {
+    function startOnGesture(event: Event) {
       if (!event.isTrusted || !ready || disposed || timedOut || !autoStartPending.current) return;
       // The music button handles its own action; do not issue two play/pause commands.
       if (event.target instanceof Node && musicButton.current?.contains(event.target)) return;
@@ -80,10 +93,10 @@ export function MusicPlayer() {
         return;
       embed?.play();
     }
-    // A tap generates click too. Keep trying on genuine gestures until Spotify
-    // confirms playback, because the initial autoplay request may be blocked.
-    document.addEventListener("click", startOnGesture);
-    document.addEventListener("keydown", startOnGesture);
+    // Keep trying on genuine gestures until Spotify confirms playback, because the
+    // initial autoplay request (made as soon as the player is ready) may be blocked.
+    for (const type of gestureEvents)
+      document.addEventListener(type, startOnGesture, listenerOptions);
     // Spotify replaces its target. Keep React's host intact for safe cleanup.
     const target = document.createElement("div");
     host.current.appendChild(target);

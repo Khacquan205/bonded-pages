@@ -7,7 +7,6 @@ import { ContactPicker } from "./ContactPicker";
 const links = [
   { id: "info", vi: "Thông tin", en: "Details" },
   { id: "timeline", vi: "Chương trình", en: "Schedule" },
-  { id: "gallery", vi: "Album", en: "Gallery" },
   { id: "guestbook", vi: "Lưu bút", en: "Guestbook" },
 ];
 

@@ -4,7 +4,6 @@ import { RsvpButtonProvider } from "@/context/RsvpButtonContext";
 import { Hero } from "@/components/Hero";
 import { Info } from "@/components/Info";
 import { Timeline } from "@/components/Timeline";
-import { Gallery } from "@/components/Gallery";
 import { Guestbook } from "@/components/Guestbook";
 import { ClosingCta } from "@/components/ClosingCta";
 import { StickyRsvpButton } from "@/components/StickyRsvpButton";
@@ -13,10 +12,10 @@ import { Toaster } from "@/components/ui/sonner";
 import { wedding } from "@/config/wedding";
 import { LanguageProvider } from "@/context/LanguageContext";
 
-// Link preview (Zalo / Facebook / Messenger): 1200x630 crop of the pic-time album cover (bench under the vines)
+// Link preview (Zalo / Facebook / Messenger): 1200x630 frame of the retouched photo in front of the tall hedges
 // Must be an absolute URL: Zalo / Facebook crawlers don't resolve relative og:image paths
 const SITE_URL = "https://bonded-pages.nguyenkhacquanpr2017.workers.dev";
-const OG_IMAGE = `${SITE_URL}/images/og-cover-jardin-v2.jpg`;
+const OG_IMAGE = `${SITE_URL}/images/og-cover-hedges.jpg`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -61,7 +60,6 @@ function Invitation() {
         <Hero />
         <Info />
         <Timeline />
-        <Gallery />
         <Guestbook />
         <ClosingCta />
       </main>
