@@ -19,6 +19,8 @@ export function MusicPlayer() {
   const musicButton = useRef<HTMLButtonElement>(null);
   const [playing, setPlaying] = useState(false);
   const [failed, setFailed] = useState(false);
+  // Desktop hint until the music has started once (wheel scrolling can't unlock audio there).
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
     const el = audio.current;
@@ -45,6 +47,7 @@ export function MusicPlayer() {
     // State follows what the audio element really does, not what we asked it to do.
     const onPlaying = () => {
       setPlaying(true);
+      setStarted(true);
       setFailed(false);
       removeGestureListeners();
     };
@@ -100,8 +103,18 @@ export function MusicPlayer() {
   return (
     <aside
       aria-label={vi ? "Nhạc thiệp cưới" : "Wedding music"}
-      className="fixed right-3 bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-40 sm:right-6"
+      className="fixed right-3 bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-40 flex items-center gap-2 sm:right-6"
     >
+      {/* Desktop only: on phones the first tap already starts the music. Clicking it bubbles
+          to the document gesture listener, which starts playback. */}
+      {!started && !failed && (
+        <span
+          aria-hidden="true"
+          className="hidden cursor-pointer rounded-full border border-[#451020]/15 bg-[#faf6f0]/95 px-3 py-1.5 font-serif text-xs font-semibold tracking-wide text-[#451020] shadow-[0_4px_14px_rgba(45,8,29,0.15)] backdrop-blur-sm lg:block"
+        >
+          {vi ? "Bấm để nghe nhạc" : "Click to play music"}
+        </span>
+      )}
       <audio ref={audio} src={SONG_SRC} preload="auto" loop playsInline />
       <span role="status" className="sr-only">
         {failed
