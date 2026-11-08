@@ -42,7 +42,7 @@ export function Timeline() {
         {/* Schedule Header / Tabs (only shown if multiple events exist) */}
         {wedding.timeline.length > 1 && (
           <div className="mt-12 flex justify-center">
-            <div className="inline-flex rounded-full border border-maroon/20 bg-cream-deep/70 p-1.5 shadow-2xs backdrop-blur-xs">
+            <div className="inline-flex rounded-full border border-maroon/20 bg-cream-deep/70 p-1.5 shadow-2xs">
               {wedding.timeline.map((day, idx) => (
                 <button
                   key={day.key}
@@ -95,7 +95,7 @@ export function Timeline() {
                     {/* Time & Content Box */}
                     <div
                       className={cn(
-                        "ml-8 w-auto rounded-lg border border-[#2d081d]/15 bg-white/80 p-5 shadow-xs backdrop-blur-xs transition-colors hover:border-[#451020]/40 sm:ml-0 sm:w-[calc(50%-2.5rem)] sm:p-6",
+                        "ml-8 w-auto rounded-lg border border-[#2d081d]/15 bg-white/85 p-5 shadow-xs transition-colors hover:border-[#451020]/40 sm:ml-0 sm:w-[calc(50%-2.5rem)] sm:p-6",
                         isEven ? "sm:text-right" : "sm:text-left",
                       )}
                     >

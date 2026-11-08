@@ -171,7 +171,7 @@ export function Guestbook() {
         />
 
         {/* Guestbook Form */}
-        <Reveal className="mt-12 rounded-xl border border-maroon/20 bg-cream-deep/70 p-6 sm:p-8 shadow-2xs backdrop-blur-xs">
+        <Reveal className="mt-12 rounded-xl border border-maroon/20 bg-cream-deep/70 p-6 sm:p-8 shadow-2xs">
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Honeypot field for bot protection */}
             <input
@@ -282,7 +282,7 @@ export function Guestbook() {
               {messages.slice(0, visibleCount).map((item) => (
                 <Reveal
                   key={item.id}
-                  className="flex flex-col justify-between rounded-lg border border-[#2d081d]/15 bg-white/85 p-5 shadow-xs backdrop-blur-xs transition-colors hover:border-[#451020]/35"
+                  className="flex flex-col justify-between rounded-lg border border-[#2d081d]/15 bg-white/90 p-5 shadow-xs transition-colors hover:border-[#451020]/35"
                 >
                   <div>
                     <div className="flex items-start justify-between gap-2">

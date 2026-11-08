@@ -18,7 +18,7 @@ export function ClosingCta() {
         decoding="async"
         className="absolute inset-x-0 bottom-0 h-[150%] w-full object-cover sm:h-full sm:object-[center_75%]"
       />
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 bg-black/60" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60" />
 
       <div className="relative mx-auto max-w-3xl px-6">
@@ -65,7 +65,7 @@ export function ClosingCta() {
       </div>
 
       {/* Bespoke Stationery Footer */}
-      <footer className="relative z-10 mt-16 sm:mt-20 border-t border-white/15 bg-black/60 py-8 sm:py-10 text-center backdrop-blur-sm">
+      <footer className="relative z-10 mt-16 sm:mt-20 border-t border-white/15 bg-black/70 py-8 sm:py-10 text-center">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-2.5 px-6">
           <div className="relative mb-1 flex items-center justify-center">
             <img

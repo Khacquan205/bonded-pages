@@ -32,7 +32,7 @@ export function Hero() {
   return (
     <section id="top" className="relative w-full overflow-hidden bg-[#f4efe6]">
       <img
-        src="/images/paper-texture.png"
+        src="/images/paper-texture.jpg"
         alt=""
         aria-hidden="true"
         decoding="async"

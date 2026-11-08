@@ -54,6 +54,24 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
       console.warn("LocalStorage save error:", e);
     }
 
+    // Copy a ready-made Zalo message now, while still inside the tap: iOS refuses clipboard
+    // writes after an await, and it must never hold up the submit.
+    const attendanceText =
+      attendance === "yes"
+        ? lang === "vi"
+          ? `xác nhận sẽ đến tham dự (${finalGuestCount} người)`
+          : `confirm attendance (${finalGuestCount} person(s))`
+        : lang === "vi"
+          ? "rất tiếc không thể đến tham dự nhưng xin gửi lời chúc trăm năm hạnh phúc"
+          : "regretfully cannot attend but wish you lifetime happiness";
+    const messageContent =
+      lang === "vi"
+        ? `Chào hai bạn, mình là ${trimmedName}, mình ${attendanceText} vào ngày 11.12! ${note ? `Lời nhắn: "${note.trim()}"` : ""}`
+        : `Hello, I am ${trimmedName}, I ${attendanceText} on Dec 11th! ${note ? `Note: "${note.trim()}"` : ""}`;
+    navigator.clipboard?.writeText(messageContent).catch((clipErr) => {
+      console.warn("Clipboard write error:", clipErr);
+    });
+
     try {
       // Save to Supabase + send automated Zalo notification (server-side,
       // keeps the webhook secret out of the client bundle)
@@ -69,29 +87,6 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
 
       if (!result.success) {
         console.warn("Supabase RSVP sync notice: insert failed");
-      }
-
-      // Auto-generate text and copy to clipboard for convenience
-      const attendanceText =
-        attendance === "yes"
-          ? lang === "vi"
-            ? `xác nhận sẽ đến tham dự (${finalGuestCount} người)`
-            : `confirm attendance (${finalGuestCount} person(s))`
-          : lang === "vi"
-            ? "rất tiếc không thể đến tham dự nhưng xin gửi lời chúc trăm năm hạnh phúc"
-            : "regretfully cannot attend but wish you lifetime happiness";
-
-      const messageContent =
-        lang === "vi"
-          ? `Chào hai bạn, mình là ${trimmedName}, mình ${attendanceText} vào ngày 11.12! ${note ? `Lời nhắn: "${note.trim()}"` : ""}`
-          : `Hello, I am ${trimmedName}, I ${attendanceText} on Dec 11th! ${note ? `Note: "${note.trim()}"` : ""}`;
-
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(messageContent);
-        }
-      } catch (clipErr) {
-        console.warn("Clipboard write error:", clipErr);
       }
 
       toast.success(

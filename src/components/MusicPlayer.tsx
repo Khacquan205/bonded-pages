@@ -65,7 +65,20 @@ export function MusicPlayer() {
     // Try right away: some browsers / in-app webviews allow it without a tap.
     el.play().catch(() => {});
 
+    // Don't let the ~0.9MB song compete with the photos on first load: start buffering it
+    // shortly after the page has finished loading (a tap before then still plays it).
+    let preloadTimer = 0;
+    const preloadSong = () => {
+      preloadTimer = window.setTimeout(() => {
+        if (el.preload !== "auto") el.preload = "auto";
+      }, 1500);
+    };
+    if (document.readyState === "complete") preloadSong();
+    else window.addEventListener("load", preloadSong, { once: true });
+
     return () => {
+      window.clearTimeout(preloadTimer);
+      window.removeEventListener("load", preloadSong);
       removeGestureListeners();
       el.removeEventListener("playing", onPlaying);
       el.removeEventListener("pause", onPause);
@@ -110,12 +123,12 @@ export function MusicPlayer() {
       {!started && !failed && (
         <span
           aria-hidden="true"
-          className="hidden cursor-pointer rounded-full border border-[#451020]/15 bg-[#faf6f0]/95 px-3 py-1.5 font-serif text-xs font-semibold tracking-wide text-[#451020] shadow-[0_4px_14px_rgba(45,8,29,0.15)] backdrop-blur-sm lg:block"
+          className="hidden cursor-pointer rounded-full border border-[#451020]/15 bg-[#faf6f0]/95 px-3 py-1.5 font-serif text-xs font-semibold tracking-wide text-[#451020] shadow-[0_4px_14px_rgba(45,8,29,0.15)] lg:block"
         >
           {vi ? "Bấm để nghe nhạc" : "Click to play music"}
         </span>
       )}
-      <audio ref={audio} src={SONG_SRC} preload="auto" loop playsInline />
+      <audio ref={audio} src={SONG_SRC} preload="none" loop playsInline />
       <span role="status" className="sr-only">
         {failed
           ? vi
