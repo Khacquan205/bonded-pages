@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import { CheckCircle2, Heart, Users, User, Send, MessageCircle, Minus, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -128,7 +128,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder={lang === "vi" ? "Ví dụ: Nguyễn Văn A..." : "E.g. John Doe..."}
-          className="mt-1.5 w-full rounded-md border border-[#2d081d]/25 bg-white px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/50 focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
+          className="mt-1.5 w-full rounded-md border border-[#2d081d]/25 bg-white px-3.5 py-2 text-base text-ink placeholder:text-ink-muted/50 sm:text-sm focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
         />
       </div>
 
@@ -245,7 +245,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
                     onBlur={() => {
                       if (guestCount < 1) setGuestCount(1);
                     }}
-                    className="w-12 rounded-md border border-[#2d081d]/25 bg-white py-1 text-center text-xs font-semibold text-ink focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
+                    className="w-12 rounded-md border border-[#2d081d]/25 bg-white py-1 text-center text-base font-semibold sm:text-xs text-ink focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
                   />
                   <button
                     type="button"
@@ -306,7 +306,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           value={note}
           onChange={(e) => setNote(e.target.value)}
           placeholder={lang === "vi" ? "Nhập lời chúc hoặc lưu ý..." : "Any wishes or note..."}
-          className="mt-1.5 w-full rounded-md border border-[#2d081d]/25 bg-white px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/50 focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
+          className="mt-1.5 w-full rounded-md border border-[#2d081d]/25 bg-white px-3.5 py-2 text-base text-ink placeholder:text-ink-muted/50 sm:text-sm focus:border-[#451020] focus:outline-none focus:ring-1 focus:ring-[#451020]"
         />
       </div>
 
@@ -389,10 +389,85 @@ function SuccessView({
   );
 }
 
+const isTextField = (el: Element | null): el is HTMLElement =>
+  el instanceof HTMLTextAreaElement ||
+  (el instanceof HTMLInputElement && !["button", "checkbox", "radio", "submit"].includes(el.type));
+
+/**
+ * Keeps the mobile RSVP sheet above the on-screen keyboard.
+ * iOS (Safari / Zalo) and recent Android Chrome don't shrink the layout for the keyboard, they
+ * just cover the bottom of the screen, so a bottom sheet ends up hidden behind it. We read the
+ * visual viewport (the part of the page still visible) and lift / cap the sheet to fit it, then
+ * scroll the focused field to the middle of the sheet.
+ */
+function useKeyboardAwareSheet(active: boolean, scrollRef: RefObject<HTMLDivElement | null>) {
+  const [viewport, setViewport] = useState<{ bottom: number; height: number } | null>(null);
+
+  const revealFocusedField = useCallback(() => {
+    const sheet = scrollRef.current;
+    const field = document.activeElement;
+    if (!sheet || !isTextField(field) || !sheet.contains(field)) return;
+    const sheetBox = sheet.getBoundingClientRect();
+    const fieldBox = field.getBoundingClientRect();
+    const top = sheet.scrollTop + (fieldBox.top - sheetBox.top) - (sheetBox.height - fieldBox.height) / 2;
+    sheet.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+  }, [scrollRef]);
+
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!active || !vv) {
+      setViewport(null);
+      return;
+    }
+    let frame = 0;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        // Distance from the bottom of the visible area to the bottom of the layout viewport:
+        // the keyboard height (plus any amount iOS has panned the page).
+        const bottom = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
+        setViewport({ bottom, height: Math.round(vv.height) });
+      });
+    };
+    update();
+    vv.addEventListener("resize", update);
+    vv.addEventListener("scroll", update);
+    return () => {
+      cancelAnimationFrame(frame);
+      vv.removeEventListener("resize", update);
+      vv.removeEventListener("scroll", update);
+    };
+  }, [active]);
+
+  // Once the keyboard has opened (viewport changed), bring the focused field into view.
+  useEffect(() => {
+    if (!active || !viewport) return;
+    const timer = window.setTimeout(revealFocusedField, 50);
+    return () => window.clearTimeout(timer);
+  }, [active, viewport, revealFocusedField]);
+
+  // Moving between fields with the keyboard already open doesn't resize the viewport.
+  useEffect(() => {
+    if (!active) return;
+    const onFocusIn = () => window.setTimeout(revealFocusedField, 300);
+    document.addEventListener("focusin", onFocusIn);
+    return () => document.removeEventListener("focusin", onFocusIn);
+  }, [active, revealFocusedField]);
+
+  if (!viewport) return undefined;
+  return {
+    bottom: viewport.bottom,
+    // Leave a little of the page visible above the sheet; the sheet scrolls inside.
+    maxHeight: Math.max(240, Math.min(viewport.height * 0.92, viewport.height - 12)),
+  };
+}
+
 export function ContactPicker({ children }: { children: ReactNode }) {
   const isMobile = useIsMobile();
   const { lang } = useLanguage();
   const [open, setOpen] = useState(false);
+  const sheetScrollRef = useRef<HTMLDivElement>(null);
+  const sheetStyle = useKeyboardAwareSheet(isMobile && open, sheetScrollRef);
   const [submittedData, setSubmittedData] = useState<{
     name: string;
     attendance: AttendanceType;
@@ -438,12 +513,24 @@ export function ContactPicker({ children }: { children: ReactNode }) {
 
   if (isMobile) {
     return (
-      <Drawer open={open} onOpenChange={(v) => { setOpen(v); if (!v) setSubmittedData(null); }}>
+      <Drawer
+        open={open}
+        onOpenChange={(v) => { setOpen(v); if (!v) setSubmittedData(null); }}
+        // vaul's own keyboard handling misplaces the sheet on iOS / Zalo; useKeyboardAwareSheet does it.
+        repositionInputs={false}
+      >
         <DrawerTrigger asChild>{children}</DrawerTrigger>
-        <DrawerContent className="border-[#2d081d]/20 bg-[#faf7f2] max-h-[90svh] overflow-y-auto">
+        <DrawerContent
+          style={sheetStyle}
+          className="max-h-[90svh] border-[#2d081d]/20 bg-[#faf7f2]"
+        >
           <DrawerTitle className="sr-only">{title}</DrawerTitle>
           <DrawerDescription className="sr-only">{desc}</DrawerDescription>
-          {content}
+          {/* Scroll inside a wrapper, not the sheet itself: vaul hangs a background layer
+              below the sheet (::after, top: 100%) that would scroll up over the fields. */}
+          <div ref={sheetScrollRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+            {content}
+          </div>
         </DrawerContent>
       </Drawer>
     );
