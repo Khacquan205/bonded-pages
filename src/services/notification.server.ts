@@ -46,10 +46,55 @@ function getServerEnv(key: string): string | undefined {
   );
 }
 
-// SECURITY: reads server-only env vars (no VITE_ prefix) so the webhook URL
+const ZALO_BOT_API = "https://bot-api.zaloplatforms.com";
+
+/**
+ * Official Zalo Bot Platform (bot.zapps.me): a plain HTTPS call, so it works straight from the
+ * Cloudflare worker with no always-on bot server. Needs two server secrets:
+ *   ZALO_BOT_TOKEN     token sent by "Zalo Bot Manager" when the bot is created
+ *   ZALO_BOT_CHAT_IDS  comma-separated chat ids of the people to notify (each person must send
+ *                      the bot one message first; get ids with scripts/zalo-bot-chat-id.mjs)
+ * Returns null when not configured, so the caller can fall back to the legacy webhook.
+ */
+async function sendViaZaloBot(text: string): Promise<boolean | null> {
+  const token = getServerEnv("ZALO_BOT_TOKEN");
+  const chatIds = (getServerEnv("ZALO_BOT_CHAT_IDS") ?? "")
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
+  if (!token || chatIds.length === 0) return null;
+
+  const results = await Promise.all(
+    chatIds.map(async (chatId) => {
+      try {
+        const response = await fetch(`${ZALO_BOT_API}/bot${token}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: chatId, text: text.slice(0, 2000) }),
+          signal: AbortSignal.timeout(10000),
+        });
+        const body = (await response.json().catch(() => null)) as { ok?: boolean } | null;
+        if (!response.ok || body?.ok !== true) {
+          console.error("❌ [Zalo Bot] sendMessage failed:", response.status, JSON.stringify(body));
+          return false;
+        }
+        return true;
+      } catch (error) {
+        console.error("❌ [Zalo Bot] sendMessage error:", error);
+        return false;
+      }
+    }),
+  );
+  return results.some(Boolean);
+}
+
+// SECURITY: reads server-only env vars (no VITE_ prefix) so the bot token, webhook URL
 // and shared secret never ship to the client bundle. Call only from server
 // functions / server routes.
 export async function sendZaloRsvpNotification(data: RsvpNotificationPayload): Promise<boolean> {
+  const viaBot = await sendViaZaloBot(buildMessageText(data));
+  if (viaBot !== null) return viaBot;
+
   const webhookUrl = getServerEnv("ZALO_BOT_WEBHOOK_URL");
   const webhookSecret = getServerEnv("ZALO_BOT_WEBHOOK_SECRET");
 
