@@ -66,7 +66,7 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
           : "regretfully cannot attend but wish you lifetime happiness";
     const messageContent =
       lang === "vi"
-        ? `Chào hai bạn, mình là ${trimmedName}, mình ${attendanceText} vào ngày 11.12! ${note ? `Lời nhắn: "${note.trim()}"` : ""}`
+        ? `Xin chào, tôi là ${trimmedName}, tôi ${attendanceText} vào ngày 11.12! ${note ? `Lời nhắn: "${note.trim()}"` : ""}`
         : `Hello, I am ${trimmedName}, I ${attendanceText} on Dec 11th! ${note ? `Note: "${note.trim()}"` : ""}`;
     navigator.clipboard?.writeText(messageContent).catch((clipErr) => {
       console.warn("Clipboard write error:", clipErr);
@@ -366,10 +366,8 @@ function SuccessView({
           {lang === "vi" ? "Nhắn tin trực tiếp qua Zalo" : "Message on Zalo"}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <ZaloButton person="groom" className="w-full px-4 sm:py-2.5" />
-          <ZaloButton person="bride" className="w-full px-4 sm:py-2.5" />
-          <ZaloButton person="groomMother" variant="outlineDark" className="w-full px-4 sm:py-2.5" />
-          <ZaloButton person="brideMother" variant="outlineDark" className="w-full px-4 sm:py-2.5" />
+          <ZaloButton person="groomMother" className="w-full px-4 sm:py-2.5" />
+          <ZaloButton person="brideMother" className="w-full px-4 sm:py-2.5" />
         </div>
       </div>
 
