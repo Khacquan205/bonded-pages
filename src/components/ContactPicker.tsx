@@ -35,25 +35,6 @@ function RsvpForm({ onSuccess }: { onSuccess: (name: string, attendance: Attenda
 
     const finalGuestCount = attendance === "yes" ? Math.max(1, Math.min(20, guestCount || 1)) : 0;
 
-    const newRsvpRecord = {
-      id: "rsvp_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6),
-      name: trimmedName,
-      attendance,
-      guest_count: finalGuestCount,
-      side,
-      note: note.trim() || null,
-      phone: null,
-      created_at: new Date().toISOString(),
-    };
-
-    // Save locally first for 100% instant availability
-    try {
-      const existing = JSON.parse(localStorage.getItem("wedding_local_rsvps") || "[]");
-      localStorage.setItem("wedding_local_rsvps", JSON.stringify([newRsvpRecord, ...existing]));
-    } catch (e) {
-      console.warn("LocalStorage save error:", e);
-    }
-
     // Copy a ready-made Zalo message now, while still inside the tap: iOS refuses clipboard
     // writes after an await, and it must never hold up the submit.
     const attendanceText =

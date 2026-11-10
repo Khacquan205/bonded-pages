@@ -83,43 +83,18 @@ function AdminPage() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      let combinedRsvps: RsvpItem[] = [];
+      // Only the database: the guest list must be what Supabase actually holds, not RSVPs
+      // that happen to be cached in this browser.
+      const { data: rsvpData, error: rsvpError } = await supabase
+        .from("rsvps")
+        .select("*")
+        .order("created_at", { ascending: false });
 
-      // 1. Read LocalStorage RSVPs
-      try {
-        const local = JSON.parse(localStorage.getItem("wedding_local_rsvps") || "[]");
-        if (Array.isArray(local)) {
-          combinedRsvps = [...local];
-        }
-      } catch (e) {
-        console.warn("Error reading local RSVPs:", e);
+      if (rsvpError) {
+        console.error("Error loading RSVPs:", rsvpError);
+      } else {
+        setRsvps((rsvpData ?? []) as RsvpItem[]);
       }
-
-      // 2. Fetch Supabase RSVPs
-      try {
-        const { data: rsvpData, error: rsvpError } = await supabase
-          .from("rsvps")
-          .select("*")
-          .order("created_at", { ascending: false });
-
-        if (!rsvpError && rsvpData) {
-          // Merge and deduplicate by name + created_at
-          const seen = new Set(combinedRsvps.map((r) => `${r.name}_${r.created_at}`));
-          for (const item of rsvpData as RsvpItem[]) {
-            const key = `${item.name}_${item.created_at}`;
-            if (!seen.has(key)) {
-              seen.add(key);
-              combinedRsvps.push(item);
-            }
-          }
-        }
-      } catch (e) {
-        console.warn("Supabase fetch notice:", e);
-      }
-
-      // Sort by newest
-      combinedRsvps.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-      setRsvps(combinedRsvps);
 
       // Fetch Guestbook
       const { data: gbData, error: gbError } = await supabase
@@ -460,7 +435,7 @@ function AdminPage() {
             <p className="mt-2 font-display text-3xl sm:text-4xl font-light text-olive-deep">
               {stats.brideSideGuests} <span className="text-sm font-sans text-ink-muted">khách</span>
             </p>
-            <p className="mt-1 text-[0.6875rem] text-ink-muted">Khách cô dâu Ngọc Anh</p>
+            <p className="mt-1 text-[0.6875rem] text-ink-muted">Khách cô dâu {wedding.couple.bride.shortName}</p>
           </div>
 
           <div className="rounded-xl border border-eucalyptus/70 bg-cream-deep p-4 shadow-2xs">
@@ -471,7 +446,7 @@ function AdminPage() {
             <p className="mt-2 font-display text-3xl sm:text-4xl font-light text-olive-deep">
               {stats.groomSideGuests} <span className="text-sm font-sans text-ink-muted">khách</span>
             </p>
-            <p className="mt-1 text-[0.6875rem] text-ink-muted">Khách chú rể Minh Quân</p>
+            <p className="mt-1 text-[0.6875rem] text-ink-muted">Khách chú rể {wedding.couple.groom.shortName}</p>
           </div>
 
           <div className="rounded-xl border border-eucalyptus/70 bg-cream-deep p-4 shadow-2xs">
