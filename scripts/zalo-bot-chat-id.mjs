@@ -24,27 +24,31 @@ async function main() {
   }
   console.log(`Bot: ${me.result?.display_name ?? ""} (${me.result?.account_name ?? me.result?.id})`);
 
-  // getUpdates hands out pending messages one batch at a time and answers 408 once there
-  // are none left, so keep polling until it runs dry.
+  // Zalo only delivers a message to a getUpdates call that is already waiting when it is
+  // sent (messages sent earlier are not queued), so long-poll for 2 minutes while the
+  // recipients message the bot. 408 just means nothing arrived during that poll.
+  console.log("Đang chờ tin nhắn trong 2 phút: mở Zalo của từng số cần nhận thông báo và nhắn cho bot ngay bây giờ...");
   const chats = new Map();
-  for (let i = 0; i < 30; i++) {
-    const updates = await api("getUpdates", { timeout: 5 });
+  const deadline = Date.now() + 120_000;
+  while (Date.now() < deadline) {
+    const updates = await api("getUpdates", { timeout: "30" });
     if (!updates.ok) {
-      if (updates.error_code === 408) break; // no (more) messages waiting
+      if (updates.error_code === 408) continue;
       console.error("getUpdates lỗi (nếu đã đặt webhook thì phải xoá webhook trước):", JSON.stringify(updates));
       return 1;
     }
     const items = Array.isArray(updates.result) ? updates.result : updates.result ? [updates.result] : [];
-    if (items.length === 0) break;
     for (const u of items) {
       const m = u.message ?? u;
-      if (m?.chat?.id) chats.set(m.chat.id, m.from?.display_name ?? m.from?.name ?? "");
+      const name = m?.from?.display_name ?? m?.from?.name ?? "";
+      if (m?.chat?.id && !chats.has(m.chat.id)) console.log(`  + ${name}: ${m.chat.id}`);
+      if (m?.chat?.id) chats.set(m.chat.id, name);
     }
   }
 
   if (chats.size === 0) {
     console.log(
-      "Chưa thấy tin nhắn nào. Mở Zalo bằng số điện thoại cần nhận thông báo, tìm bot, nhắn 1 tin bất kỳ, rồi chạy lại.",
+      "Không nhận được tin nhắn nào trong 2 phút. Chạy lại lệnh, rồi nhắn cho bot trong lúc lệnh đang chờ.",
     );
     return 0;
   }
