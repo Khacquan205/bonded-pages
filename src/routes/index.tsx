@@ -14,7 +14,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 
 // Link preview (Zalo / Facebook / Messenger): 1200x630, retouched hedges photo framed head-to-toe (Zalo crops portrait images)
 // Must be an absolute URL: Zalo / Facebook crawlers don't resolve relative og:image paths
-const SITE_URL = "https://bonded-pages.nguyenkhacquanpr2017.workers.dev";
+const SITE_URL = "https://catandcatnip.net";
 const OG_IMAGE = `${SITE_URL}/images/og-cover-hedges-wide.jpg`;
 
 export const Route = createFileRoute("/")({
