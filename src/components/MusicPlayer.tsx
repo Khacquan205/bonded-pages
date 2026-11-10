@@ -2,11 +2,11 @@
 import { Music2, Pause, RotateCw } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
-// "Can't Help Falling in Love" (Kina Grannis, Crazy Rich Asians), full song, looped. Served
-// from our own origin so play() runs on the page itself: iOS / Zalo only honour a play() made
-// directly inside the guest's touch handler, which a cross-origin player (e.g. a Spotify
-// iframe) cannot get.
-const SONG_SRC = "/audio/cant-help-falling-in-love.mp3";
+// "Can't Help Falling in Love" (Kina Grannis, Crazy Rich Asians): the closing chorus
+// ("Like a river flows… / Take my hand…"), looped. Served from our own origin so play() runs
+// on the page itself: iOS / Zalo only honour a play() made directly inside the guest's touch
+// handler, which a cross-origin player (e.g. a Spotify iframe) cannot get.
+const SONG_SRC = "/audio/cant-help-falling-in-love-chorus.mp3";
 
 // Browsers block audible autoplay until the first interaction, so retry on every early input
 // event (finger down, finger up, click, key) until the audio actually starts.
@@ -66,7 +66,7 @@ export function MusicPlayer() {
     // Try right away: some browsers / in-app webviews allow it without a tap.
     el.play().catch(() => {});
 
-    // Don't let the ~2.3MB song compete with the photos on first load: start buffering it
+    // Don't let the ~0.9MB song compete with the photos on first load: start buffering it
     // shortly after the page has finished loading (a tap before then still plays it).
     let preloadTimer = 0;
     const preloadSong = () => {
